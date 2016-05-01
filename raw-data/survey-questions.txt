@@ -1,0 +1,2002 @@
+Part 1
+
+1. Are you already working as a software developer?
+Y/N
+
+2. Would you prefer to...
+work for a multinational corporation
+work for a startup
+work for a medium-sized company
+freelance 
+start your own business
+
+3. Which one of these roles are you most interested in?
+Full-Stack Web Developer
+Back-End Web Developer
+Front-End Web Developer
+Mobile Developer
+DevOps / SysAdmin
+Data Scientist / Data Engineer
+Quality Assurance Engineer
+User Experience Designer
+Product Manager
+
+4. When do you plan to start applying for developer jobs?
+I'm already applying
+Within the next 6 months
+Within 7 to 12 months
+more than 12 months from now
+I haven't decided
+
+5. About how much money do you expect to earn per year at your first developer job (in US Dollars)?
+Number
+
+6. Would you prefer to work...
+in an office with other developers
+from home
+no preference
+
+7. Are you willing to relocate for a job?
+Y/N
+
+8. Which types of in-person coding events have you attended?
+coffee-and-codes
+hackathons
+conferences
+NodeSchool
+RailsBridge
+Startup Weekend
+Women Who Code
+Girl Develop It
+None
+Other
+
+9. Which learning resources have you found helpful?
+EdX
+Coursera
+Free Code Camp
+Khan Academy
+Code School (Pluralsight)
+Codecademy
+Udacity
+Udemy
+Code Wars
+The Odin Project
+DevTips
+Other
+
+10. Which coding-related podcasts have you found helpful?
+Code Newbie
+The Changelog
+Software Engineering Daily
+JavaScript Jabber
+None
+Other
+
+11. About how many hours do you spend learning each week?
+Number
+
+12. About how many months have you been programming for?
+Number
+
+13. Have you attended a full-time coding bootcamp?
+Y/N
+
+14. Which one?
+10x.org.il
+4Geeks Academy
+Academia de Código
+Academic Work Academy
+Academy Pittsburgh
+Academy X
+Academylogga
+AcadGild
+Ace Hacker Academy
+Ada
+AIT Learning
+Alphappl
+American Graphics Institute
+AngelHack Education
+Anyone Can Learn To Code
+App Academy
+Apprentice.io
+Astro Code School
+Atlanta Code
+Austin Coding Academy
+Awesome Inc U
+Base10 Academy
+Beach Coders Academy
+Betamore
+Big D Code
+Big Nerd Ranch
+Bit Bootcamp
+Bitmaker Labs
+Bloc.io
+Blur State
+BoiseCodeWorks
+Boole Institute
+BrainStation
+Byte Academy
+Byte Academy
+Camp Code Away
+CareerFoundry
+Cincy Code IT
+Claim Academy
+Closer Academy
+Code 42
+Code Chicago
+Code Cloud
+Code Fellows
+Code Fever
+Code For Progress
+Code Institute
+Code Platoon
+Code Union
+CodeaCamp
+Codecademy Labs
+CODEcamp Charleston
+CodeClan
+CodeCore Bootcamp
+CodeCraft School
+CODED
+Coded by U
+Coded Kuwait
+Codemaster Institute
+CodeMasters Academy
+CodeNinja
+Coder Cadre
+Coder Camps
+Coder Factory
+Coder Foundry
+Coder Vox
+Coder's Lab
+Coderoute
+Codesmith
+codeU
+Codeup
+Codify Academy
+Coding Bootcamp Praha
+Coding Dojo
+Coding House
+Coding is the New Literacy
+Coding Temple
+Craftsmanship Academy
+Cribb
+Cultivating Coders
+Data Science Dojo
+Data Science Europe
+Data Science for Social Good
+Data Science Retreat
+DaVinci Coders
+DecodeMTL
+Delta Program
+Depot/U
+Desafio Latam
+DESIGNATION
+Designlab
+Dev Academy
+Dev Bootcamp
+Dev League
+Dev/Iowa Bootcamp
+devCodeCamp
+DevMountain
+DevPoint Labs
+Devschool
+DevStream
+Digital House
+Digital Professional Institute
+DigitalCrafts
+Disruption Institute
+dots School
+EHD Academy
+Elevation Academy
+Eleven Fifty Academy
+Epicodus
+EpicU
+Evolve Security Academy
+Fire Bootcamp
+Flatiron School
+Florida Vocational Institute
+Founders & Coders
+Free Code Camp is not a bootcamp - please scroll up and change answer to "no"
+Fullstack Academy
+Gainesville Dev Academy
+Galvanize
+Geekskool
+Geekwise Academy
+General Assembly
+Grace Hopper
+Grace Hopper Academy
+Grand Circus
+Greater Sum
+Guild of Software Architects
+Hack Pacific
+Hack Reactor
+Hackbright Academy
+HackDojo
+Hackership
+Hackership San Francisco
+HappyFunCorp Technology Academy
+Horizons Academy
+Hungry Academy
+ICanCode
+iKompass
+ikuw
+Inside Sales Bootcamp
+Insight
+Institute of Code
+Interface school
+Interface Web School
+Interview Kickstart
+iNVASIVECODE
+IronHack
+Israel Tech Challenge
+ITHAKAI
+iXperience
+Jaaga
+Jademy
+Koru
+Laboratoria
+Ladies Learning Code
+LAMP Camp
+Launch Academy
+Launch School (formerly Tealeaf Academy)
+Le Wagon
+LEARN Academy
+Learn to Code London
+Learn.Modern-Developer
+LearningFuze
+LearnTech Labs
+Level
+Lighthouse Labs
+Lincoln, Omaha
+Logit Academy
+Lumenbrite
+Makers Academy
+MakerSquare
+Maricopa Corporate College
+Market Campus
+Metis
+Microsoft Research Data Science Summer School
+Midwest Hacker School
+Mobile Makers Academy
+Monroe College Tech Boot Camp
+Montana Code School
+Nashville Software School
+New York Code + Design Academy
+NYC Data Science Academy
+Omaha Code School
+Operation Spark
+Orange County Code School
+Origin Code Academy
+PARSEC Group
+PDX Code Guild
+Pen and Paper Coding
+Philly Dev Camp
+Praxis Data Science
+Prime Digital Academy
+Product School
+RefactorU
+Ruby On The Beach
+Rutgers Coding Bootcamp
+Sabio.la
+Scale
+Science to Data Science
+SD Code Bootcamp
+SeedPaths
+Sharptop Co.
+Shillington School
+Skaled
+Skill Distillery
+Skillcrush
+Smart Factory
+Software Guild
+Springboard
+Square Code Camp
+Stackademy
+Star City Code School
+Starter League
+Startup Ignition
+Startup Institute
+Sydney Dev Camp
+TalentBuddy
+Tech Academy Portland
+Tech Career Booster
+Tech Elevator
+Tech Talent South
+Tel Aviv
+Telegraph Academy
+The App Academy NL
+The codED
+The Coding Boot Camp at UCLA Extension
+The Data Incubator
+The Dev School
+The Firehose Project
+The Hacking School
+The Institute for Statistics Education
+The Iron Yard
+Thinkful
+tradecraft
+Turing
+TurnToTech
+V School
+Viking Code School
+We Can Code IT
+We Got Coders
+World Tech Makers
+Wyncode
+Zip Code Wilmington
+HackerYou
+
+15. Have you finished yet?
+Y/N
+
+16. How many months ago?
+Number
+
+17. Were you able to get a full time developer job afterward?
+Y/N
+
+18. How much was your salary?
+Number
+
+19. Did you take out a loan to pay for the bootcamp?
+Y/N
+
+20. Based on your experience, would you recommend this bootcamp to your friends?
+Y/N
+
+21. Aside from university tuition, about how much money have you spent on learning to code so far (in US dollars)?
+Number
+
+
+Part 2
+
+1. How old are you?
+Number
+
+2. What's your gender?
+female
+male
+agender
+trans
+genderqueer
+
+3. Which country are you a citizen of?
+United States of America
+Afghanistan
+Albania
+Algeria
+American Samoa
+Andorra
+Angola
+Anguilla
+Antigua & Barbuda
+Argentina
+Armenia
+Aruba
+Australia
+Austria
+Azerbaijan
+Bahamas
+Bahrain
+Bangladesh
+Barbados
+Belarus
+Belgium
+Belize
+Benin
+Bermuda
+Bhutan
+Bolivia
+Bonaire
+Bosnia & Herzegovina
+Botswana
+Brazil
+British Indian Ocean Ter
+Brunei
+Bulgaria
+Burkina Faso
+Burundi
+Cambodia
+Cameroon
+Canada
+Canary Islands
+Cape Verde
+Cayman Islands
+Central African Republic
+Chad
+Channel Islands
+Chile
+China
+Christmas Island
+Cocos Island
+Colombia
+Comoros
+Congo
+Cook Islands
+Costa Rica
+Cote D'Ivoire
+Croatia
+Cuba
+Curacao
+Cyprus
+Czech Republic
+Denmark
+Djibouti
+Dominica
+Dominican Republic
+East Timor
+Ecuador
+Egypt
+El Salvador
+Equatorial Guinea
+Eritrea
+Estonia
+Ethiopia
+Falkland Islands
+Faroe Islands
+Fiji
+Finland
+France
+French Guiana
+French Polynesia
+French Southern Ter
+Gabon
+Gambia
+Georgia
+Germany
+Ghana
+Gibraltar
+Great Britain
+Greece
+Greenland
+Grenada
+Guadeloupe
+Guam
+Guatemala
+Guinea
+Guyana
+Haiti
+Hawaii
+Honduras
+Hong Kong
+Hungary
+Iceland
+India
+Indonesia
+Iran
+Iraq
+Ireland
+Isle of Man
+Israel
+Italy
+Jamaica
+Japan
+Jordan
+Kazakhstan
+Kenya
+Kiribati
+Korea North
+Korea South
+Kosovo
+Kuwait
+Kyrgyzstan
+Laos
+Latvia
+Lebanon
+Lesotho
+Liberia
+Libya
+Liechtenstein
+Lithuania
+Luxembourg
+Macau
+Macedonia
+Madagascar
+Malaysia
+Malawi
+Maldives
+Mali
+Malta
+Marshall Islands
+Martinique
+Mauritania
+Mauritius
+Mayotte
+Mexico
+Midway Islands
+Moldova
+Monaco
+Mongolia
+Montserrat
+Morocco
+Mozambique
+Myanmar
+Nambia
+Nauru
+Nepal
+Netherland Antilles
+Netherlands (Holland, Europe)
+Nevis
+New Caledonia
+New Zealand
+Nicaragua
+Niger
+Nigeria
+Niue
+Norfolk Island
+Norway
+Oman
+Pakistan
+Palau Island
+Palestine
+Panama
+Papua New Guinea
+Paraguay
+Peru
+Philippines
+Pitcairn Island
+Poland
+Portugal
+Puerto Rico
+Qatar
+Republic of Montenegro
+Republic of Serbia
+Reunion
+Romania
+Russia
+Rwanda
+St Barthelemy
+St Eustatius
+St Helena
+St Kitts-Nevis
+St Lucia
+St Maarten
+St Pierre & Miquelon
+St Vincent & Grenadines
+Saipan
+Samoa
+Samoa American
+San Marino
+Sao Tome & Principe
+Saudi Arabia
+Senegal
+Serbia
+Seychelles
+Sierra Leone
+Singapore
+Slovakia
+Slovenia
+Solomon Islands
+Somalia
+South Africa
+Spain
+Sri Lanka
+Sudan
+Suriname
+Swaziland
+Sweden
+Switzerland
+Syria
+Tahiti
+Taiwan
+Tajikistan
+Tanzania
+Thailand
+Togo
+Tokelau
+Tonga
+Trinidad & Tobago
+Tunisia
+Turkey
+Turkmenistan
+Turks & Caicos Is
+Tuvalu
+Uganda
+Ukraine
+United Arab Emirates
+United Kingdom
+Uruguay
+Uzbekistan
+Vanuatu
+Vatican City State
+Venezuela
+Vietnam
+Virgin Islands (British)
+Virgin Islands (USA)
+Wake Island
+Wallis & Futana Is
+Yemen
+Zaire
+Zambia
+Zimbabwe
+
+4. Which country do you currently live in?
+United States of America
+Afghanistan
+Albania
+Algeria
+American Samoa
+Andorra
+Angola
+Anguilla
+Antigua & Barbuda
+Argentina
+Armenia
+Aruba
+Australia
+Austria
+Azerbaijan
+Bahamas
+Bahrain
+Bangladesh
+Barbados
+Belarus
+Belgium
+Belize
+Benin
+Bermuda
+Bhutan
+Bolivia
+Bonaire
+Bosnia & Herzegovina
+Botswana
+Brazil
+British Indian Ocean Ter
+Brunei
+Bulgaria
+Burkina Faso
+Burundi
+Cambodia
+Cameroon
+Canada
+Canary Islands
+Cape Verde
+Cayman Islands
+Central African Republic
+Chad
+Channel Islands
+Chile
+China
+Christmas Island
+Cocos Island
+Colombia
+Comoros
+Congo
+Cook Islands
+Costa Rica
+Cote D'Ivoire
+Croatia
+Cuba
+Curacao
+Cyprus
+Czech Republic
+Denmark
+Djibouti
+Dominica
+Dominican Republic
+East Timor
+Ecuador
+Egypt
+El Salvador
+Equatorial Guinea
+Eritrea
+Estonia
+Ethiopia
+Falkland Islands
+Faroe Islands
+Fiji
+Finland
+France
+French Guiana
+French Polynesia
+French Southern Ter
+Gabon
+Gambia
+Georgia
+Germany
+Ghana
+Gibraltar
+Great Britain
+Greece
+Greenland
+Grenada
+Guadeloupe
+Guam
+Guatemala
+Guinea
+Guyana
+Haiti
+Hawaii
+Honduras
+Hong Kong
+Hungary
+Iceland
+India
+Indonesia
+Iran
+Iraq
+Ireland
+Isle of Man
+Israel
+Italy
+Jamaica
+Japan
+Jordan
+Kazakhstan
+Kenya
+Kiribati
+Korea North
+Korea South
+Kuwait
+Kyrgyzstan
+Laos
+Latvia
+Lebanon
+Lesotho
+Liberia
+Libya
+Liechtenstein
+Lithuania
+Luxembourg
+Macau
+Macedonia
+Madagascar
+Malaysia
+Malawi
+Maldives
+Mali
+Malta
+Marshall Islands
+Martinique
+Mauritania
+Mauritius
+Mayotte
+Mexico
+Midway Islands
+Moldova
+Monaco
+Mongolia
+Montserrat
+Morocco
+Mozambique
+Myanmar
+Nambia
+Nauru
+Nepal
+Netherland Antilles
+Netherlands (Holland, Europe)
+Nevis
+New Caledonia
+New Zealand
+Nicaragua
+Niger
+Nigeria
+Niue
+Norfolk Island
+Norway
+Oman
+Pakistan
+Palau Island
+Palestine
+Panama
+Papua New Guinea
+Paraguay
+Peru
+Philippines
+Pitcairn Island
+Poland
+Portugal
+Puerto Rico
+Qatar
+Republic of Montenegro
+Republic of Serbia
+Reunion
+Romania
+Russia
+Rwanda
+St Barthelemy
+St Eustatius
+St Helena
+St Kitts-Nevis
+St Lucia
+St Maarten
+St Pierre & Miquelon
+St Vincent & Grenadines
+Saipan
+Samoa
+Samoa American
+San Marino
+Sao Tome & Principe
+Saudi Arabia
+Senegal
+Serbia
+Seychelles
+Sierra Leone
+Singapore
+Slovakia
+Slovenia
+Solomon Islands
+Somalia
+South Africa
+Spain
+Sri Lanka
+Sudan
+Suriname
+Swaziland
+Sweden
+Switzerland
+Syria
+Tahiti
+Taiwan
+Tajikistan
+Tanzania
+Thailand
+Togo
+Tokelau
+Tonga
+Trinidad & Tobago
+Tunisia
+Turkey
+Turkmenistan
+Turks & Caicos Is
+Tuvalu
+Uganda
+Ukraine
+United Arab Emirates
+United Kingdom
+Uruguay
+Uzbekistan
+Vanuatu
+Vatican City State
+Venezuela
+Vietnam
+Virgin Islands (British)
+Virgin Islands (USA)
+Wake Island
+Wallis & Futana Is
+Yemen
+Zaire
+Zambia
+Zimbabwe
+
+5. About how many people live in your city?
+less than 100,000
+between 100,000 and 1 million
+more than 1 million
+
+6. Are you an ethnic minority in your country?
+Y/N
+
+7. Which language do you you speak at home with your family?
+English
+Abkhazian
+Acehnese
+Adyghe
+Afar
+Afrikaans
+Akan
+Albanian
+Alemannic
+Amharic
+Anglo-Saxon
+Arabic
+Aragonese
+Aramaic
+Armenian
+Aromanian
+Assamese
+Asturian
+Avar
+Awadhi
+Aymara
+Azerbaijani
+Balochi
+Bambara
+Banjar
+Banyumasan
+Bashkir
+Basque
+Bavarian
+Belarusian
+Bengali
+Bhojpuri
+Bihari
+Bishnupriya Manipuri
+Bislama
+Bosnian
+Breton
+Buginese
+Bulgarian
+Burmese
+Buryat
+Catalan
+Cebuano
+Central Bicolano
+Chamorro
+Chavacano
+Chechen
+Cherokee
+Chewa
+Cheyenne
+Chhattisgarhi
+Chichewa
+Chinese
+Chittagonian
+Choctaw
+Chuvash
+Cornish
+Corsican
+Cree
+Crimean
+Croatian
+Czech
+Danish
+Deccan
+Dhundhari
+Divehi
+Dutch
+Dutch Low Saxon
+Dzongkha
+Eastern Min
+Egyptian Arabic
+Emilian-Romagnol
+Erzya
+Esperanto
+Estonian
+Ewe
+Extremaduran
+Faroese
+Fiji Hindi
+Fijian
+Finnish
+Franco-Provençal
+French
+Friulian
+Fula
+Gagauz
+Galician
+Gan Chinese
+Georgian
+German
+Gilaki
+Goan Konkani
+Gothic
+Greek
+Greenlandic
+Guarani
+Gujarati
+Haitian
+Haitian Creole
+Hakka
+Haryanvi
+Hausa
+Hawaiian
+Hebrew
+Herero
+Hiligaynon
+Hill Mari
+Hindi
+Hiri Motu Hiri Motu ho
+Hmong
+Hungarian
+Icelandic
+Ido
+Igbo
+Ilocano
+Indonesian
+Inuktitut
+Inupiak
+Irish
+Italian
+Japanese
+Javanese
+Jin
+Kabardian
+Kabyle
+Kalmyk
+Kannada
+Kanuri
+Kapampangan
+Karachay-Balkar
+Karakalpak
+Kashmiri
+Kashubian
+Kazakh
+Khmer
+Kikuyu
+Kinyarwanda
+Kirghiz
+Kirundi
+Komi
+Komi-Permyak
+Kongo
+Konkani
+Korean
+Kuanyama
+Kurdish
+Ladino
+Lak
+Lao
+Latgalian
+Latin
+Latvian
+Lezgian
+Ligurian
+Limburgish
+Lingala
+Lithuanian
+Lojban
+Lombard
+Low Saxon
+Lower Sorbian
+Luganda
+Luxembourgish
+Macedonian
+Madurese
+Magahi
+Maithili
+Malagasy
+Malay Bhasa Indonesia
+Malayalam
+Maltese
+Mandarin Chinese
+Manx
+Maori
+Marathi
+Marshallese Ebon
+Marwari
+Mazandarani
+Meadow Mari
+Min Dong
+Minangkabau
+Mingrelian
+Mirandese
+Moksha
+Mongolian
+Mossi
+Muscogee
+Nahuatl
+Nauruan
+Navajo
+Ndonga
+Neapolitan
+Nepali
+Newar
+Norfolk
+Norman
+North Frisian Nordfriisk
+Northern Luri
+Northern Min
+Northern Sami
+Northern Sotho
+Norwegian
+Novial
+Nuosu
+Occitan
+Odia (Oriya)
+Old Church Slavonic
+Oriya
+Oromo
+Ossetian
+Palatinate German
+Pali
+Pangasinan
+Papiamentu
+Pashto
+Pennsylvania German
+Persian
+Picard
+Piedmontese
+Polish
+Pontic
+Portuguese
+Punjabi
+Quechua
+Ripuarian
+Romani
+Romanian
+Romansh
+Russian
+Rusyn
+Sakha
+Samoan
+Samogitian
+Sango
+Sanskrit
+Saraiki
+Sardinian
+Saterland
+Scots
+Scottish Gaelic
+Serbian
+Serbo-Croatian
+Sesotho
+Shona
+Sicilian
+Silesian
+Sindhi
+Sinhalese
+Slovak
+Slovene
+Slovenian
+Somali
+Southern Azerbaijani
+Southern Min
+Spanish
+Sranan
+Sundanese
+Sundanese Basa
+Swahili
+Swati
+Swedish
+Sylheti
+Tagalog
+Tahitian
+Tajik
+Tamil
+Tarantino
+Tatar
+Telugu
+Tetum
+Thai
+Tibetan
+Tigrinya
+Tok Pisin
+Tsonga
+Tswana
+Tumbuka
+Turkish
+Turkmen
+Tuvan
+Twi
+Udmurt
+Ukrainian
+Upper Sorbian
+Urdu
+Uyghur
+Uzbek
+Venda
+Venetian
+Vepsian
+Vietnamese
+Volapük
+Võro
+Walloon
+Waray
+Welsh
+West Flemish
+West Frisian
+Western
+Wolof
+Wu (Shanghainese) Chinese
+Xhosa
+Xiang (Hunnanese) Chinese
+Yiddish
+Yoruba
+Yue (Cantonese) Chinese
+Zazaki
+Zeelandic
+Zhuang
+Zulu
+
+8. What's the highest degree or level of school you have completed? (If currently enrolled, highest degree received.)
+no high school (secondary school)
+some high school
+high school diploma or equivalent (GED)
+some college credit, no degree
+trade, technical, or vocational training
+associate's degree
+bachelor's degree
+master's degree (non-professional)
+professional degree (MBA, MD, JD, etc.)
+Ph.D.
+
+9. What was the main subject you studied in university?
+Accounting
+Accounting Technician and Bookkeeping
+Acting
+Actuarial Science
+Acupuncture
+Acupuncture and Oriental Medicine
+Administrative Assistant
+Administrative Assistant and Secretarial Science
+Adult and Continuing Education
+Adult Development and Aging
+Adult Health Nursing
+Advanced Dentistry and Oral Sciences
+Advanced Legal Research
+Advertising
+Advertising and Marketing
+Aeronautics and Aviation Technology
+Aerospace and Aeronautical Engineering
+Aerospace Engineering Technician
+African American Studies
+African Studies
+Agricultural and Food Products Processing
+Agricultural Business and Technology
+Agricultural Economics
+Agricultural Engineering
+Agricultural Extension Services
+Agricultural Mechanics and Machinery
+Agricultural Production Operations
+Agricultural Teacher Education
+Agriculture
+Agronomy, Range, and Crop Science
+Air Traffic Control
+Air Traffic Controller
+Air, Space, and Radar Technology
+Aircraft Maintenance
+Aircraft Mechanic
+Aircraft Powerplant Technician
+Airline Flight Attendant
+Alternative Medical Systems and Holistic Health
+Alternative Therapeutic Professions
+American Sign Language (ASL)
+Anatomy
+Anesthesiologist Assistant
+Animal Grooming
+Animal Husbandry
+Animal Physiology and Behavior
+Animal Science
+Animal Sciences
+Animal Training
+Animation
+Animation, Video Graphics and Special Effects
+Anthropology
+Anthropology and Archaeology
+Apparel and Textile Science
+Aquaculture
+Arabic Language and Literature
+Archaeology
+Architectural Drafting (CAD/CADD)
+Architectural Engineering
+Architectural Engineering Technician
+Architectural Sciences and Technology
+Architecture
+Aromatherapy, Herbalism, and Reiki
+Art History
+Art Studies
+Art Teacher Education
+Art Therapy
+Artificial Intelligence
+Asian Studies
+Astronomy
+Astrophysics
+Athletic Training
+Atmospheric Sciences
+Audio and Video Production
+Audiology
+Audiology and Speech Pathology
+Auto Body
+Auto Mechanic
+Autobody and Collision Repair
+Automotive Engineering
+Automotive Engineering Technician
+Automotive Mechanics
+Aviation
+Aviation Management and Operations
+Avionics Maintenance Technician
+Baking And Pastry
+Baking and Pastry Arts
+Banking and Finance
+Banking, Corporate, and Tax Law
+Barbering
+Bartending
+Behavioral Science
+Behavioral Sciences
+Biblical Studies
+Bicycle Mechanics and Repair
+Bilingual  and Multicultural Education
+Biochemistry
+Biochemistry and Molecular Biology
+Bioengineering and Biomedical Engineering
+Bioinformatics
+Biological and Physical Sciences
+Biology
+Biology and Biological Sciences
+Biology Laboratory Technician
+Biomedical Engineering
+Biomedical Science
+Biomedical Sciences and Molecular Medicine
+Biomedical Technician
+Biotechnology
+Boilermaker
+Bookkeeping
+Botany
+Botany and Plant Physiology
+Broadcast Journalism
+Buddhism
+Building Construction Inspection
+Building Construction Technology
+Bus and Truck Driver
+Business Administration
+Business Administration and Management
+Business Teacher Education
+Cardiovascular Technician
+Carpentry
+Carpet, Floor, and Tile Worker
+Cellular Biology
+Ceramics
+Chemical Engineering
+Chemical Technician
+Chemistry
+Child Care
+Child Care Management
+Child Care Provider
+Child Development
+Chinese Language and Literature
+Chiropractic
+Chiropractic Studies
+Christian Counseling
+Christianity
+Cinematography And Film
+Cinematography and Video Production
+Civil Engineering
+Civil Engineering Technician
+Clerical Services
+Climatology
+Clinical Laboratory Assistant
+Clinical Laboratory Technician
+Clinical Psychology
+Cognitive Science
+College Student Counseling and Personnel Services
+Combat Systems Engineering and Stealth Technology
+Commercial and Advertising Art
+Commercial Fishing
+Commercial Photography
+Communication and Media Studies
+Communication Sciences and Disorders
+Communications
+Communications Systems Installation and Repair
+Communications Technicians
+Community Health and Preventive Medicine
+Community Health Services and Counseling
+Community Organization and Advocacy
+Community Psychology
+Comparative Literature
+Computational and Applied Mathematics
+Computer Aided Design (CAD)
+Computer and Information Studies
+Computer and Information Systems Security
+Computer Engineering Technician
+Computer Graphics
+Computer Hardware Engineering
+Computer Installation and Repair
+Computer Networking
+Computer Programming
+Computer Science
+Computer Software Engineering
+Computer Systems Analysis
+Computer Systems Networking and Telecommunications
+Computer Systems Technician
+Computer Teacher Education
+Concrete Finishing
+Conducting
+Construction and Heavy Equipment Operation
+Construction Engineering
+Construction Engineering Technician
+Construction Management
+Cooking and Culinary Science
+Corporate Communications
+Corrections and Corrections Administration
+Cosmetology
+Cosmetology Instruction and Salon Management
+Counseling Psychology
+Court Reporting
+Crafts and Artisanry
+Creative Writing
+Criminal Justice
+Criminal Justice and Law Enforcement Administration
+Criminal Justice and Safety Studies
+Criminology
+Crop Production
+Culinary Arts
+Curriculum
+Customer Service Support and Call Center Operation
+Cyber/Computer Forensics and Counterterrorism
+Dance
+Data Entry
+Data Processing Technician
+Dental Assistant
+Dental Assisting
+Dental Hygiene
+Dental Hygienist
+Dentistry
+Design and Visual Communications
+Desktop Publishing and Digital Imaging Design
+Developmental and Child Psychology
+Diagnostic Technician
+Diesel Mechanic
+Diesel Mechanics
+Dietetics
+Dietetics and Clinical Nutrition
+Divinity, Ministry, and Pre-Theology
+Drafting and Design Engineering Technician (CAD/CADD)
+Drama and Theatre Production
+Drawing
+Drywall Installation
+E-Commerce
+Early Childhood Education
+East Asian Languages and Literatures
+Ecology and Evolutionary Biology
+Economic Development
+Economics
+Economics and Econometrics
+Education
+Education of Individuals with Impairments and Disabilities
+Education of the Gifted and Talented
+Educational Administration
+Educational Leadership and Administration
+Educational Media Design
+Educational Research
+Educational, Instructional, and Curriculum Supervision
+Electrical and Electronics Engineering
+Electrical and Power Transmission Installation
+Electrical Engineering
+Electrical Engineering Technician
+Electrician
+Electronics Equipment Installation and Repair
+Elementary and Middle School Administration
+Elementary Education
+Emergency Care Attendant (EMT)
+Emergency Medical Technician (EMT Paramedic)
+Energy, Environment, and Natural Resources Law
+Engineering
+Engineering Design
+Engineering Management
+Engineering Mechanics
+Engineering Physics
+Engineering Science
+Engineering Studies
+English
+English and Speech Teacher Education
+English Language Studies
+Entrepreneurship
+Environmental and Marine Sciences
+Environmental and Wildlife Management
+Environmental Architecture and Design
+Environmental Engineering
+Environmental Engineering Technician
+Environmental Health
+Environmental Science
+Environmental Studies
+Epidemiology
+Equine Studies
+Esthetician
+Esthetician and Skin Care
+Ethics
+European and Russian Studies
+Executive Assistant
+Exercise Physiology
+Facial Treatment
+Family and Community Services
+Family and Consumer Economics
+Family Practice and Pediatric Nursing
+Family Studies and Consumer Sciences
+Farm and Ranch Management
+Fashion and Apparel Design
+Fashion and Apparel Merchandising
+Fashion Design
+Fashion Merchandising
+Fiber, Textile and Weaving
+Film and Video Studies
+Finance
+Financial Planning
+Financial Services Marketing
+Fine and Studio Arts Management
+Fire Prevention and Safety Technology
+Fire Science
+Fire Science and Fire Fighting
+Fire Services Administration
+Flight Instructor
+Food Preparation and Service
+Food Science
+Food Service Systems Management
+Foods, Nutrition, and Wellness Studies
+Foreign Language Teacher  Education
+Foreign Languages and Literatures
+Forensic Psychology
+Forensic Science
+Forest and Wood Sciences
+Forest Resources Management
+Forestry
+Foundations of Education
+Franchise Operations
+French Language and Literature
+Funeral Service and Direction
+Game and Interactive Media Design
+Game Design
+General Construction Trades
+General Mechanics and Repair
+General Studies
+Genetics
+Geography
+Geology
+Geology and Earth Science
+German Language and Literature
+Gerontology
+Glazier
+Graphic and Printing Equipment Operation
+Graphic Communication and Printing
+Graphic Design
+Greenhouse, Nursery, and Floristry Operations
+Guidance Counselor
+Gunsmithing
+Hair Styling and Design
+Hazardous Materials and Industrial Safety Technician
+Health Aides and Attendants
+Health and Physical Fitness Education
+Health Care Management
+Health Informatics
+Health Law
+Health Service Preparatory Studies
+Health Services Administration
+Health Teacher Education
+Health Unit Coordinator and Manager
+Healthcare Administration
+Heating and Air Conditioning (HVAC)
+Heavy Equipment Maintenance Technician
+Hebrew Language and Literature
+High School Administration
+High School Education
+Higher Education Administration
+Hinduism
+Hispanic American Studies
+Historic Preservation and Conservation
+History
+History Teacher Education
+Holistic Health and Nutrition
+Homeland Security
+Horticultural Sciences
+Horticulture
+Horticulture Business Services
+Hospital Management
+Hospitality Management
+Hotel and Hospitality Management
+Hotel and Resort Management
+Human Resources
+Human Resources Development
+Human Resources Management
+Human Services
+HVAC and Refrigeration Engineering Technician
+HVAC Technician
+Illustration
+Industrial and Engineering Management
+Industrial and Organizational Psychology
+Industrial and Product Design
+Industrial Design
+Industrial Electronics Technician
+Industrial Engineering
+Industrial Mechanics and Maintenance Technician
+Industrial Painting
+Industrial Production Technician
+Industrial Technician
+Information Operations
+Information Systems
+Information Technology
+Instrumentation Technician
+Insulator
+Insurance
+Intellectual Property Law
+Intelligence
+Interior Architecture
+Interior Design
+International Business
+International Legal Studies
+International Relations
+International Relations and National Security Studies
+International Studies
+Intervention and Treatment Professions
+Investments and Securities
+Islam
+IT Services Administration
+Italian Language and Literature
+Japanese Language and Literature
+Jewelry Design
+Journalism
+Judaism
+Kindergarten and Preschool Education
+Kinesiology and Exercise Science
+Labor and Industrial Relations
+Land Use Planning and Development
+Landscape Architecture
+Landscaping and Groundskeeping
+Latin American Studies
+Latin and Ancient Greek Studies
+Law
+Law and Justice Administration
+Law Studies
+Leatherworking and Upholstery
+Legal Administrative Assistant
+Legal Studies
+Liberal Arts
+Liberal Arts and Humanities
+Library and Archives Assisting
+Library Science and Administration
+Licensed Practical Nurse (LPN)
+Licensed Practical Nurse Training (LPN)
+Lineworker
+Linguistics
+Linguistics, Interpretation, and Translation
+Literature
+Logic
+Logistics and Supply Chain Management
+Machine Shop Assistant
+Machinist
+Make-Up Artist and Tattooing
+Makeup Artist
+Management Information Systems
+Management Sciences and Statistics
+Managerial Economics
+Manufacturing Engineering
+Manufacturing Engineering Technician
+Marine Biology
+Marine Biology and Oceanography
+Marine Science
+Marketing
+Marriage and Family Therapy
+Marriage and Family Therapy and Counseling
+Masonry
+Mass Communication
+Massage Therapy
+Massage Therapy and Bodywork
+Materials Engineering
+Materials Science
+Math
+Mathematics
+Mathematics Teacher Education
+Mechanical Drafting (CAD/CADD)
+Mechanical Engineering
+Mechanical Engineering Technician
+Medical Assistant
+Medical Insurance Billing and Claims
+Medical Insurance Coding
+Medical Laboratory Technician
+Medical Management and Clinical Assistant
+Medical Office Assistant
+Medical Office Computer Specialist
+Medical Office Management
+Medical Reception
+Medical Records Administration
+Medical Records Technician
+Medical Secretary
+Medical Social Work
+Medical Transcription
+Medicine
+Mental and Social Health Studies
+Mental Health Counseling
+Merchandising and Buying Operations
+Metal and Jewelry Arts
+Metal Building Assembly
+Meteorology
+Microbiology
+Middle School Education
+Midwifery
+Military Information Systems and Missile Technology
+Military Technologies
+Mining and Mineral Engineering
+Mining and Petroleum Technician
+Ministry
+Minority and Group Studies
+Missionary Studies
+Molecular Biology
+Mortuary Science and Embalming
+Motorcycle Maintenance and Repair
+Multimedia
+Multimedia Management and Webmaster
+Museum Studies
+Music
+Music History and Literature
+Music Management
+Music Performance
+Music Teacher Education
+Music Technology
+Music Theory and Composition
+Music Therapy
+Musical Instruments
+Nail Technician
+Natural Resource Recreation and Tourism
+Natural Resources Conservation
+Natural Resources Management and Policy
+Natural Sciences
+Network, Database, and System Administration
+Neuroanatomy
+Neuroscience
+Non-Profit and Public Management
+North American Studies
+Nuclear and Industrial Radiologic Technology
+Nuclear Engineering
+Nuclear Engineering Technician
+Nuclear Medical Technician
+Nurse Anesthetist
+Nursing
+Nursing Administration
+Nursing Assistant
+Nursing Science, Education, and Practice
+Nutrition
+Nutrition Sciences
+Occupational Health and Industrial Hygiene
+Occupational Safety and Health Technician
+Occupational Therapist Assistant
+Occupational Therapy
+Occupational Therapy Assistant (OTA)
+Office Management
+Operations Management
+Operations Research
+Optics
+Optometry
+Organizational and Nonprofit Management
+Organizational Behavior Studies
+Organizational Communication
+Organizational Psychology
+Osteopathy
+Painting
+Paralegal
+Parks and Recreation Management
+Parks, Recreation and Leisure Facilities Management
+Parks, Recreation and Leisure Studies
+Pastoral Counseling and Specialized Ministries
+Pathology
+Peace Studies and Conflict Resolution
+Personal Services
+Petroleum Engineering
+Pharmaceutical Sciences
+Pharmacology
+Pharmacy
+Pharmacy Studies
+Pharmacy Technician
+Philosophy
+Phlebotomy
+Phlebotomy Technician
+Photography
+Photojournalism
+Physical Education
+Physical Education Teaching and Coaching
+Physical Science Studies
+Physical Therapist Assistant
+Physical Therapy
+Physical Therapy Technician
+Physician Assistant
+Physics
+Physiological Psychology
+Physiology
+Pipefitting
+Plant Science
+Plumbing
+Podiatry
+Police and Criminal Science
+Political Science
+Political Science and Government
+Population Biology
+Pre-Law Studies
+Pre-Medicine Studies
+Precision Production
+Precision Systems Maintenance and Repair
+Printmaking
+Procurement and Contracts Management
+Professional Diver and Instructor
+Professional Pilot
+Professional, Technical, Business, and Scientific Writing
+Programs for Foreign Lawyers
+Property Maintenance and Site Management
+Property Management
+Psychiatric and Mental Health Services
+Psychology
+Public Administration
+Public Health
+Public Health Education
+Public Health Studies
+Public Policy
+Public Policy Analysis
+Public Relations
+Publishing
+Quality Control Technician
+Radiation Therapy
+Radio And Television Broadcasting
+Radio and Television Broadcasting Technician
+Radio, Television, and Digital Communication
+Radiologic Technician
+Radiologist Assistant
+Radiology Technician
+Railroad and Railway Transportation
+Reading Teacher Education
+Real Estate
+Real Estate Development
+Recording Arts Technician
+Regional and Area Studies
+Registered Nursing (RN)
+Religious Education
+Religious Studies
+Research and Experimental Psychology
+Respiratory Care Therapy
+Respiratory Therapy
+Respiratory Therapy Technician
+Restaurant and Food Services Management
+Restaurant, Culinary, and Catering Management
+Retailing
+Retailing Management
+Rhetoric and Composition
+Risk Management and Insurance
+Robotics and Automation Engineering
+Robotics and Automation Engineering Technician
+Romance Languages and Literatures
+Roofer
+Russian and Eastern European Languages and Literature
+School Counseling and Guidance Services
+School Librarian
+School Psychology
+Science Teacher Education
+Sculpture
+Secondary Education
+Security and Loss Prevention Services
+Selling and Sales
+Sheet Metal Technology
+Sign Language
+Sign Language Interpretation and Translation
+Small Business Management
+Small Engine Mechanics and Repair
+Social Psychology
+Social Science Research Methods
+Social Science Teacher Education
+Social Studies Teacher Education
+Social Work
+Social Work and Youth Services
+Sociology
+Software Engineering
+Soil Sciences
+Sonographer and Ultrasound Technician
+South and Southeast Asian Languages and Literatures
+Space and Undersea Systems Operations
+Spanish Language and Literature
+Special Education
+Special Education and Teaching
+Speech Communication and Rhetoric
+Speech Language Pathology
+Speech Language Pathology Assistant
+Sport and Fitness Management
+Sports Management
+Sports Medicine
+Statistics
+Structural Engineering
+Studio Arts
+Substance Abuse and Addiction Counseling
+Superintendence and Educational System Administration
+Surgical Technologist
+Surveying Engineering
+Surveying Technician
+Sustainability Studies
+System, Networking, and LAN/WAN Management
+Systems Engineering
+Systems Science and Theory
+Talmudic and Rabbinical Studies
+Taxation
+Taxidermy
+Teacher Education for Multiple Levels
+Teaching Assistant
+Teaching English as a Second Language
+Technical Teacher Education
+Technology Teacher Education
+Telecommunications Technician
+Textile and Plastics Engineering
+Theatre Design
+Theatre, Arts, and Media Management
+Theological and Ministerial Studies
+Theology
+Therapeutic Recreation
+Tool and Die Technician
+Tourism and Travel Services Management
+Toxicology
+Trade and Industrial Teacher Education
+Traditional Chinese Medicine
+Truck,  Bus, and Commercial Vehicle Operation
+Turf and Turfgrass Management
+Turf Management
+Ultrasound Technician
+Urban Planning
+Urban Studies and Affairs
+Urban, Community and Regional Planning
+US Law
+Vehicle Maintenance and Repair
+Veterinary Assistant
+Veterinary Medicine
+Veterinary Sciences
+Veterinary Technician and Assistant
+Visual Arts
+Vocational Rehabilitation Counseling
+Voice and Opera
+Water, Wastewater, and Recycling Technician
+Web Design
+Web Page and Digital Design
+Welding
+Welding Engineering Technician
+Wildlife and Fisheries Management
+Wildlife Biology
+Women's Studies
+Woodworking
+Yoga and Movement Therapy
+Zoology
+Zoology and Entomology
+Letters
+Classics
+
+10. Do you financially support any dependents? (Dependents include a spouse, children, elderly relatives, and relatives with disabilities.)
+Y/N
+
+11. What's your marital status?
+single, never married
+married or domestic partnership
+widowed
+divorced
+separated
+
+12. Do you have children?
+Y/N
+
+13. How many children do you have?
+Number
+
+14. Do you financially support any elderly relatives or relatives with disabilities?
+Y/N
+
+15. Do you have any debt?
+Y/N
+
+16. Do you have a home mortgage?
+Y/N
+
+17. About how much do you owe on your home mortgage (in US Dollars)?
+Number
+
+18. Do you have student loan debt?
+Y/N
+
+19. About how much do you owe in student loans (in US Dollars)?
+Number
+
+20. Regarding employment status, are you currently...
+Employed for wages
+Self-employed freelancer
+Self-employed business owner
+Doing an unpaid internship
+Not working but looking for work
+Not working and not looking for work
+A stay-at-home parent or homemaker
+Military
+Retired
+Unable to work
+
+21. Which field do you work in?
+software development and IT
+architecture or physical engineering
+health care
+education
+finance
+legal
+sales
+arts, entertainment, sports, or media
+law enforcement and fire and rescue
+food and beverage
+office and administrative support
+farming, fishing, and forestry
+construction and extraction
+transportation
+
+22. About how much money did you make last year (in US dollars)?
+Number
+
+23. About how many minutes total do you spend commuting to and from work each day?
+Number
+
+24. Do you consider yourself under-employed? (Under-employment means working a job that is below your education level.)
+Y/N
+
+25. Have you served in your country's military before?
+Y/N
+
+26. Do you receive disability benefits from your government?
+Y/N
+
+27. Do you have high speed internet at your home?
+Y/N
