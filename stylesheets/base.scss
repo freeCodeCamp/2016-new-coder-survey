@@ -2,6 +2,18 @@ $green:#7ED321;
 $dark-green: #417505;
 $gray: #F6F6F6;
 $dark-gray: #D8D8D8;
+@mixin article($bg-color:$gray) {
+  width: 100%;
+  background: $bg-color;
+  padding: 30px 50px;
+  h3 { margin-top: 0px; }
+
+  @media screen and (min-width: 800px) {
+    width: 33.333%;
+    display: table-cell;
+  }
+}
+
 body {
   margin: 0;
   font-family: "Roboto", "sans serif";
@@ -14,7 +26,7 @@ body {
 @import "header";
 
 section {
-  header, article.tags{
+  header {
     background: $gray;
     border: $dark-gray solid 2px;
     padding: 30px 50px;
@@ -32,16 +44,17 @@ section {
     }
   }
 
-  .tag-sections { display: table; }
+  .tag-sections, .charts {
+    display: table;
+    width: 100%;
+  }
 
-  article {
-    display: table-cell;
-    width: 33.333%;
-    &.tags {
-      h3 { margin-top: 0px; }
-      border-left: none;
-      border-top: none;
-    }
+  article.tags {
+    @include article();
+    border: $dark-gray solid 2px;
+    border-left: none;
+    border-top: none;
+
     .tag {
       display: inline-block;
       margin-bottom: 20px;
@@ -56,6 +69,23 @@ section {
           border-color: $green;
         }
       }
+    }
+  }
+
+  article.chart {
+    @include article(white);
+  }
+}
+
+footer {
+  @include clearfix;
+  padding: 30px 50px;
+  border: solid $dark-gray 1px;
+  background: $gray;
+  div {
+    @include span-columns(6);
+    &:last-child h2 {
+      text-transform: uppercase;
     }
   }
 }
