@@ -13,7 +13,14 @@ header {
   }
   text-align: center;
   padding: 50px 20px 20px;
+  .sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
   nav {
+    background: $green;
     ul { padding-left: 0px; }
     ul li {
       list-style-type: none;
