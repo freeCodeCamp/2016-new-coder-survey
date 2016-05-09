@@ -1,0 +1,34 @@
+header {
+  background: $green;
+  color: white;
+  p.description {
+    color: $dark-green;
+    font-family: "Georgia", "serif";
+    font-size: modular-scale(2);
+  }
+  h1 { font-size: modular-scale(4);}
+  a {
+    color: white;
+    &:hover { text-decoration: underline; }
+  }
+  text-align: center;
+  padding: 50px 20px 20px;
+  nav {
+    ul { padding-left: 0px; }
+    ul li {
+      list-style-type: none;
+      display: inline;
+      a {
+        text-decoration: none;
+      }
+      &::after {
+        content: " •";
+        padding: 0px 10px;
+      }
+      &:last-child::after {
+        content: "";
+        padding: 0px;
+      }
+    }
+  }
+}

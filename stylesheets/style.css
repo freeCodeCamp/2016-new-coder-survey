@@ -1,0 +1,80 @@
+@charset "UTF-8";
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
+body {
+  margin: 0;
+  font-family: "Roboto", "sans serif"; }
+  body a {
+    color: #417505;
+    text-decoration: none; }
+
+header {
+  background: #7ED321;
+  color: white;
+  text-align: center;
+  padding: 50px 20px 20px; }
+  header p.description {
+    color: #417505;
+    font-family: "Georgia", "serif";
+    font-size: 1.77689em; }
+  header h1 {
+    font-size: 3.15733em; }
+  header a {
+    color: white; }
+    header a:hover {
+      text-decoration: underline; }
+  header nav ul {
+    padding-left: 0px; }
+  header nav ul li {
+    list-style-type: none;
+    display: inline; }
+    header nav ul li a {
+      text-decoration: none; }
+    header nav ul li::after {
+      content: " •";
+      padding: 0px 10px; }
+    header nav ul li:last-child::after {
+      content: "";
+      padding: 0px; }
+
+section header, section article.tags {
+  background: #F6F6F6;
+  border: #D8D8D8 solid 2px;
+  padding: 30px 50px; }
+section header {
+  color: black;
+  text-align: left; }
+  section header h2 {
+    text-transform: uppercase;
+    padding-right: 10px; }
+  section header h2, section header p {
+    display: inline;
+    vertical-align: middle; }
+section .tag-sections {
+  display: table; }
+section article {
+  display: table-cell;
+  width: 33.333%; }
+  section article.tags {
+    border-left: none;
+    border-top: none; }
+    section article.tags h3 {
+      margin-top: 0px; }
+  section article .tag {
+    display: inline-block;
+    margin-bottom: 20px; }
+    section article .tag a {
+      border: #D8D8D8 solid 2px;
+      padding: 5px 10px;
+      color: #417505;
+      background: white; }
+      section article .tag a:hover {
+        background: #7ED321;
+        color: white;
+        border-color: #7ED321; }
+
+/*# sourceMappingURL=style.css.map */
