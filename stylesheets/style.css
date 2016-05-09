@@ -48,6 +48,11 @@ header {
         content: "";
         padding: 0px; }
 
+.raw-data {
+  background: #F6F6F6;
+  border: 2px solid #7ED321;
+  width: 96%; }
+
 section header {
   background: #F6F6F6;
   border: #D8D8D8 solid 2px;
