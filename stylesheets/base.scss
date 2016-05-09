@@ -83,9 +83,9 @@ footer {
   border: solid $dark-gray 1px;
   background: $gray;
   div {
-    @include span-columns(6);
-    &:last-child h2 {
-      text-transform: uppercase;
+    &:last-child h2 { text-transform: uppercase;}
+    @media screen and (min-width: 700px) {
+      @include span-columns(6);
     }
   }
 }

@@ -108,14 +108,15 @@ footer {
     clear: both;
     content: "";
     display: table; }
-  footer div {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 48.82117%; }
-    footer div:last-child {
-      margin-right: 0; }
-    footer div:last-child h2 {
-      text-transform: uppercase; }
+  footer div:last-child h2 {
+    text-transform: uppercase; }
+  @media screen and (min-width: 700px) {
+    footer div {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 48.82117%; }
+      footer div:last-child {
+        margin-right: 0; } }
 
 /*# sourceMappingURL=style.css.map */
