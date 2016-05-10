@@ -9,9 +9,15 @@
   background: white;
   font-size: modular-scale(1);
   border: 15px solid $gray;
-  width: 50%;
   padding: 10px 30px;
   position: fixed;
   top: 80px;
-  left: 25%;
+  @media screen and (max-width: 699px) {
+    width: 90%;
+    left: 5%;
+  }
+  @media screen and (min-width: 700px) {
+    width: 50%;
+    left: 25%;
+  }
 }
