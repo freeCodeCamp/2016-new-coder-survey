@@ -22,7 +22,6 @@ $("document").ready(function(){
 
   $(".get-raw-data").on("click", function(){
     $(".raw-data").fadeIn();
-
   });
   $(".close").on("click", function(){
     $(".raw-data").fadeOut();
