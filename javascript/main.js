@@ -22,8 +22,10 @@ $("document").ready(function(){
 
   $(".get-raw-data").on("click", function(){
     $(".raw-data").fadeIn();
+    return false;
   });
   $(".close").on("click", function(){
     $(".raw-data").fadeOut();
+    return false;
   });
 });
