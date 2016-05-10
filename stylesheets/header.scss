@@ -12,30 +12,35 @@ header {
     &:hover { text-decoration: underline; }
   }
   text-align: center;
-  padding: 50px 20px 20px;
-  .sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-  }
-  nav {
-    background: $green;
-    ul { padding-left: 0px; }
-    ul li {
-      list-style-type: none;
-      display: inline;
-      a {
-        text-decoration: none;
-      }
-      &::after {
-        content: " •";
-        padding: 0px 10px;
-      }
-      &:last-child::after {
-        content: "";
-        padding: 0px;
-      }
+  padding: 50px 20px 0px;
+}
+nav {
+  text-align: center;
+  background: $green;
+  color: white;
+  padding: 20px 0px;
+  ul { padding-left: 0px; }
+  ul li {
+    list-style-type: none;
+    display: inline;
+    a {
+      text-decoration: none;
+      color: white;
+      &:hover { text-decoration: underline; }
+    }
+    &::after {
+      content: " •";
+      padding: 0px 10px;
+    }
+    &:last-child::after {
+      content: "";
+      padding: 0px;
     }
   }
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }

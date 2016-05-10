@@ -1,4 +1,5 @@
 $("document").ready(function(){
+  $(".raw-data").hide();
   var stickyNav = $("nav").offset().top;
   $(window).scroll(function() {
     if ($(window).scrollTop() > stickyNav){
@@ -18,4 +19,12 @@ $("document").ready(function(){
       scrollTop: $(clicked).offset().top - 80
     }, 100);
   }
+
+  $(".get-raw-data").on("click", function(){
+    $(".raw-data").fadeIn();
+
+  });
+  $(".close").on("click", function(){
+    $(".raw-data").fadeOut();
+  });
 });

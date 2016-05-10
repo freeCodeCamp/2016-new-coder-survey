@@ -24,12 +24,7 @@ body {
 }
 
 @import "header";
-
-.raw-data {
-  background: $gray;
-  border: 2px solid $green;
-  width: 96%;
-}
+@import "popup";
 
 section {
   header {

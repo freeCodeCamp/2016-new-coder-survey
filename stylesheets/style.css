@@ -16,7 +16,7 @@ header {
   background: #7ED321;
   color: white;
   text-align: center;
-  padding: 50px 20px 20px; }
+  padding: 50px 20px 0px; }
   header p.description {
     color: #417505;
     font-family: "Georgia", "serif";
@@ -27,31 +27,50 @@ header {
     color: white; }
     header a:hover {
       text-decoration: underline; }
-  header .sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%; }
-  header nav {
-    background: #7ED321; }
-    header nav ul {
-      padding-left: 0px; }
-    header nav ul li {
-      list-style-type: none;
-      display: inline; }
-      header nav ul li a {
-        text-decoration: none; }
-      header nav ul li::after {
-        content: " •";
-        padding: 0px 10px; }
-      header nav ul li:last-child::after {
-        content: "";
-        padding: 0px; }
+
+nav {
+  text-align: center;
+  background: #7ED321;
+  color: white;
+  padding: 20px 0px; }
+  nav ul {
+    padding-left: 0px; }
+  nav ul li {
+    list-style-type: none;
+    display: inline; }
+    nav ul li a {
+      text-decoration: none;
+      color: white; }
+      nav ul li a:hover {
+        text-decoration: underline; }
+    nav ul li::after {
+      content: " •";
+      padding: 0px 10px; }
+    nav ul li:last-child::after {
+      content: "";
+      padding: 0px; }
+
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; }
 
 .raw-data {
-  background: #F6F6F6;
-  border: 2px solid #7ED321;
-  width: 96%; }
+  background: white;
+  font-size: 1.333em;
+  border: 15px solid #F6F6F6;
+  width: 50%;
+  padding: 10px 30px;
+  position: fixed;
+  top: 80px;
+  left: 25%; }
+  .raw-data .close {
+    color: #7ED321;
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    font-size: 20px; }
 
 section header {
   background: #F6F6F6;
