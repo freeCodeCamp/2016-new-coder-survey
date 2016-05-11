@@ -129,6 +129,9 @@ footer {
     clear: both;
     content: "";
     display: table; }
+  footer h2 {
+    font-size: 1.17em;
+    color: #417505; }
   footer div:last-child h2 {
     text-transform: uppercase; }
   @media screen and (min-width: 700px) {
@@ -139,6 +142,17 @@ footer {
       width: 48.82117%; }
       footer div:last-child {
         margin-right: 0; } }
+  footer .question {
+    font-weight: 900;
+    margin-bottom: 0; }
+  footer .answer, footer p {
+    margin-top: 0; }
+  footer h3 {
+    margin-bottom: 0; }
+    footer h3 a {
+      color: black; }
+  footer a:hover {
+    text-decoration: underline; }
 
 section header {
   background: #F6F6F6;

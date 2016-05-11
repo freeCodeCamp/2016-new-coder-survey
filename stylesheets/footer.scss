@@ -3,10 +3,28 @@ footer {
   padding: 30px 50px;
   border: solid $dark-gray 1px;
   background: $gray;
+  h2 {
+    font-size: 1.17em;
+    color: $dark-green;
+  }
   div {
     &:last-child h2 { text-transform: uppercase;}
     @media screen and (min-width: 700px) {
       @include span-columns(6);
     }
+  }
+
+  .question {
+    font-weight: 900;
+    margin-bottom: 0;
+  }
+
+  .answer, p { margin-top: 0; }
+  h3 {
+    a { color: black; }
+    margin-bottom: 0;
+  }
+  a:hover {
+    text-decoration: underline;
   }
 }
