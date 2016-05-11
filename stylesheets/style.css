@@ -11,6 +11,8 @@ body {
   body a {
     color: #417505;
     text-decoration: none; }
+  body .footnote {
+    font-style: italic; }
 
 header {
   background: #7ED321;
@@ -79,7 +81,7 @@ nav {
       left: 25%; } }
 
 .charts {
-  padding: 0px 50px 50px; }
+  padding: 0px 50px 5px; }
   .charts::after {
     clear: both;
     content: "";
@@ -93,7 +95,7 @@ nav {
       margin-right: 0; }
   @media screen and (min-width: 800px) {
     .charts {
-      padding: 30px 50px 50px; }
+      padding: 30px 50px 5px; }
       .charts.medium .chart {
         float: left;
         display: block;
@@ -108,6 +110,8 @@ nav {
         width: 31.76157%; }
         .charts.small .chart:last-child {
           margin-right: 0; } }
+  .charts:last-child {
+    padding-bottom: 50px; }
 
 .chart .chart-graphic {
   border: solid #F6F6F6 3px;

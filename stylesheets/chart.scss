@@ -1,14 +1,15 @@
 .charts {
   @include clearfix;
-  padding: 0px 50px 50px;
+  padding: 0px 50px 5px;
 
   .chart { @include span-columns(12); }
 
   @media screen and (min-width: 800px) {
-    padding: 30px 50px 50px;
+    padding: 30px 50px 5px;
     &.medium .chart { @include span-columns(6); }
     &.small .chart { @include span-columns(4); }
   }
+  &:last-child { padding-bottom: 50px; }
 }
 
 .chart {
