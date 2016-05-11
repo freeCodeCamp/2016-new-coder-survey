@@ -13,6 +13,8 @@ body {
     text-decoration: none; }
   body .footnote {
     font-style: italic; }
+  body img {
+    width: 100%; }
 
 header {
   background: #7ED321;
