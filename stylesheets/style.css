@@ -78,6 +78,64 @@ nav {
       width: 50%;
       left: 25%; } }
 
+.charts {
+  padding: 0px 50px 50px; }
+  .charts::after {
+    clear: both;
+    content: "";
+    display: table; }
+  .charts .chart {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 100%; }
+    .charts .chart:last-child {
+      margin-right: 0; }
+  @media screen and (min-width: 800px) {
+    .charts {
+      padding: 30px 50px 50px; }
+      .charts.medium .chart {
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 48.82117%; }
+        .charts.medium .chart:last-child {
+          margin-right: 0; }
+      .charts.small .chart {
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 31.76157%; }
+        .charts.small .chart:last-child {
+          margin-right: 0; } }
+
+.chart .chart-graphic {
+  border: solid #F6F6F6 3px;
+  width: 100%;
+  height: 60px; }
+@media screen and (min-width: 800px) {
+  .chart {
+    display: table-cell; } }
+
+footer {
+  padding: 30px 50px;
+  border: solid #D8D8D8 1px;
+  background: #F6F6F6; }
+  footer::after {
+    clear: both;
+    content: "";
+    display: table; }
+  footer div:last-child h2 {
+    text-transform: uppercase; }
+  @media screen and (min-width: 700px) {
+    footer div {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 48.82117%; }
+      footer div:last-child {
+        margin-right: 0; } }
+
 section header {
   background: #F6F6F6;
   border: #D8D8D8 solid 2px;
@@ -91,7 +149,7 @@ section header {
   section header h2, section header p {
     display: inline;
     vertical-align: middle; }
-section .tag-sections, section .charts {
+section .tag-sections {
   display: table;
   width: 100%; }
 section article.tags {
@@ -119,34 +177,5 @@ section article.tags {
         background: #7ED321;
         color: white;
         border-color: #7ED321; }
-section article.chart {
-  width: 100%;
-  background: white;
-  padding: 30px 50px; }
-  section article.chart h3 {
-    margin-top: 0px; }
-  @media screen and (min-width: 800px) {
-    section article.chart {
-      width: 33.333%;
-      display: table-cell; } }
-
-footer {
-  padding: 30px 50px;
-  border: solid #D8D8D8 1px;
-  background: #F6F6F6; }
-  footer::after {
-    clear: both;
-    content: "";
-    display: table; }
-  footer div:last-child h2 {
-    text-transform: uppercase; }
-  @media screen and (min-width: 700px) {
-    footer div {
-      float: left;
-      display: block;
-      margin-right: 2.35765%;
-      width: 48.82117%; }
-      footer div:last-child {
-        margin-right: 0; } }
 
 /*# sourceMappingURL=style.css.map */

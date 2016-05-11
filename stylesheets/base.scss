@@ -25,6 +25,8 @@ body {
 
 @import "header";
 @import "popup";
+@import "chart";
+@import "footer";
 
 section {
   header {
@@ -45,7 +47,7 @@ section {
     }
   }
 
-  .tag-sections, .charts {
+  .tag-sections, {
     display: table;
     width: 100%;
   }
@@ -70,23 +72,6 @@ section {
           border-color: $green;
         }
       }
-    }
-  }
-
-  article.chart {
-    @include article(white);
-  }
-}
-
-footer {
-  @include clearfix;
-  padding: 30px 50px;
-  border: solid $dark-gray 1px;
-  background: $gray;
-  div {
-    &:last-child h2 { text-transform: uppercase;}
-    @media screen and (min-width: 700px) {
-      @include span-columns(6);
     }
   }
 }

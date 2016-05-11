@@ -1,0 +1,12 @@
+footer {
+  @include clearfix;
+  padding: 30px 50px;
+  border: solid $dark-gray 1px;
+  background: $gray;
+  div {
+    &:last-child h2 { text-transform: uppercase;}
+    @media screen and (min-width: 700px) {
+      @include span-columns(6);
+    }
+  }
+}
