@@ -477,6 +477,81 @@ normalize_text <- function(inData, columnName, searchTerms, replaceWith) {
 }
 
 
+# Title:
+#   Clean Code Events
+# Description:
+#   The function performs various transformations to coding event data to make
+#   it consistent (e.g. fix spelling) and normalize instances of answers to be
+#   the same.
+clean_code_events <- function(cleanPart1) {
+    # Convert coding events to binary/boolean
+    codeResources <- cleanPart1 %>%
+        select(starts_with("CodeEvent"), -CodeEventOther) %>%
+        mutate_each(funs(ifelse(!is.na(.), "1", NA)))
+    cleanPart1 <- cleanPart1 %>%
+        select(-starts_with("CodeEvent"), CodeEventOther) %>%
+        bind_cols(codeResources)
+
+    # Title case other coding events
+    codingEvents <- cleanPart1 %>% filter(!is.na(CodeEventOther)) %>%
+        mutate(CodeEventOther = simple_title_case(CodeEventOther))
+    codeEventsElse <- cleanPart1 %>% filter(is.na(CodeEventOther))
+    cleanPart1 <- codeEventsElse %>% bind_rows(codingEvents)
+
+    # Normalize variations of "meetup" to "Meetups"
+    meetupWords <- c("meetup", "meet")
+    cleanPart1 <- normalize_text(inData = cleanPart1,
+                                 columnName = "CodeEventOther",
+                                 searchTerms = meetupWords,
+                                 replaceWith = "Meetup(s)")
+
+    # Normalize FreeCodeCamp
+    fccWords <- c("fcc", "freecodecamp", "free code camp")
+    cleanPart1 <- normalize_text(inData = cleanPart1,
+                                 columnName = "CodeEventOther",
+                                 searchTerms = fccWords,
+                                 replaceWith = "Free Code Camp")
+
+    # Normalize variations of "None"
+    nones <- c("non", "none", "haven't", "havent", "not", "nothing",
+               "didn't", "n/a", "\bna\b", "never", "nil", "nope")
+    nonesIdx <- cleanPart1 %>% select(CodeEventOther) %>%
+        mutate_each(
+            funs(grepl(paste(nones, collapse = "|"),
+                       .,
+                       ignore.case = TRUE)
+            )
+        ) %>% unlist(use.names = FALSE)
+    nonesData <- cleanPart1 %>% filter(nonesIdx) %>%
+        mutate(CodeEventOther = NA) %>%
+        mutate(CodeEventNone = "1")
+    cleanPart1 <- cleanPart1 %>% filter(!nonesIdx) %>% bind_rows(nonesData)
+
+    # Normalize "bootcamps"
+    bootcamps <- c("^bootcamp")
+    cleanPart1 <- normalize_text(inData = cleanPart1,
+                                 columnName = "CodeEventOther",
+                                 searchTerms = bootcamps,
+                                 replaceWith = "Bootcamp")
+
+    # Normalize "Rails Girls"
+    railsGirls <- c("^rails? ?girls$")
+    cleanPart1 <- normalize_text(inData = cleanPart1,
+                                 columnName = "CodeEventOther",
+                                 searchTerms = railsGirls,
+                                 replaceWith = "Rails Girls")
+
+    # Normalize "Game Jams" to "Game Jam(s)"
+    gameJams <- c("game.*?jams?")
+    cleanPart1 <- normalize_text(inData = cleanPart1,
+                                 columnName = "CodeEventOther",
+                                 searchTerms = gameJams,
+                                 replaceWith = "Game Jam(s)")
+
+    cleanPart1
+}
+
+
 # Main Process Functions ----------------------------------
 # Description:
 #   These functions encompass the bulk work of the cleaning and transformation
@@ -643,75 +718,13 @@ clean_part_1 <- function(part1) {
                    searchTerms = softwareWords,
                    replaceWith = "Software Engineer")
 
+
     # Clean expected earnings column
     cleanPart1 <- clean_expected_earnings(cleanPart1)
 
 
-    # Code Events Other
-
-    ## Convert coding events to binary/boolean
-    codeResources <- cleanPart1 %>%
-        select(starts_with("CodeEvent"), -CodeEventOther) %>%
-        mutate_each(funs(ifelse(!is.na(.), "1", NA)))
-    cleanPart1 <- cleanPart1 %>%
-        select(-starts_with("CodeEvent"), CodeEventOther) %>%
-        bind_cols(codeResources)
-
-    ## Title case other coding events
-    codingEvents <- cleanPart1 %>% filter(!is.na(CodeEventOther)) %>%
-        mutate(CodeEventOther = simple_title_case(CodeEventOther))
-    codeEventsElse <- cleanPart1 %>% filter(is.na(CodeEventOther))
-    cleanPart1 <- codeEventsElse %>% bind_rows(codingEvents)
-
-    ## Normalize variations of "meetup" to "Meetups"
-    meetupWords <- c("meetup", "meet")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
-                   columnName = "CodeEventOther",
-                   searchTerms = meetupWords,
-                   replaceWith = "Meetup(s)")
-
-    ## Normalize FreeCodeCamp
-    fccWords <- c("fcc", "freecodecamp", "free code camp")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
-                                 columnName = "CodeEventOther",
-                                 searchTerms = fccWords,
-                                 replaceWith = "Free Code Camp")
-
-    ## Normalize variations of "None"
-    nones <- c("non", "none", "haven't", "havent", "not", "nothing",
-               "didn't", "n/a", "\bna\b", "never", "nil", "nope")
-    nonesIdx <- cleanPart1 %>% select(CodeEventOther) %>%
-        mutate_each(
-            funs(grepl(paste(nones, collapse = "|"),
-                       .,
-                       ignore.case = TRUE)
-                 )
-            ) %>% unlist(use.names = FALSE)
-    nonesData <- cleanPart1 %>% filter(nonesIdx) %>%
-        mutate(CodeEventOther = NA) %>%
-        mutate(CodeEventNone = "1")
-    cleanPart1 <- cleanPart1 %>% filter(!nonesIdx) %>% bind_rows(nonesData)
-
-    ## Normalize "bootcamps"
-    bootcamps <- c("^bootcamp")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
-                                 columnName = "CodeEventOther",
-                                 searchTerms = bootcamps,
-                                 replaceWith = "Bootcamp")
-
-    ## Normalize "Rails Girls"
-    railsGirls <- c("^rails? ?girls$")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
-                                 columnName = "CodeEventOther",
-                                 searchTerms = railsGirls,
-                                 replaceWith = "Rails Girls")
-
-    ## Normalize "Game Jams" to "Game Jam(s)"
-    gameJams <- c("game.*?jams?")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
-                                 columnName = "CodeEventOther",
-                                 searchTerms = gameJams,
-                                 replaceWith = "Game Jam(s)")
+    # Clean other coding events column
+    cleanPart1 <- clean_code_events(cleanPart1)
 
 
     # Clean Podcasts Other
