@@ -580,6 +580,28 @@ clean_code_events <- function(cleanPart1) {
 }
 
 
+# Title:
+#   Helper Function
+# Description:
+#   Temporary function to use to check if regular expression is targeting the
+#   rows we think it should be targeting.
+# Usage:
+#   > part <- part2
+#   > col <- "MoneyForLearning"
+#   > words <- c("[^0-9]")
+#   > helper_filter(part = part, col = col, words = words)
+helper_filter <- function(part, col, words) {
+  # Helper code to look at data being filtered to be changed
+  columnToLookAt <- col # Column name you want to examine
+  wordSearch <- words %>% # Array of regular expressions to search
+      paste(collapse = "|")
+  charIdx <- part %>% select_(columnToLookAt) %>%
+      mutate_each(funs(grepl(wordSearch, ., ignore.case = TRUE))) %>%
+      unlist(use.names = FALSE)
+  part %>% filter(charIdx) %>% select_(columnToLookAt) %>%
+      distinct() %>% View
+}
+
 # Main Process Functions ----------------------------------
 # Description:
 #   These functions encompass the bulk work of the cleaning and transformation
