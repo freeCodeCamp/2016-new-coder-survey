@@ -1,100 +1,14 @@
 # Clean and Combine Free Code Camp's 2016 New Coder Survey
 # Author:           Eric Leung (@erictleung)
 # Help from:        @evaristoc and @SamAI-Software
-# Last Updated:     2016 May 13th
+# Last Updated:     2016 May 15th
 
 # Load in necessary packages
 require(dplyr)
 
-# Title:
-#   Read in Data
+# Utility Functions ---------------------------------------
 # Description:
-#   First function that should be run to read in the data for cleaning
-# Input:
-#   None
-# Output:
-#   List with the 1st and 2nd parts of the survey
-# Usage:
-#   > allData <- read_in_data()
-#   > allData$part1 # access first part
-#   > allData$part2 # access second part
-read_in_data <- function() {
-    cat("Reading in survey data for cleaning...")
-
-    # Set path of where data is
-    part1Path <- "../raw-data/2016 New Coders Survey Part 1.csv"
-    part2Path <- "../raw-data/2016 New Coders Part 2.csv"
-
-    # Read in data
-    survey1 <- read.csv(
-        file = part1Path,
-        stringsAsFactors = FALSE,
-        na.strings = "") %>% tbl_df()
-    survey2 <- read.csv(
-        file = part2Path,
-        stringsAsFactors = FALSE,
-        na.strings = "") %>% tbl_df()
-
-    cat("Finished reading in survey data.")
-    list(part1 = survey1, part2 = survey2)
-}
-
-
-# Title:
-#   Change All Undefined Values to NA
-# Description:
-#   The second dataset contains values from the first part of the survey.
-#   Those were passed as values and the missing values (i.e. NA) were passed
-#   as "undefined" and need to be transformed back.
-# Input:
-#   Designed for the second dataset
-# Output:
-#   The second dataset with all the undefined changed to NA
-# Usage:
-#   > part2 <- undefined_to_NA(part2)
-undefined_to_NA <- function(part2, changeCols) {
-    fixedPart2 <- part2
-    for (col in changeCols) {
-        varval <- lazyeval::interp(~ ifelse(colName == "undefined",
-                                            yes = NA,
-                                            no = colName),
-                                   colName = as.name(col))
-        fixedPart2 <- fixedPart2 %>%
-            mutate_(.dots = setNames(list(varval), col))
-    }
-    fixedPart2
-}
-
-
-# Title:
-#   Change All Yes/No to 1/0
-# Description:
-#   The second dataset contains values from the first part of the survey. The
-#
-# Input:
-#   Designed for the second dataset
-# Output:
-#   The second dataset with all yes/no answers changed to 1/0
-# Usage:
-#   > part2 <- yesNo_to_oneZero(part2)
-yesNo_to_oneZero <- function(part2, changeCols) {
-    fixedPart2 <- part2
-    for (col in changeCols) {
-        varvalYes <- lazyeval::interp(~ ifelse(colName == "Yes",
-                                               yes = "1",
-                                               no = colName),
-                                   colName = as.name(col))
-        varvalNo <- lazyeval::interp(~ ifelse(colName == "No",
-                                              yes = "0",
-                                              no = colName),
-                                   colName = as.name(col))
-        fixedPart2 <- fixedPart2 %>%
-            mutate_(.dots = setNames(list(varvalYes), col)) %>%
-            mutate_(.dots = setNames(list(varvalNo), col))
-    }
-    fixedPart2
-}
-
+#   These functions take in arguments to perform simplier transformations
 
 # Title:
 #   Fix Truncated Job Apply Answer
@@ -117,194 +31,6 @@ fix_truncate_job_apply <- function(answer) {
         truncateAns <- c(truncateAns, tempAns)
     }
     truncateAns
-}
-
-
-# Title:
-#   Change to Character
-change_to_chr <- function(part1, toChr) {
-    for (colName in toChr) {
-        varval <- lazyeval::interp(~ as.character(colHere),
-                                   colHere = as.name(colName))
-        part1 <- part1 %>%
-            mutate_(.dots = setNames(list(varval), colName))
-    }
-    part1
-}
-
-
-# Title:
-#   Change to Double
-change_to_dbl <- function(part2, toDbl) {
-    for (colName in toDbl) {
-        varval <- lazyeval::interp(~ as.double(colHere),
-                                   colHere = as.name(colName))
-        part2 <- part2 %>%
-            mutate_(.dots = setNames(list(varval), colName))
-    }
-    part2
-}
-
-
-# Title:
-#   Standardize Data Types to String [WIP]
-# Description:
-#   Make sure both data frames have the string data type for common columns
-# Input:
-#   part1 = first data set
-#   part2 = second data set
-#   changeCols = list of column names to change
-# Output:
-#   List with both parts
-# Usage:
-#   > bothParts <- standardize_data_types(part1, part2, changeCols)
-#   > bothParts$part1 # Access first data set
-#   > bothParts$part2 # Access second data set
-standardize_data_types <- function(part1, part2, changeCols) {
-
-    for (colName in changeCols) {
-        varval <- lazyeval::interp(~ as.character(colHere), colHere = colName)
-        subDirty <- dirtyDat %>% filter(dirtyIdx) %>%
-            mutate_(.dots = setNames(list(varval), colName))
-
-    }
-}
-
-
-# Title:
-#   Remove Duplicate Rows [WIP]
-# Description:
-#   In the first dataset, there are potentially some entries that are
-#   duplicates. This function will remove them based on the composite key given
-# Input:
-#   part1 = the first dataset
-#   key = a vector containing the composite key of column names
-# Output:
-#   dplyr data frame
-# Usage:
-#   > part1 <- rm_duplicate(part1, key)
-rm_duplicate <- function(part1, key) {
-
-}
-
-
-# Title:
-#   Rename Part 1 of Survey
-# Description:
-#   Changes column/variable names from questions to something easier to
-#   remember and use
-# Input:
-#   dplyr data frame
-# Output:
-#   dplyr data frame
-# Usage:
-#   > cleanPart1 <- rename_part_1(dat$part1)
-rename_part_1 <- function(part1) {
-    newPart1 <- part1 %>% rename(
-        ID = X.
-    ) %>% rename(
-        IsSoftwareDev = Are.you.already.working.as.a.software.developer.
-    ) %>% rename(
-        JobPref = Would.you.prefer.to...
-    ) %>% rename(
-        JobRoleInterest = Which.one.of.these.roles.are.you.most.interested.in.
-    ) %>% rename(
-        JobRoleInterestOther = Other
-    ) %>% rename(
-        JobApplyWhen = When.do.you.plan.to.start.applying.for.developer.jobs.
-    ) %>% rename(
-        ExpectedEarning = About.how.much.money.do.you.expect.to.earn.per.year.at.your.first.developer.job..in.US.Dollars..
-    ) %>% rename(
-        JobWherePref = Would.you.prefer.to.work...
-    ) %>% rename(
-        JobRelocate = Are.you.willing.to.relocate.for.a.job.
-    ) %>% rename(
-        CodeEventCoffee = coffee.and.codes
-    ) %>% rename(
-        CodeEventHackathons = hackathons
-    ) %>% rename(
-        CodeEventConferences = conferences
-    ) %>% rename(
-        CodeEventNodeSchool = NodeSchool
-    ) %>% rename(
-        CodeEventRailsBridge = RailsBridge
-    ) %>% rename(
-        CodeEventStartUpWknd = Startup.Weekend
-    ) %>% rename(
-        CodeEventWomenCode = Women.Who.Code
-    ) %>% rename(
-        CodeEventGirlDev = Girl.Develop.It
-    ) %>% rename(
-        CodeEventNone = None
-    ) %>% rename(
-        CodeEventOther = Other.1
-    ) %>% rename(
-        ResourceEdX = EdX
-    ) %>% rename(
-        ResourceCoursera = Coursera
-    ) %>% rename(
-        ResourceFCC = Free.Code.Camp
-    ) %>% rename(
-        ResourceKhanAcademy = Khan.Academy
-    ) %>% rename(
-        ResourcePluralSight = Code.School..Pluralsight.
-    ) %>% rename(
-        ResourceCodeacademy = Codecademy
-    ) %>% rename(
-        ResourceUdacity = Udacity
-    ) %>% rename(
-        ResourceUdemy = Udemy
-    ) %>% rename(
-        ResourceCodeWars = Code.Wars
-    ) %>% rename(
-        ResourceOdinProj = The.Odin.Project
-    ) %>% rename(
-        ResourceDevTips = DevTips
-    ) %>% rename(
-        ResourceOther = Other.2
-    ) %>% rename(
-        PodcastCodeNewbie = Code.Newbie
-    ) %>% rename(
-        PodcastChangeLog = The.Changelog
-    ) %>% rename(
-        PodcastSEDaily = Software.Engineering.Daily
-    ) %>% rename(
-        PodcastJSJabber = JavaScript.Jabber
-    ) %>% rename(
-        PodcastNone = None.1
-    ) %>% rename(
-        PodcastOther = Other.3
-    ) %>% rename(
-        HoursLearning = About.how.many.hours.do.you.spend.learning.each.week.
-    ) %>% rename(
-        MonthsProgramming = About.how.many.months.have.you.been.programming.for.
-    ) %>% rename(
-        BootcampYesNo = Have.you.attended.a.full.time.coding.bootcamp.
-    ) %>% rename(
-        BootcampName = Which.one.
-    ) %>% rename(
-        BootcampFinish = Have.you.finished.yet.
-    ) %>% rename(
-        BootcampMonthsAgo = How.many.months.ago.
-    ) %>% rename(
-        BootcampFullJobAfter = Were.you.able.to.get.a.full.time.developer.job.afterward.
-    ) %>% rename(
-        BootcampPostSalary = How.much.was.your.salary.
-    ) %>% rename(
-        BootcampLoan = Did.you.take.out.a.loan.to.pay.for.the.bootcamp.
-    ) %>% rename(
-        BootcampRecommend = Based.on.your.experience..would.you.recommend.this.bootcamp.to.your.friends.
-    ) %>% rename(
-        MoneyForLearning = Aside.from.university.tuition..about.how.much.money.have.you.spent.on.learning.to.code.so.far..in.US.dollars..
-    ) %>% rename(
-        Part1StartTime = Start.Date..UTC.
-    ) %>% rename(
-        Part1EndTime = Submit.Date..UTC.
-    ) %>% rename(
-        NetworkID = Network.ID
-    )
-
-    newPart1
 }
 
 
@@ -361,6 +87,207 @@ average_range_earning <- function(x) {
         avgRange <- c(avgRange, tempRange)
     }
     avgRange
+}
+
+
+# Title:
+#   Average String Range
+# Description:
+#   Take a range string (e.g. "50-60") and take average (e.g. "55").
+average_string_range <- function(x) {
+    avgRange <- c()
+    for (i in 1:length(x)) {
+        tempRange <- x[i] %>% strsplit("-|to") %>%
+            unlist %>%
+            as.numeric %>%
+            mean %>%
+            as.character()
+        avgRange <- c(avgRange, tempRange)
+    }
+    avgRange
+}
+
+
+# Title:
+#   Change Years to Months
+# Description:
+#   Remove non-numeric characters and change years to months
+# Input:
+#   String or vector of strings
+# Output:
+#   String or vector of strings
+# Usage:
+#   > years_to_months("3")
+#   [1] "36"
+#   > years_to_months(c("6", "3", "5"))
+#   [1] "72" "36" "60"
+years_to_months <- function(x) {
+    monthsDat <- c()
+    for (i in 1:length(x)) {
+        tempMonths <- x[i] %>% gsub("[A-Za-z ]", "", .) %>%
+            (function (x) as.numeric(x) * 12) %>%
+            as.character()
+        monthsDat <- c(monthsDat, tempMonths)
+    }
+    monthsDat
+}
+
+
+# Title:
+#   Remove Outliers
+# Description:
+#   This function remove outliers based on threshold where anything equal to
+#   it or above it is changed to an NA
+# Input:
+#   Numbers and a threshold
+# Output:
+#   Numbers
+# Usage:
+#   > remove_outlier(20, 2)
+#   [1] NA
+#   > remove_outlier(c(1, 2, 3, 4, 5, 6), 4)
+#   [1]  1  2  3 NA NA NA
+remove_outlier <- function(x, thres) {
+    ifelse(test = x >= thres, yes = as.numeric(NA), no = x)
+}
+
+
+# Sub-Process Functions -----------------------------------
+# Description:
+#   These functions perform larger grouped data transformations
+
+# Title:
+#   Read in Data
+# Description:
+#   First function that should be run to read in the data for cleaning
+# Input:
+#   None
+# Output:
+#   List with the 1st and 2nd parts of the survey
+# Usage:
+#   > allData <- read_in_data()
+#   > allData$part1 # access first part
+#   > allData$part2 # access second part
+read_in_data <- function() {
+    cat("Reading in survey data for cleaning...\n")
+
+    # Set path of where data is
+    part1Path <- "../raw-data/2016 New Coders Survey Part 1.csv"
+    part2Path <- "../raw-data/2016 New Coders Part 2.csv"
+
+    # Read in data
+    survey1 <- read.csv(
+        file = part1Path,
+        stringsAsFactors = FALSE,
+        na.strings = "") %>% tbl_df()
+    survey2 <- read.csv(
+        file = part2Path,
+        stringsAsFactors = FALSE,
+        na.strings = "") %>% tbl_df()
+
+    cat("Finished reading in survey data.\n")
+    list(part1 = survey1, part2 = survey2)
+}
+
+
+# Title:
+#   Change All Undefined Values to NA
+# Description:
+#   The second dataset contains values from the first part of the survey.
+#   Those were passed as values and the missing values (i.e. NA) were passed
+#   as "undefined" and need to be transformed back.
+# Input:
+#   Designed for the second dataset
+# Output:
+#   The second dataset with all the undefined changed to NA
+# Usage:
+#   > part2 <- undefined_to_NA(part2)
+undefined_to_NA <- function(part2, changeCols) {
+    fixedPart2 <- part2
+    for (col in changeCols) {
+        varval <- lazyeval::interp(~ ifelse(colName == "undefined",
+                                            yes = NA,
+                                            no = colName),
+                                   colName = as.name(col))
+        fixedPart2 <- fixedPart2 %>%
+            mutate_(.dots = setNames(list(varval), col))
+    }
+    fixedPart2
+}
+
+
+# Title:
+#   Change All Yes/No to 1/0
+# Description:
+#   The second dataset contains values from the first part of the survey. Some
+#   of the yes/no questions were encoded as yes/no and 1/0. This function
+#   serves to make them consistently into 1/0.
+# Input:
+#   Designed for the second dataset
+# Output:
+#   The second dataset with all yes/no answers changed to 1/0
+# Usage:
+#   > part2 <- yesNo_to_oneZero(part2)
+yesNo_to_oneZero <- function(part2, changeCols) {
+    fixedPart2 <- part2
+    for (col in changeCols) {
+        varvalYes <- lazyeval::interp(~ ifelse(colName == "Yes",
+                                               yes = "1",
+                                               no = colName),
+                                   colName = as.name(col))
+        varvalNo <- lazyeval::interp(~ ifelse(colName == "No",
+                                              yes = "0",
+                                              no = colName),
+                                   colName = as.name(col))
+        fixedPart2 <- fixedPart2 %>%
+            mutate_(.dots = setNames(list(varvalYes), col)) %>%
+            mutate_(.dots = setNames(list(varvalNo), col))
+    }
+    fixedPart2
+}
+
+
+# Title:
+#   Change to Character
+# Description:
+#   Changes the data type of the given column names into character
+# Input:
+#   part1 = the part 1 dataset
+#   toChr = string or vector of strings with column names needing change
+# Output:
+#   Changed part 1 dataset
+# Usage:
+#   > part1 <- change_to_chr(part1, toChr)
+change_to_chr <- function(part1, toChr) {
+    for (colName in toChr) {
+        varval <- lazyeval::interp(~ as.character(colHere),
+                                   colHere = as.name(colName))
+        part1 <- part1 %>%
+            mutate_(.dots = setNames(list(varval), colName))
+    }
+    part1
+}
+
+
+# Title:
+#   Change to Double
+# Description:
+#   Changes the data type of the given column names into double
+# Input:
+#   part2 = the part 2 dataset
+#   toDbl = string or vector of strings with column names needing change
+# Output:
+#   Changed part 2 dataset
+# Usage:
+#   > part2 <- change_to_dbl(part2, toDbl)
+change_to_dbl <- function(part2, toDbl) {
+    for (colName in toDbl) {
+        varval <- lazyeval::interp(~ as.double(colHere),
+                                   colHere = as.name(colName))
+        part2 <- part2 %>%
+            mutate_(.dots = setNames(list(varval), colName))
+    }
+    part2
 }
 
 
@@ -550,65 +477,125 @@ normalize_text <- function(inData, columnName, searchTerms, replaceWith) {
 }
 
 
-# Title:
-#   Average String Range
+# Main Process Functions ----------------------------------
 # Description:
-#   Take a range string (e.g. "50-60") and take average (e.g. "55").
-average_string_range <- function(x) {
-    avgRange <- c()
-    for (i in 1:length(x)) {
-        tempRange <- x[i] %>% strsplit("-|to") %>%
-            unlist %>%
-            as.numeric %>%
-            mean %>%
-            as.character()
-        avgRange <- c(avgRange, tempRange)
-    }
-    avgRange
-}
-
+#   These functions encompass the bulk work of the cleaning and transformation
 
 # Title:
-#   Change Years to Months
+#   Rename Part 1 of Survey
 # Description:
-#   Remove non-numeric characters and change years to months
-# Input:
-#   String or vector of strings
-# Output:
-#   String or vector of strings
+#   Changes column/variable names from questions to something easier to
+#   remember and use
 # Usage:
-#   > years_to_months("3")
-#   [1] "36"
-#   > years_to_months(c("6", "3", "5"))
-#   [1] "72" "36" "60"
-years_to_months <- function(x) {
-    monthsDat <- c()
-    for (i in 1:length(x)) {
-        tempMonths <- x[i] %>% gsub("[A-Za-z ]", "", .) %>%
-            (function (x) as.numeric(x) * 12) %>%
-            as.character()
-        monthsDat <- c(monthsDat, tempMonths)
-    }
-    monthsDat
-}
+#   > cleanPart1 <- rename_part_1(dat$part1)
+rename_part_1 <- function(part1) {
+    cat("Renaming Part 1 of the survey...\n")
+    newPart1 <- part1 %>% rename(
+        ID = X.
+    ) %>% rename(
+        IsSoftwareDev = Are.you.already.working.as.a.software.developer.
+    ) %>% rename(
+        JobPref = Would.you.prefer.to...
+    ) %>% rename(
+        JobRoleInterest = Which.one.of.these.roles.are.you.most.interested.in.
+    ) %>% rename(
+        JobRoleInterestOther = Other
+    ) %>% rename(
+        JobApplyWhen = When.do.you.plan.to.start.applying.for.developer.jobs.
+    ) %>% rename(
+        ExpectedEarning = About.how.much.money.do.you.expect.to.earn.per.year.at.your.first.developer.job..in.US.Dollars..
+    ) %>% rename(
+        JobWherePref = Would.you.prefer.to.work...
+    ) %>% rename(
+        JobRelocate = Are.you.willing.to.relocate.for.a.job.
+    ) %>% rename(
+        CodeEventCoffee = coffee.and.codes
+    ) %>% rename(
+        CodeEventHackathons = hackathons
+    ) %>% rename(
+        CodeEventConferences = conferences
+    ) %>% rename(
+        CodeEventNodeSchool = NodeSchool
+    ) %>% rename(
+        CodeEventRailsBridge = RailsBridge
+    ) %>% rename(
+        CodeEventStartUpWknd = Startup.Weekend
+    ) %>% rename(
+        CodeEventWomenCode = Women.Who.Code
+    ) %>% rename(
+        CodeEventGirlDev = Girl.Develop.It
+    ) %>% rename(
+        CodeEventNone = None
+    ) %>% rename(
+        CodeEventOther = Other.1
+    ) %>% rename(
+        ResourceEdX = EdX
+    ) %>% rename(
+        ResourceCoursera = Coursera
+    ) %>% rename(
+        ResourceFCC = Free.Code.Camp
+    ) %>% rename(
+        ResourceKhanAcademy = Khan.Academy
+    ) %>% rename(
+        ResourcePluralSight = Code.School..Pluralsight.
+    ) %>% rename(
+        ResourceCodeacademy = Codecademy
+    ) %>% rename(
+        ResourceUdacity = Udacity
+    ) %>% rename(
+        ResourceUdemy = Udemy
+    ) %>% rename(
+        ResourceCodeWars = Code.Wars
+    ) %>% rename(
+        ResourceOdinProj = The.Odin.Project
+    ) %>% rename(
+        ResourceDevTips = DevTips
+    ) %>% rename(
+        ResourceOther = Other.2
+    ) %>% rename(
+        PodcastCodeNewbie = Code.Newbie
+    ) %>% rename(
+        PodcastChangeLog = The.Changelog
+    ) %>% rename(
+        PodcastSEDaily = Software.Engineering.Daily
+    ) %>% rename(
+        PodcastJSJabber = JavaScript.Jabber
+    ) %>% rename(
+        PodcastNone = None.1
+    ) %>% rename(
+        PodcastOther = Other.3
+    ) %>% rename(
+        HoursLearning = About.how.many.hours.do.you.spend.learning.each.week.
+    ) %>% rename(
+        MonthsProgramming = About.how.many.months.have.you.been.programming.for.
+    ) %>% rename(
+        BootcampYesNo = Have.you.attended.a.full.time.coding.bootcamp.
+    ) %>% rename(
+        BootcampName = Which.one.
+    ) %>% rename(
+        BootcampFinish = Have.you.finished.yet.
+    ) %>% rename(
+        BootcampMonthsAgo = How.many.months.ago.
+    ) %>% rename(
+        BootcampFullJobAfter = Were.you.able.to.get.a.full.time.developer.job.afterward.
+    ) %>% rename(
+        BootcampPostSalary = How.much.was.your.salary.
+    ) %>% rename(
+        BootcampLoan = Did.you.take.out.a.loan.to.pay.for.the.bootcamp.
+    ) %>% rename(
+        BootcampRecommend = Based.on.your.experience..would.you.recommend.this.bootcamp.to.your.friends.
+    ) %>% rename(
+        MoneyForLearning = Aside.from.university.tuition..about.how.much.money.have.you.spent.on.learning.to.code.so.far..in.US.dollars..
+    ) %>% rename(
+        Part1StartTime = Start.Date..UTC.
+    ) %>% rename(
+        Part1EndTime = Submit.Date..UTC.
+    ) %>% rename(
+        NetworkID = Network.ID
+    )
 
-
-# Title:
-#   Remove Outliers
-# Description:
-#   This function remove outliers based on threshold where anything equal to
-#   it or above it is changed to an NA
-# Input:
-#   Numbers and a threshold
-# Output:
-#   Numbers
-# Usage:
-#   > remove_outlier(20, 2)
-#   [1] NA
-#   > remove_outlier(c(1, 2, 3, 4, 5, 6), 4)
-#   [1]  1  2  3 NA NA NA
-remove_outlier <- function(x, thres) {
-    ifelse(test = x >= thres, yes = as.numeric(NA), no = x)
+    cat("Finished renaming Part 1 of the survey.\n")
+    newPart1
 }
 
 
@@ -881,7 +868,13 @@ clean_part_1 <- function(part1) {
 }
 
 
-# Rename Part 2 of survey
+# Title:
+#   Rename Part 2 of Survey
+# Description:
+#   Changes column/variable names from questions to something easier to
+#   remember and use
+# Usage:
+#   > part2 <- rename_part_2(dat$part2)
 rename_part_2 <- function(part2) {
     newPart2 <- part2 %>% rename(
         ID = X.
@@ -997,40 +990,21 @@ rename_part_2 <- function(part2) {
 }
 
 
-# Clean Part 2 of survey [WIP]
-clean_part_2 <- function(part2) {
-    cleanPart2 <- part2
-
-    # Helper code to look at data being filtered to be changed
-    columnToLookAt <- "MoneyForLearning" # Column name you want to examine
-    wordSearch <- c("[^0-9]") %>% # Array of regular expressions to search
-        paste(collapse = "|")
-
-    charIdx <- part2 %>% select_(columnToLookAt) %>%
-        mutate_each(funs(grepl(wordSearch, ., ignore.case = TRUE))) %>%
-        unlist(use.names = FALSE)
-    part2 %>% filter(charIdx) %>% select_(columnToLookAt) %>%
-        distinct() %>% View
-    #############################################
-
-    cleanPart2
-}
-
-
 # Title:
-#   Main Cleaning Function
+#   Standardize Data Types
 # Description:
-#   This is the main cleaning and transformation function. It will write a new
-#   file in the `clean-data/` directory.
-# Usage:
-#   > main()
-main <- function() {
-    dat <- read_in_data() # Read in data
-
-    # Change column names to something easier to use
-    part1 <- rename_part_1(dat$part1)
-    part2 <- rename_part_2(dat$part2)
-
+#   There were some inconsistent encoding of data between the two datasets.
+#       - Values passed from first part of survey were passed in as strings. So
+#         empty answers were passed on as "undefined"
+#       - The second dataset encoded yes/no answers as those strings, versus
+#         the first dataset encoding it as 1/0
+#       - For the question on when you plan on applying for jobs, some of the
+#         answers were truncated at the apostrophe, so the answers were fixed
+#         to what they were.
+#       - Lastly, some of the numeric values were read into R as numeric, but
+#         some were read in as double. So these numeric data types were
+#         standarized to either character or double for ease of use later.
+std_data_type <- function(part1, part2) {
     # Change the string "undefined" to built in "NA"
     changeCols <- c("IsSoftwareDev", "JobRoleInterest", "JobPref",
                     "ExpectedEarning", "JobWherePref", "JobRelocate",
@@ -1058,6 +1032,92 @@ main <- function() {
     toDbl <- c("BootcampMonthsAgo", "BootcampPostSalary")
     part2 <- change_to_dbl(part2, toDbl)
 
+    list(part1=part1, part2=part2)
+}
+
+
+# Title:
+#   Survey Parts Sanity Check
+# Description:
+#   After joining the two datasets together, there were some inconsistencies
+#   with the survey times starting and ending. For example, for some joined
+#   rows, the first part end time was more than 5 minutes before the second
+#   part of the survey started.
+#
+#   This function first changes the Part 1 end time and the Part 2 start time
+#   to the appropriate date datatype before manipulating them.
+#
+#   Cases:
+#       - Remove negative time differences where 2nd part of survey started
+#         before the 1st part ended
+#       - Multiple first part ID's used in conjunction with second part ID's
+#       - Multiple second part ID's used in conjunction with first part ID's
+# Input:
+#   dplyr data frame with joined datasets
+# Output:
+#   dplyr data frame with joined datasets
+# Usage:
+#   > allData <- time_diff_check(allData)
+time_diff_check <- function(allData) {
+    # Change data type to date so we can easily compare times
+    newData <- allData %>%
+        mutate(Part1EndTime = as.POSIXct(Part1EndTime)) %>%
+        mutate(Part2StartTime = as.POSIXct(Part2StartTime)) %>%
+        mutate(OneTwoDiff = Part2StartTime - Part1EndTime)
+    newData <- newData %>%
+        select(noquote(order(colnames(newData))))
+
+    # Separate data to focus on ones that we can look at differences
+    newDataNA <- newData %>% filter(is.na(OneTwoDiff))
+    newDataData <- newData %>% filter(!is.na(OneTwoDiff))
+
+    # Remove neg times i.e. 2nd part of survey started before 1st part ended
+    newDataData <- newDataData %>% filter(OneTwoDiff > 0)
+
+    # Check for multiple first ID's put to second part ID's
+    id1Unique <- newDataData %>% group_by(ID.x) %>%
+        filter(n() == 1)
+    id1Good <- newDataData %>% group_by(ID.x) %>%
+        filter(n() > 1) %>%
+        mutate(minDiff = min(OneTwoDiff)) %>%
+        filter(OneTwoDiff == minDiff)
+    newDataData <- bind_rows(id1Unique, id1Good) %>% select(-one_of("minDiff"))
+
+    # Check for multiple second ID's put to first part ID's
+    id2Unique <- newDataData %>% group_by(ID.y) %>%
+        filter(n() == 1)
+    id2Good <- newDataData %>% group_by(ID.y) %>%
+        filter(n() > 1) %>%
+        mutate(minDiff = min(OneTwoDiff)) %>%
+        filter(OneTwoDiff == minDiff)
+    newDataData <- bind_rows(id2Unique, id2Good) %>% select(-one_of("minDiff"))
+
+    # Join two pieces back together
+    newData <- bind_rows(newDataData, newDataNA)
+
+    newData
+}
+
+
+# Main Function -------------------------------------------
+
+# Title:
+#   Main Cleaning Function
+# Description:
+#   This is the main cleaning and transformation function. It will write a new
+#   file in the `clean-data/` directory.
+# Usage:
+#   > main()
+main <- function() {
+    dat <- read_in_data() # Read in data
+
+    # Change column names to something easier to use
+    part1 <- rename_part_1(dat$part1)
+    part2 <- rename_part_2(dat$part2)
+
+    # Make variables between datasets consistent for joining
+    consistentData <- std_data_type(part1, part2)
+
     # Join datasets together
     key <- c("IsSoftwareDev", "JobPref", "JobApplyWhen", "ExpectedEarning",
              "JobWherePref", "JobRelocate", "BootcampYesNo",
@@ -1065,14 +1125,13 @@ main <- function() {
              "BootcampFullJobAfter", "BootcampPostSalary", "BootcampLoan",
              "BootcampRecommend", "MoneyForLearning", "NetworkID",
              "HoursLearning")
-    # Remove redundant columns when joined
-    dropCol <- c("CodeEvent", "Resources", "Bootcamp", "Podcast")
-    part2 <- part2 %>% select(-one_of(dropCol))
-    allData <- left_join(part1, part2, by = key)
+    allData <- left_join(consistentData$part1, consistentData$part2, by = key)
+
+    # Check survey times and unique IDs
+    allData <- time_diff_check(allData)
 
     # Clean both parts of the data
     part1 <- clean_part_1(part1)
-    part2 <- clean_part_2(part2)
 
     # Combine data and create cleaned data
     write.csv(x = allData,
