@@ -157,40 +157,6 @@ remove_outlier <- function(x, thres) {
 #   These functions perform larger grouped data transformations
 
 # Title:
-#   Read in Data
-# Description:
-#   First function that should be run to read in the data for cleaning
-# Input:
-#   None
-# Output:
-#   List with the 1st and 2nd parts of the survey
-# Usage:
-#   > allData <- read_in_data()
-#   > allData$part1 # access first part
-#   > allData$part2 # access second part
-read_in_data <- function() {
-    cat("Reading in survey data for cleaning...\n")
-
-    # Set path of where data is
-    part1Path <- "../raw-data/2016 New Coders Survey Part 1.csv"
-    part2Path <- "../raw-data/2016 New Coders Part 2.csv"
-
-    # Read in data
-    survey1 <- read.csv(
-        file = part1Path,
-        stringsAsFactors = FALSE,
-        na.strings = "") %>% tbl_df()
-    survey2 <- read.csv(
-        file = part2Path,
-        stringsAsFactors = FALSE,
-        na.strings = "") %>% tbl_df()
-
-    cat("Finished reading in survey data.\n")
-    list(part1 = survey1, part2 = survey2)
-}
-
-
-# Title:
 #   Change All Undefined Values to NA
 # Description:
 #   The second dataset contains values from the first part of the survey.
@@ -605,6 +571,36 @@ helper_filter <- function(part, col, words) {
 # Main Process Functions ----------------------------------
 # Description:
 #   These functions encompass the bulk work of the cleaning and transformation
+
+# Title:
+#   Read in Data
+# Description:
+#   First function that should be run to read in the data for cleaning
+# Usage:
+#   > allData <- read_in_data()
+#   > allData$part1 # access first part
+#   > allData$part2 # access second part
+read_in_data <- function() {
+    cat("Reading in survey data for cleaning...\n")
+
+    # Set path of where data is
+    part1Path <- "../raw-data/2016 New Coders Survey Part 1.csv"
+    part2Path <- "../raw-data/2016 New Coders Part 2.csv"
+
+    # Read in data
+    survey1 <- read.csv(
+        file = part1Path,
+        stringsAsFactors = FALSE,
+        na.strings = "") %>% tbl_df()
+    survey2 <- read.csv(
+        file = part2Path,
+        stringsAsFactors = FALSE,
+        na.strings = "") %>% tbl_df()
+
+    cat("Finished reading in survey data.\n")
+    list(part1 = survey1, part2 = survey2)
+}
+
 
 # Title:
 #   Rename Part 1 of Survey
