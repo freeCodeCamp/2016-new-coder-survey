@@ -438,10 +438,10 @@ clean_expected_earnings <- function(cleanPart1) {
 #   Normalize text based on searching list and desired single replacement
 #   using non-standard eval in dplyr: http://stackoverflow.com/a/26003971
 # Input:
-#   inData = dplyr data frame,
-#   columnName = column you want to change,
-#   search Terms = search terms in a c() vector,
-#   replaceWith = replacement string
+#   inData        = dplyr data frame,
+#   columnName    = column you want to change,
+#   search Terms  = search terms in a c() vector,
+#   replaceWith   = replacement string
 # Output:
 #   dplyr data frame
 # Usage:
@@ -458,13 +458,10 @@ normalize_text <- function(inData, columnName, searchTerms, replaceWith) {
     varval <- lazyeval::interp(~ replaceText, replaceText = replaceWith)
 
     # Gets indices for rows that need to be changed
+    searchStr <- paste(searchTerms, collapse = "|")
     wordIdx <- inData %>% select_(columnName) %>%
-        mutate_each(
-            funs(grepl(paste(searchTerms, collapse = "|"),
-                       .,
-                       ignore.case = TRUE)
-            )
-        ) %>% unlist(use.names = FALSE)
+        mutate_each(funs(grepl(searchStr, ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
 
     # Change row values to intended words
     wordData <- inData %>% filter(wordIdx) %>%
@@ -476,6 +473,40 @@ normalize_text <- function(inData, columnName, searchTerms, replaceWith) {
     cleanData
 }
 
+
+# Title:
+#   Create New Column Based on Grep
+# Description:
+#   This function will search for terms in a given column in the rows. It will
+#   then add a column with the name of your choosing and label rows that
+#   contain your search term as having that term i.e. give a value of "1".
+# Input:
+#   inData       = dplyr data frame,
+#   colName      = column you want to target,
+#   searchTerms  = search terms in a c() vector,
+#   newCol       = name for new column
+search_and_create <- function(inData, colName, searchTerms, newCol) {
+    # Create new column with new name
+    makeNew <- lazyeval::interp(~ as.character(NA))
+    cleanData <- inData %>% mutate_(.dots = setNames(list(makeNew), newCol))
+
+    # Create search criteria
+    searchStr <- paste(searchTerms, collapse = "|")
+    varval <- lazyeval::interp(~ grepl(s,c, ignore.case = TRUE),
+                               s=searchStr,
+                               c=as.name(colName))
+
+    # Label target rows as belonging to new column group
+    mut <- lazyeval::interp(~ ifelse(test = grepl(s, c, ignore.case = TRUE),
+                                     yes = "1",
+                                     no = NA),
+                            s=searchStr,
+                            c=as.name(colName))
+    cleanData <- cleanData %>%
+        mutate_(.dots = setNames(list(mut), newCol))
+
+    cleanData
+}
 
 # Title:
 #   Clean Code Events
@@ -515,13 +546,10 @@ clean_code_events <- function(cleanPart1) {
     # Normalize variations of "None"
     nones <- c("non", "none", "haven't", "havent", "not", "nothing",
                "didn't", "n/a", "\bna\b", "never", "nil", "nope")
+    searchStr <- paste(nones, collapse = "|")
     nonesIdx <- cleanPart1 %>% select(CodeEventOther) %>%
-        mutate_each(
-            funs(grepl(paste(nones, collapse = "|"),
-                       .,
-                       ignore.case = TRUE)
-            )
-        ) %>% unlist(use.names = FALSE)
+        mutate_each(funs(grepl(searchStr, ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
     nonesData <- cleanPart1 %>% filter(nonesIdx) %>%
         mutate(CodeEventOther = NA) %>%
         mutate(CodeEventNone = "1")
@@ -740,13 +768,10 @@ clean_part_1 <- function(part1) {
     ## Normalize variations of "None" in PodcastOther
     nonePod <- c("non", "none", "haven't", "havent", "not a", "nothing",
                "didn't", "n/a", "\bna\b", "never", "nil", "nope", "not tried")
+    searchStr <- paste(nonePod, collapse = "|")
     nonesPodIdx <- cleanPart1 %>% select(PodcastOther) %>%
-        mutate_each(
-            funs(grepl(paste(nonePod, collapse = "|"),
-                       .,
-                       ignore.case = TRUE)
-            )
-        ) %>% unlist(use.names = FALSE)
+        mutate_each(funs(grepl(searchStr, ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
     nonesPodData <- cleanPart1 %>% filter(nonesPodIdx) %>%
         mutate(PodcastOther = NA) %>%
         mutate(PodcastNone = "1")
