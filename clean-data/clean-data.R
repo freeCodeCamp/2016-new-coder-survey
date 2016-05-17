@@ -284,6 +284,116 @@ sub_and_rm <- function(dirtyDat, colName, findStr, replaceStr) {
 
 
 # Title:
+#   Normalize Text
+# Description:
+#   Normalize text based on searching list and desired single replacement
+#   using non-standard eval in dplyr: http://stackoverflow.com/a/26003971
+# Input:
+#   inData        = dplyr data frame,
+#   columnName    = column you want to change,
+#   search Terms  = search terms in a c() vector,
+#   replaceWith   = replacement string
+# Output:
+#   dplyr data frame
+# Usage:
+#   > cleanPart1 <- normalize_text(inData = cleanPart1,
+#   + columnName = "JobRoleInterestOther",
+#   + searchTerms = undecidedWords,
+#   + replaceWith = "Undecided")
+# More on NSE:
+#   https://cran.r-project.org/web/packages/dplyr/vignettes/nse.html
+# Adapted from:
+#   http://stackoverflow.com/a/26766945
+normalize_text <- function(inData, columnName, searchTerms, replaceWith) {
+    # Setup dynamic naming of variables later in function
+    varval <- lazyeval::interp(~ replaceText, replaceText = replaceWith)
+
+    # Gets indices for rows that need to be changed
+    searchStr <- paste(searchTerms, collapse = "|")
+    wordIdx <- inData %>% select_(columnName) %>%
+        mutate_each(funs(grepl(searchStr, ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
+
+    # Change row values to intended words
+    wordData <- inData %>% filter(wordIdx) %>%
+        mutate_(.dots = setNames(list(varval), columnName))
+
+    # Combine data back together
+    cleanData <- inData %>% filter(!wordIdx) %>% bind_rows(wordData)
+
+    cleanData
+}
+
+
+# Title:
+#   Create New Column Based on Grep
+# Description:
+#   This function will search for terms in a given column in the rows. It will
+#   then add a column with the name of your choosing and label rows that
+#   contain your search term as having that term i.e. give a value of "1".
+# Input:
+#   inData       = dplyr data frame,
+#   colName      = column you want to target,
+#   searchTerms  = search terms in a c() vector,
+#   newCol       = name for new column
+# Output:
+#   dplyr data frame with new column
+# Usage:
+#   > cleanPart1 <- search_and_create(inData = cleanPart1,
+#   + colName = "CodeEventOther", searchTerms = c("meetup", "meetup"),
+#   + newCol = "CodeEventMeetups")
+search_and_create <- function(inData, colName, searchTerms, newCol) {
+    # Create new column with new name
+    makeNew <- lazyeval::interp(~ as.character(NA))
+    cleanData <- inData %>% mutate_(.dots = setNames(list(makeNew), newCol))
+
+    # Create search criteria
+    searchStr <- paste(searchTerms, collapse = "|")
+    varval <- lazyeval::interp(~ grepl(s,c, ignore.case = TRUE),
+                               s=searchStr,
+                               c=as.name(colName))
+
+    # Label target rows as belonging to new column group
+    mut <- lazyeval::interp(~ ifelse(test = grepl(s, c, ignore.case = TRUE),
+                                     yes = "1",
+                                     no = NA),
+                            s=searchStr,
+                            c=as.name(colName))
+    cleanData <- cleanData %>%
+        mutate_(.dots = setNames(list(mut), newCol))
+
+    cleanData
+}
+
+
+# Title:
+#   Helper Function
+# Description:
+#   Temporary function to use to check if regular expression is targeting the
+#   rows we think it should be targeting.
+# Usage:
+#   > part <- part2
+#   > col <- "MoneyForLearning"
+#   > words <- c("[^0-9]")
+#   > helper_filter(part = part, col = col, words = words)
+helper_filter <- function(part, col, words) {
+    # Helper code to look at data being filtered to be changed
+    columnToLookAt <- col # Column name you want to examine
+    wordSearch <- words %>% # Array of regular expressions to search
+        paste(collapse = "|")
+    charIdx <- part %>% select_(columnToLookAt) %>%
+        mutate_each(funs(grepl(wordSearch, ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
+    part %>% filter(charIdx) %>% select_(columnToLookAt) %>%
+        distinct() %>% View
+}
+
+
+# Sub-Cleaning Functions ----------------------------------
+# Description:
+#   These functions perform cleaning on specific variables in the data
+
+# Title:
 #   Clean Expected Earnings
 # Description:
 #   For the expected earnings part of the survey, this function performs all
@@ -399,48 +509,6 @@ clean_expected_earnings <- function(cleanPart1) {
 
 
 # Title:
-#   Normalize Text
-# Description:
-#   Normalize text based on searching list and desired single replacement
-#   using non-standard eval in dplyr: http://stackoverflow.com/a/26003971
-# Input:
-#   inData        = dplyr data frame,
-#   columnName    = column you want to change,
-#   search Terms  = search terms in a c() vector,
-#   replaceWith   = replacement string
-# Output:
-#   dplyr data frame
-# Usage:
-#   > cleanPart1 <- normalize_text(inData = cleanPart1,
-#   + columnName = "JobRoleInterestOther",
-#   + searchTerms = undecidedWords,
-#   + replaceWith = "Undecided")
-# More on NSE:
-#   https://cran.r-project.org/web/packages/dplyr/vignettes/nse.html
-# Adapted from:
-#   http://stackoverflow.com/a/26766945
-normalize_text <- function(inData, columnName, searchTerms, replaceWith) {
-    # Setup dynamic naming of variables later in function
-    varval <- lazyeval::interp(~ replaceText, replaceText = replaceWith)
-
-    # Gets indices for rows that need to be changed
-    searchStr <- paste(searchTerms, collapse = "|")
-    wordIdx <- inData %>% select_(columnName) %>%
-        mutate_each(funs(grepl(searchStr, ., ignore.case = TRUE))) %>%
-        unlist(use.names = FALSE)
-
-    # Change row values to intended words
-    wordData <- inData %>% filter(wordIdx) %>%
-        mutate_(.dots = setNames(list(varval), columnName))
-
-    # Combine data back together
-    cleanData <- inData %>% filter(!wordIdx) %>% bind_rows(wordData)
-
-    cleanData
-}
-
-
-# Title:
 #   Clean Job Role Interest
 # Description:
 #   This function targets the other job interests people put down and performs
@@ -496,47 +564,6 @@ clean_job_interest <- function(part) {
 
     cat("Finished cleaning responses for other job interests.\n")
     cleanPart
-}
-
-
-# Title:
-#   Create New Column Based on Grep
-# Description:
-#   This function will search for terms in a given column in the rows. It will
-#   then add a column with the name of your choosing and label rows that
-#   contain your search term as having that term i.e. give a value of "1".
-# Input:
-#   inData       = dplyr data frame,
-#   colName      = column you want to target,
-#   searchTerms  = search terms in a c() vector,
-#   newCol       = name for new column
-# Output:
-#   dplyr data frame with new column
-# Usage:
-#   > cleanPart1 <- search_and_create(inData = cleanPart1,
-#   + colName = "CodeEventOther", searchTerms = c("meetup", "meetup"),
-#   + newCol = "CodeEventMeetups")
-search_and_create <- function(inData, colName, searchTerms, newCol) {
-    # Create new column with new name
-    makeNew <- lazyeval::interp(~ as.character(NA))
-    cleanData <- inData %>% mutate_(.dots = setNames(list(makeNew), newCol))
-
-    # Create search criteria
-    searchStr <- paste(searchTerms, collapse = "|")
-    varval <- lazyeval::interp(~ grepl(s,c, ignore.case = TRUE),
-                               s=searchStr,
-                               c=as.name(colName))
-
-    # Label target rows as belonging to new column group
-    mut <- lazyeval::interp(~ ifelse(test = grepl(s, c, ignore.case = TRUE),
-                                     yes = "1",
-                                     no = NA),
-                            s=searchStr,
-                            c=as.name(colName))
-    cleanData <- cleanData %>%
-        mutate_(.dots = setNames(list(mut), newCol))
-
-    cleanData
 }
 
 
@@ -614,77 +641,55 @@ clean_code_events <- function(cleanPart1) {
 
 # Title:
 #   Clean Other Podcasts
-clean_other_podcasts <- function(cleanPart, PodcastOther, .) {
-  ## Convert Podcasts to binary/boolean
-  podcasts <- cleanPart %>%
-      select(starts_with("Podcast"), -PodcastOther) %>%
-      mutate_each(funs(ifelse(!is.na(.), "1", NA)))
-  cleanPart <- cleanPart %>%
-      select(-starts_with("Podcast"), PodcastOther) %>%
-      bind_cols(podcasts)
+clean_other_podcasts <- function(cleanPart) {
+    ## Convert Podcasts to binary/boolean
+    podcasts <- cleanPart %>%
+        select(starts_with("Podcast"), -PodcastOther) %>%
+        mutate_each(funs(ifelse(!is.na(.), "1", NA)))
+    cleanPart <- cleanPart %>%
+        select(-starts_with("Podcast"), PodcastOther) %>%
+        bind_cols(podcasts)
 
-  ## Normalize variations of "None" in PodcastOther
-  nonePod <- c("non", "none", "haven't", "havent", "not a", "nothing",
-               "didn't", "n/a", "\bna\b", "never", "nil", "nope", "not tried")
-  searchStr <- paste(nonePod, collapse = "|")
-  nonesPodIdx <- cleanPart %>% select(PodcastOther) %>%
-      mutate_each(funs(grepl(searchStr, ., ignore.case = TRUE))) %>%
-      unlist(use.names = FALSE)
-  nonesPodData <- cleanPart %>% filter(nonesPodIdx) %>%
-      mutate(PodcastOther = NA) %>%
-      mutate(PodcastNone = "1")
-  cleanPart <- cleanPart %>% filter(!nonesPodIdx) %>%
-      bind_rows(nonesPodData)
-
-  ## Normalize variations of "Ruby Rogues"
-  ## Change to "Ruby Rogues" if listed first
-  rubyRogues <- c("^rubyRogues", "^ruby rogues", "^ruby rogue")
-  cleanPart <- normalize_text(inData = cleanPart,
-                              columnName = "PodcastOther",
-                              searchTerms = rubyRogues,
-                              replaceWith = "Ruby Rogues")
-
-  ## Normalize variations of "Shop Talk"
-  ## Change to "Shop Talk" if listed first
-  shopTalk <- c("^shoptalk", "^shop talk",
-                "^shoptalk show", "^shop talk show")
-  cleanPart <- normalize_text(inData = cleanPart,
-                              columnName = "PodcastOther",
-                              searchTerms = shopTalk,
-                              replaceWith = "Shop Talk Show")
-
-  ## Normalize variations of "Developer Tea"
-  ## Change to "Developer Tea" if listed first
-  developerTea <- c("^developertea", "^developer's tea", "^developer tea")
-  cleanPart <- normalize_text(inData = cleanPart,
-                              columnName = "PodcastOther",
-                              searchTerms = developerTea,
-                              replaceWith = "Developer Tea")
-
-  cleanPart
-}
-
-
-# Title:
-#   Helper Function
-# Description:
-#   Temporary function to use to check if regular expression is targeting the
-#   rows we think it should be targeting.
-# Usage:
-#   > part <- part2
-#   > col <- "MoneyForLearning"
-#   > words <- c("[^0-9]")
-#   > helper_filter(part = part, col = col, words = words)
-helper_filter <- function(part, col, words) {
-    # Helper code to look at data being filtered to be changed
-    columnToLookAt <- col # Column name you want to examine
-    wordSearch <- words %>% # Array of regular expressions to search
-        paste(collapse = "|")
-    charIdx <- part %>% select_(columnToLookAt) %>%
-        mutate_each(funs(grepl(wordSearch, ., ignore.case = TRUE))) %>%
+    ## Normalize variations of "None" in PodcastOther
+    nonePod <- c("non", "none", "haven't", "havent", "not a",
+                 "nothing", "didn't", "n/a", "\bna\b", "never",
+                 "nil", "nope", "not tried")
+    searchStr <- paste(nonePod, collapse = "|")
+    nonesPodIdx <- cleanPart %>% select(PodcastOther) %>%
+        mutate_each(funs(grepl(searchStr, ., ignore.case = TRUE))) %>%
         unlist(use.names = FALSE)
-    part %>% filter(charIdx) %>% select_(columnToLookAt) %>%
-        distinct() %>% View
+    nonesPodData <- cleanPart %>% filter(nonesPodIdx) %>%
+        mutate(PodcastOther = NA) %>%
+        mutate(PodcastNone = "1")
+    cleanPart <- cleanPart %>% filter(!nonesPodIdx) %>%
+        bind_rows(nonesPodData)
+
+    ## Normalize variations of "Ruby Rogues"
+    ## Change to "Ruby Rogues" if listed first
+    rubyRogues <- c("^rubyRogues", "^ruby rogues", "^ruby rogue")
+    cleanPart <- normalize_text(inData = cleanPart,
+                                columnName = "PodcastOther",
+                                searchTerms = rubyRogues,
+                                replaceWith = "Ruby Rogues")
+
+    ## Normalize variations of "Shop Talk"
+    ## Change to "Shop Talk" if listed first
+    shopTalk <- c("^shoptalk", "^shop talk",
+                  "^shoptalk show", "^shop talk show")
+    cleanPart <- normalize_text(inData = cleanPart,
+                                columnName = "PodcastOther",
+                                searchTerms = shopTalk,
+                                replaceWith = "Shop Talk Show")
+
+    ## Normalize variations of "Developer Tea"
+    ## Change to "Developer Tea" if listed first
+    developerTea <- c("^developertea", "^developer's tea", "^developer tea")
+    cleanPart <- normalize_text(inData = cleanPart,
+                                columnName = "PodcastOther",
+                                searchTerms = developerTea,
+                                replaceWith = "Developer Tea")
+
+    cleanPart
 }
 
 
