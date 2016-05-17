@@ -451,6 +451,12 @@ normalize_text <- function(inData, columnName, searchTerms, replaceWith) {
 #   colName      = column you want to target,
 #   searchTerms  = search terms in a c() vector,
 #   newCol       = name for new column
+# Output:
+#   dplyr data frame with new column
+# Usage:
+#   > cleanPart1 <- search_and_create(inData = cleanPart1,
+#   + colName = "CodeEventOther", searchTerms = c("meetup", "meetup"),
+#   + newCol = "CodeEventMeetups")
 search_and_create <- function(inData, colName, searchTerms, newCol) {
     # Create new column with new name
     makeNew <- lazyeval::interp(~ as.character(NA))
@@ -721,22 +727,22 @@ rename_part_1 <- function(part1) {
 
 
 # Clean Part 1 of survey
-clean_part_1 <- function(part1) {
+clean_part <- function(part) {
     # Job Role Interests
 
     ## Title case answers for other job interests
     ##  See if I can simplify this by just mutating
-    jobRoleOtherYes <- part1 %>% filter(!is.na(JobRoleInterestOther)) %>%
+    jobRoleOtherYes <- part %>% filter(!is.na(JobRoleInterestOther)) %>%
         mutate(JobRoleInterestOther = simple_title_case(JobRoleInterestOther))
-    jobRoleOtherNo <- part1 %>% filter(is.na(JobRoleInterestOther))
-    cleanPart1 <- jobRoleOtherNo %>% bind_rows(jobRoleOtherYes)
+    jobRoleOtherNo <- part %>% filter(is.na(JobRoleInterestOther))
+    cleanPart <- jobRoleOtherNo %>% bind_rows(jobRoleOtherYes)
 
     ## Change uncertain job roles to "Undecided"
     undecidedWords <- c("not sure", "don't know", "not certain",
                         "unsure", "dont know", "undecided",
                         "all of the above", "no preference", "not",
                         "any", "no idea")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
+    cleanPart <- normalize_text(inData = cleanPart,
                    columnName = "JobRoleInterestOther",
                    searchTerms = undecidedWords,
                    replaceWith = "Undecided")
@@ -745,41 +751,41 @@ clean_part_1 <- function(part1) {
     ##  e.g. "Cyber security" == "Cybersercurity"
     cyberWords <- c("cyber", "secure", "penetration tester",
                     "pentester", "security")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
+    cleanPart <- normalize_text(inData = cleanPart,
                    columnName = "JobRoleInterestOther",
                    searchTerms = cyberWords,
                    replaceWith = "Cyber Security")
 
     ## Normalize game developer interests to "Game Developer"
     gameWords <- c("game", "games")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
+    cleanPart <- normalize_text(inData = cleanPart,
                    columnName = "JobRoleInterestOther",
                    searchTerms = gameWords,
                    replaceWith = "Game Developer")
 
     ## Normalize software engineer interests to "Software Engineer"
     softwareWords <- c("software")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
+    cleanPart <- normalize_text(inData = cleanPart,
                    columnName = "JobRoleInterestOther",
                    searchTerms = softwareWords,
                    replaceWith = "Software Engineer")
 
 
     # Clean expected earnings column
-    cleanPart1 <- clean_expected_earnings(cleanPart1)
+    cleanPart <- clean_expected_earnings(cleanPart)
 
 
     # Clean other coding events column
-    cleanPart1 <- clean_code_events(cleanPart1)
+    cleanPart <- clean_code_events(cleanPart)
 
 
     # Clean Podcasts Other
 
     ## Convert Podcasts to binary/boolean
-    podcasts <- cleanPart1 %>%
+    podcasts <- cleanPart %>%
         select(starts_with("Podcast"), -PodcastOther) %>%
         mutate_each(funs(ifelse(!is.na(.), "1", NA)))
-    cleanPart1 <- cleanPart1 %>%
+    cleanPart <- cleanPart %>%
         select(-starts_with("Podcast"), PodcastOther) %>%
         bind_cols(podcasts)
 
@@ -787,19 +793,19 @@ clean_part_1 <- function(part1) {
     nonePod <- c("non", "none", "haven't", "havent", "not a", "nothing",
                "didn't", "n/a", "\bna\b", "never", "nil", "nope", "not tried")
     searchStr <- paste(nonePod, collapse = "|")
-    nonesPodIdx <- cleanPart1 %>% select(PodcastOther) %>%
+    nonesPodIdx <- cleanPart %>% select(PodcastOther) %>%
         mutate_each(funs(grepl(searchStr, ., ignore.case = TRUE))) %>%
         unlist(use.names = FALSE)
-    nonesPodData <- cleanPart1 %>% filter(nonesPodIdx) %>%
+    nonesPodData <- cleanPart %>% filter(nonesPodIdx) %>%
         mutate(PodcastOther = NA) %>%
         mutate(PodcastNone = "1")
-    cleanPart1 <- cleanPart1 %>% filter(!nonesPodIdx) %>%
+    cleanPart <- cleanPart %>% filter(!nonesPodIdx) %>%
         bind_rows(nonesPodData)
 
     ## Normalize variations of "Ruby Rogues"
     ## Change to "Ruby Rogues" if listed first
     rubyRogues <- c("^rubyRogues", "^ruby rogues", "^ruby rogue")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
+    cleanPart <- normalize_text(inData = cleanPart,
                                  columnName = "PodcastOther",
                                  searchTerms = rubyRogues,
                                  replaceWith = "Ruby Rogues")
@@ -808,7 +814,7 @@ clean_part_1 <- function(part1) {
     ## Change to "Shop Talk" if listed first
     shopTalk <- c("^shoptalk", "^shop talk",
                     "^shoptalk show", "^shop talk show")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
+    cleanPart <- normalize_text(inData = cleanPart,
                                  columnName = "PodcastOther",
                                  searchTerms = shopTalk,
                                  replaceWith = "Shop Talk Show")
@@ -816,7 +822,7 @@ clean_part_1 <- function(part1) {
     ## Normalize variations of "Developer Tea"
     ## Change to "Developer Tea" if listed first
     developerTea <- c("^developertea", "^developer's tea", "^developer tea")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
+    cleanPart <- normalize_text(inData = cleanPart,
                                  columnName = "PodcastOther",
                                  searchTerms = developerTea,
                                  replaceWith = "Developer Tea")
@@ -825,102 +831,97 @@ clean_part_1 <- function(part1) {
     # Clean number of hours spent learning
 
     ## Remove the word "hour(s)"
-    hoursIdx <- cleanPart1 %>% select(HoursLearning) %>%
+    hoursIdx <- cleanPart %>% select(HoursLearning) %>%
         mutate_each(funs(grepl("hours", ., ignore.case = TRUE))) %>%
         unlist(use.names = FALSE)
-    hoursData <- cleanPart1 %>% filter(hoursIdx) %>%
+    hoursData <- cleanPart %>% filter(hoursIdx) %>%
         mutate(HoursLearning = sub("hours.*", "", HoursLearning))
-    cleanPart1 <- cleanPart1 %>% filter(!hoursIdx) %>% bind_rows(hoursData)
+    cleanPart <- cleanPart %>% filter(!hoursIdx) %>% bind_rows(hoursData)
 
     ## Remove hyphen and "to" for ranges of hours
-    rangeHrIdx <- cleanPart1 %>% select(HoursLearning) %>%
+    rangeHrIdx <- cleanPart %>% select(HoursLearning) %>%
         mutate_each(funs(grepl("-|to", ., ignore.case = TRUE))) %>%
         unlist(use.names = FALSE)
-    rangeHrData <- cleanPart1 %>% filter(rangeHrIdx) %>%
+    rangeHrData <- cleanPart %>% filter(rangeHrIdx) %>%
         mutate(HoursLearning = average_string_range(HoursLearning))
-    cleanPart1 <- cleanPart1 %>% filter(!rangeHrIdx) %>%
+    cleanPart <- cleanPart %>% filter(!rangeHrIdx) %>%
         bind_rows(rangeHrData)
 
     ## Remove hours greater than 100 hours
-    hoursLearnNumeric <- cleanPart1 %>%
-        mutate(HoursLearning = as.integer(HoursLearning))
-    weekHours <- hoursLearnNumeric %>%
-        filter(HoursLearning > 100) %>%
-        mutate(HoursLearning = as.integer(NA)) # Change to value later
-    cleanPart1 <- hoursLearnNumeric %>%
-        filter(!(ID %in% weekHours[["ID"]])) %>%
-        bind_rows(weekHours) %>%
-        mutate(HoursLearning = as.character(HoursLearning))
+    cleanPart <- cleanPart %>%
+        mutate(HoursLearning = as.integer(HoursLearning)) %>%
+        mutate(HoursLearning = ifelse(HoursLearning > 100, NA, HoursLearning))
 
 
     # Clean months programming
 
     ## Change years to months
-    yearsProgramIdx <- cleanPart1 %>% select(MonthsProgramming) %>%
+    yearsProgramIdx <- cleanPart %>% select(MonthsProgramming) %>%
         mutate_each(funs(grepl("years", ., ignore.case = TRUE))) %>%
         unlist(use.names = FALSE)
-    yearsProgramData <- cleanPart1 %>% filter(yearsProgramIdx) %>%
+    yearsProgramData <- cleanPart %>% filter(yearsProgramIdx) %>%
         mutate(MonthsProgramming = years_to_months(MonthsProgramming))
-    cleanPart1 <- cleanPart1 %>% filter(!yearsProgramIdx) %>%
+    cleanPart <- cleanPart %>% filter(!yearsProgramIdx) %>%
         bind_rows(yearsProgramData)
 
     ## Remove non-numeric characters
-    cleanPart1 <- cleanPart1 %>% sub_and_rm(colName = "MonthsProgramming",
+    cleanPart <- cleanPart %>% sub_and_rm(colName = "MonthsProgramming",
                               findStr = "[A-Za-z ]",
                               replaceStr = "")
 
     ## Average the range of months
-    avgMonthIdx <- cleanPart1 %>% select(MonthsProgramming) %>%
+    avgMonthIdx <- cleanPart %>% select(MonthsProgramming) %>%
         mutate_each(funs(grepl("-", ., ignore.case = TRUE))) %>%
         unlist(use.names = FALSE)
-    avgMonthData <- cleanPart1 %>% filter(avgMonthIdx) %>%
+    avgMonthData <- cleanPart %>% filter(avgMonthIdx) %>%
         mutate(MonthsProgramming = average_string_range(MonthsProgramming))
-    cleanPart1 <- cleanPart1 %>% filter(!avgMonthIdx) %>%
+    cleanPart <- cleanPart %>% filter(!avgMonthIdx) %>%
         bind_rows(avgMonthData)
 
 
     ## Remove outlier months of programming
     ## 744 months = 62 years = 1954 = Year FORTRAN was invented
-    cleanPart1 <- cleanPart1 %>%
+    cleanPart <- cleanPart %>%
         mutate(MonthsProgramming = as.integer(MonthsProgramming)) %>%
         mutate(MonthsProgramming = remove_outlier(MonthsProgramming, 744)) %>%
         mutate(MonthsProgramming = as.integer(MonthsProgramming))
 
 
     # Salary post bootcamp
-    cleanPart1 <- cleanPart1 %>%
+    cleanPart <- cleanPart %>%
         mutate(BootcampPostSalary = remove_outlier(BootcampPostSalary, 1e10))
+
 
     # Money used for learning (not including tuition)
 
     ## Change variants of "None" to 0
     moneyNone <- c("nil", "none", "not")
-    cleanPart1 <- cleanPart1 %>%
+    cleanPart <- cleanPart %>%
         normalize_text(columnName = "MoneyForLearning",
                        searchTerms = moneyNone,
                        replaceWith = "0")
 
     ## Remove dollar sign and other symbols not including periods
-    cleanPart1 <- cleanPart1 %>% sub_and_rm(colName = "MoneyForLearning",
+    cleanPart <- cleanPart %>% sub_and_rm(colName = "MoneyForLearning",
                                             findStr = "\\$|>|<|\\(|\\)",
                                             replaceStr = "")
 
     ## Remove other text
-    cleanPart1 <- cleanPart1 %>% sub_and_rm(colName = "MoneyForLearning",
+    cleanPart <- cleanPart %>% sub_and_rm(colName = "MoneyForLearning",
                                             findStr = "[A-Za-z ]",
                                             replaceStr = "")
 
     ## Average ranges
-    avgLearnIdx <- cleanPart1 %>% select(MoneyForLearning) %>%
+    avgLearnIdx <- cleanPart %>% select(MoneyForLearning) %>%
         mutate_each(funs(grepl("-", ., ignore.case = TRUE))) %>%
         unlist(use.names = FALSE)
-    avgLearnData <- cleanPart1 %>% filter(avgLearnIdx) %>%
+    avgLearnData <- cleanPart %>% filter(avgLearnIdx) %>%
         mutate(MoneyForLearning = average_string_range(MoneyForLearning))
-    cleanPart1 <- cleanPart1 %>% filter(!avgLearnIdx) %>%
+    cleanPart <- cleanPart %>% filter(!avgLearnIdx) %>%
         bind_rows(avgLearnData)
 
 
-    cleanPart1
+    cleanPart
 }
 
 
@@ -1180,19 +1181,19 @@ main <- function() {
              "MonthsProgramming", "BootcampFinish",
              "BootcampFullJobAfter", "BootcampPostSalary", "BootcampLoan",
              "BootcampRecommend", "MoneyForLearning", "NetworkID",
-             "HoursLearning")
+             "HoursLearning", "BootcampMonthsAgo")
     allData <- left_join(consistentData$part1, consistentData$part2, by = key)
 
     # Check survey times and unique IDs
     allData <- time_diff_check(allData)
 
     # Clean both parts of the data
-    part1 <- clean_part_1(part1)
+    final <- clean_part(allData)
 
     # Combine data and create cleaned data
-    write.csv(x = allData,
+    write.csv(x = final,
               file = "2016-FCC-New-Coders-Survey-Data.csv",
               na = "NA",
               row.names = FALSE)
 }
-main()
+# main()
