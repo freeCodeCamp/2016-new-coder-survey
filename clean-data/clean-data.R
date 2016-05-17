@@ -414,6 +414,8 @@ helper_filter <- function(part, col, words, printYes = NA) {
 #   For the expected earnings part of the survey, this function performs all
 #   the necessary cleaning on that part of the data
 clean_expected_earnings <- function(cleanPart1) {
+    cat("Cleaning responses for expected earnings...\n")
+
     # Remove dollar signs from expected earnings
     dollarIdx <- cleanPart1 %>% select(ExpectedEarning) %>%
         mutate_each(funs(grepl("\\$", ., ignore.case = TRUE))) %>%
@@ -519,6 +521,7 @@ clean_expected_earnings <- function(cleanPart1) {
         mutate(ExpectedEarning = as.integer(ExpectedEarning)) %>%
         mutate(ExpectedEarning = as.character(ExpectedEarning))
 
+    cat("Finished cleaning responses for expected earnings.\n")
     cleanPart1
 }
 
@@ -591,6 +594,8 @@ clean_job_interest <- function(part) {
 # Usage:
 #   > cleanPart <- clean_code_events(cleanPart)
 clean_code_events <- function(cleanPart1) {
+    cat("Cleaning responses for coding events...\n")
+
     # Convert coding events to binary/boolean
     codeResources <- cleanPart1 %>%
         select(starts_with("CodeEvent"), -CodeEventOther) %>%
@@ -652,6 +657,7 @@ clean_code_events <- function(cleanPart1) {
                                  searchTerms = gameJams,
                                  replaceWith = "Game Jam(s)")
 
+    cat("Finished cleaning responses for coding events.\n")
     cleanPart1
 }
 
