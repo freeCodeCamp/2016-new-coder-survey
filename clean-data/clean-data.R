@@ -1002,6 +1002,22 @@ clean_money_learning <- function(cleanPart) {
 }
 
 
+# Title:
+#   Clean Age
+# Usage:
+#   > cleanPart <- clean_age(cleanPart)
+clean_age <- function(cleanPart) {
+    cat("Cleaning responses for age...\n")
+
+    # Make ages >100 equal to NA
+    cleanPart <- cleanPart %>%
+        mutate(Age = remove_outlier(Age, 100))
+
+    cat("Finished cleaning responses for age.\n")
+    cleanPart
+}
+
+
 # Main Process Functions ----------------------------------
 # Description:
 #   These functions encompass the bulk work of the cleaning and transformation
@@ -1161,6 +1177,7 @@ rename_part_1 <- function(part1) {
 clean_part <- function(part) {
     cat("Beginning cleaning of data...\n")
 
+    # Clean each column that needs it
     cleanPart <- clean_job_interest(part)  # Clean Job Role Interests
     cleanPart <- clean_expected_earnings(cleanPart)  # Clean expected earnings
     cleanPart <- clean_code_events(cleanPart)   # Clean other coding events
@@ -1169,6 +1186,11 @@ clean_part <- function(part) {
     cleanPart <- clean_months_program(cleanPart)  # Clean months programming
     cleanPart <- clean_salary_post(cleanPart)  # Clean salary post bootcamp
     cleanPart <- clean_money_learning(cleanPart)  # Clean money for learning
+    cleanPart <- clean_age(cleanPart)  # Clean age
+
+    # Polish data
+    # - Remove rows where JobRoleInterest.y has value, but not in
+    #   JobRoleInterest.x and JobInterestOther
 
     cat("Finished cleaning survey data.\n")
     cleanPart
