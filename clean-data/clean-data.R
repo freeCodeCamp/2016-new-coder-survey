@@ -802,7 +802,7 @@ clean_podcasts <- function(cleanPart) {
 
     # Make other column just binary
     cleanPart <- cleanPart %>%
-        mutate(PodcastOther = ifelse(!is.na(PodcastOther), "1", NA))
+        mutate(PodcastOtherYesNo = ifelse(!is.na(PodcastOther), "1", NA))
 
     cat("Finished cleaning responses for other podcasts.\n")
     cleanPart
