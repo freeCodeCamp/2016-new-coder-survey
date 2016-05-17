@@ -655,9 +655,31 @@ clean_code_events <- function(cleanPart1) {
 
 
 # Title:
-#   Clean Other Podcasts
-clean_other_podcasts <- function(cleanPart) {
-    ## Convert Podcasts to binary/boolean
+#   Clean Podcasts
+# Description:
+#   Cleans the podcasts answers in general but mostly cleans people's answers
+#   for "Other". Performs the following:
+#   - Convert Podcasts to binary/boolean
+#   - Normalize variations of "None" in Podcast Other back to designated col
+#   - Normalize variations of "Software Engineering Daily" in Podcast Other
+#     back to designated column
+#   - Add new columns for other podcasts greater than 15 mentions
+#       - "Ruby Rogues"
+#       - "Shop Talk Show"
+#       - "Developer Tea"
+#       - "Programming Throwdown"
+#       - ".NET Rocks"
+#       - "Talk Python to Me"
+#       - "JavaScript Air"
+#       - The Web Ahead"
+#   - NOTE: honorable mentions to get their own column
+#       - "Code Pen Radio"
+#       - "Trav and Los"
+#       - "Giant Robots Smashing into other Giant Robots"
+clean_podcasts <- function(cleanPart) {
+    cat("Cleaning responses for other podcasts...\n")
+
+    # Convert Podcasts to binary/boolean
     podcasts <- cleanPart %>%
         select(starts_with("Podcast"), -PodcastOther) %>%
         mutate_each(funs(ifelse(!is.na(.), "1", NA)))
@@ -665,10 +687,11 @@ clean_other_podcasts <- function(cleanPart) {
         select(-starts_with("Podcast"), PodcastOther) %>%
         bind_cols(podcasts)
 
-    ## Normalize variations of "None" in PodcastOther
+    # Normalize variations of "None" in PodcastOther
     nonePod <- c("non", "none", "haven't", "havent", "not a",
                  "nothing", "didn't", "n/a", "\bna\b", "never",
-                 "nil", "nope", "not tried")
+                 "nil", "nope", "not tried", "have not", "do not",
+                 "don't")
     searchStr <- paste(nonePod, collapse = "|")
     nonesPodIdx <- cleanPart %>% select(PodcastOther) %>%
         mutate_each(funs(grepl(searchStr, ., ignore.case = TRUE))) %>%
@@ -679,31 +702,95 @@ clean_other_podcasts <- function(cleanPart) {
     cleanPart <- cleanPart %>% filter(!nonesPodIdx) %>%
         bind_rows(nonesPodData)
 
-    ## Normalize variations of "Ruby Rogues"
-    ## Change to "Ruby Rogues" if listed first
-    rubyRogues <- c("^rubyRogues", "^ruby rogues", "^ruby rogue")
-    cleanPart <- normalize_text(inData = cleanPart,
-                                columnName = "PodcastOther",
-                                searchTerms = rubyRogues,
-                                replaceWith = "Ruby Rogues")
+    # Normalize variations of "Software Engineering Daily" in PodcastOther
+    sePod <- c("software engineering")
+    searchStr <- paste(sePod, collapse = "|")
+    sePodIdx <- cleanPart %>% select(PodcastOther) %>%
+        mutate_each(funs(grepl(searchStr, ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
+    sePodData <- cleanPart %>% filter(sePodIdx) %>%
+       mutate(PodcastSEDaily = "1")
+    cleanPart <- cleanPart %>% filter(!sePodIdx) %>%
+        bind_rows(sePodData)
 
-    ## Normalize variations of "Shop Talk"
-    ## Change to "Shop Talk" if listed first
-    shopTalk <- c("^shoptalk", "^shop talk",
-                  "^shoptalk show", "^shop talk show")
-    cleanPart <- normalize_text(inData = cleanPart,
-                                columnName = "PodcastOther",
-                                searchTerms = shopTalk,
-                                replaceWith = "Shop Talk Show")
+    # New column for "Ruby Rogues"
+    rubyRogues <- c("rubyRogues", "ruby rogues", "ruby rogue")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "PodcastOther",
+                                   searchTerms = rubyRogues,
+                                   newCol = "PodcastOtherRubyRogues")
 
-    ## Normalize variations of "Developer Tea"
-    ## Change to "Developer Tea" if listed first
-    developerTea <- c("^developertea", "^developer's tea", "^developer tea")
-    cleanPart <- normalize_text(inData = cleanPart,
-                                columnName = "PodcastOther",
-                                searchTerms = developerTea,
-                                replaceWith = "Developer Tea")
+    # New column for "Shop Talk Show"
+    shopTalk <- c("shoptalk", "shop talk", "talk shop show",
+                  "shoptalkshow", "shop talk show", "talkshop")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "PodcastOther",
+                                   searchTerms = shopTalk,
+                                   newCol = "PodcastOtherShopTalk")
 
+    # New column for "Developer Tea"
+    developerTea <- c("developertea", "developer's tea", "developer tea",
+                      "devtea")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "PodcastOther",
+                                   searchTerms = developerTea,
+                                   newCol = "PodcastOtherDeveloperTea")
+
+    # New column for "Programming Throwdown"
+    progThrow <- c("programming throwdown", "programmer throwdown",
+                   "programing throwdown")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                  colName = "PodcastOther",
+                                  searchTerms = progThrow,
+                                  newCol = "PodcastOtherProgrammingThrowDown")
+
+    # New column for ".Net Rocks"
+    dotNet <- c("net rocks", "rocks", "dotnetrocks")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "PodcastOther",
+                                   searchTerms = dotNet,
+                                   newCol = "PodcastOtherDotNetRocks")
+
+    # New column for "Talk Python to Me"
+    talkPython <- c("talk python", "talkpython")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "PodcastOther",
+                                   searchTerms = talkPython,
+                                   newCol = "PodcastOtherTalkPython")
+
+    # New column for "JavaScript Air"
+    jsAir <- c("jsair", "js air", "javascript air")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "PodcastOther",
+                                   searchTerms = jsAir,
+                                   newCol = "PodcastOtherJsAir")
+
+    # New column for "Hanselminutes"
+    hansel <- c("hanselminutes")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "PodcastOther",
+                                   searchTerms = hansel,
+                                   newCol = "PodcastOtherHanselminutes")
+
+    # New column for "The Web Ahead"
+    webAhead <- c("web ahead")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "PodcastOther",
+                                   searchTerms = webAhead,
+                                   newCol = "PodcastOtherWebAhead")
+
+    # New column for "Coding Blocks"
+    codingBlocks <- c("codingblocks", "coding blocks")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "PodcastOther",
+                                   searchTerms = codingBlocks,
+                                   newCol = "PodcastOtherCodingBlocks")
+
+    # Make other column just binary
+    cleanPart <- cleanPart %>%
+        mutate(PodcastOther = ifelse(!is.na(PodcastOther), "1", NA))
+
+    cat("Finished cleaning responses for other podcasts.\n")
     cleanPart
 }
 
@@ -877,7 +964,7 @@ clean_part <- function(part) {
 
 
     # Clean Podcasts Other
-    cleanPart <- clean_other_podcasts(cleanPart)
+    cleanPart <- clean_podcasts(cleanPart)
 
 
     # Clean number of hours spent learning
