@@ -810,7 +810,7 @@ clean_podcasts <- function(cleanPart) {
 clean_hours_learn <- function(cleanPart) {
     cat("Cleaning responses for hours of learning per week...\n")
 
-    ## Remove the word "hour(s)"
+    # Remove the word "hour(s)"
     hoursIdx <- cleanPart %>% select(HoursLearning) %>%
         mutate_each(funs(grepl("hours", ., ignore.case = TRUE))) %>%
         unlist(use.names = FALSE)
@@ -818,7 +818,7 @@ clean_hours_learn <- function(cleanPart) {
         mutate(HoursLearning = sub("hours.*", "", HoursLearning))
     cleanPart <- cleanPart %>% filter(!hoursIdx) %>% bind_rows(hoursData)
 
-    ## Remove hyphen and "to" for ranges of hours
+    # Remove hyphen and "to" for ranges of hours
     rangeHrIdx <- cleanPart %>% select(HoursLearning) %>%
         mutate_each(funs(grepl("-|to", ., ignore.case = TRUE))) %>%
         unlist(use.names = FALSE)
@@ -827,7 +827,7 @@ clean_hours_learn <- function(cleanPart) {
     cleanPart <- cleanPart %>% filter(!rangeHrIdx) %>%
         bind_rows(rangeHrData)
 
-    ## Remove hours greater than 100 hours
+    # Remove hours greater than 100 hours
     cleanPart <- cleanPart %>%
         mutate(HoursLearning = as.integer(HoursLearning)) %>%
         mutate(HoursLearning = ifelse(HoursLearning > 100, NA, HoursLearning))
@@ -835,6 +835,49 @@ clean_hours_learn <- function(cleanPart) {
     cat("Cleaning responses for hours of learning per week...\n")
     cleanPart
 }
+
+
+# Title:
+#   Clean Months Programming
+# Usage:
+#   > cleanPart <- clean_months_programming(cleanPart)
+clean_months_program <- function(cleanPart) {
+    cat("Cleaning responses for number of months programming...\n")
+
+    # Change years to months
+    yearsProgramIdx <- cleanPart %>% select(MonthsProgramming) %>%
+        mutate_each(funs(grepl("years", ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
+    yearsProgramData <- cleanPart %>% filter(yearsProgramIdx) %>%
+        mutate(MonthsProgramming = years_to_months(MonthsProgramming))
+    cleanPart <- cleanPart %>% filter(!yearsProgramIdx) %>%
+        bind_rows(yearsProgramData)
+
+    # Remove non-numeric characters
+    cleanPart <- cleanPart %>% sub_and_rm(colName = "MonthsProgramming",
+                                          findStr = "[A-Za-z ]",
+                                          replaceStr = "")
+
+    # Average the range of months
+    avgMonthIdx <- cleanPart %>% select(MonthsProgramming) %>%
+        mutate_each(funs(grepl("-", ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
+    avgMonthData <- cleanPart %>% filter(avgMonthIdx) %>%
+        mutate(MonthsProgramming = average_string_range(MonthsProgramming))
+    cleanPart <- cleanPart %>% filter(!avgMonthIdx) %>%
+        bind_rows(avgMonthData)
+
+    # Remove outlier months of programming
+    # 744 months = 62 years = 1954 = Year FORTRAN was invented
+    cleanPart <- cleanPart %>%
+        mutate(MonthsProgramming = as.integer(MonthsProgramming)) %>%
+        mutate(MonthsProgramming = remove_outlier(MonthsProgramming, 744)) %>%
+        mutate(MonthsProgramming = as.integer(MonthsProgramming))
+
+    cat("Finished cleaning responses for number of months programming.\n")
+    cleanPart
+}
+
 
 # Main Process Functions ----------------------------------
 # Description:
@@ -997,43 +1040,10 @@ clean_part <- function(part) {
 
     cleanPart <- clean_job_interest(part)  # Clean Job Role Interests
     cleanPart <- clean_expected_earnings(cleanPart)  # Clean expected earnings
-    cleanPart <- clean_code_events(cleanPart)  # Clean other coding events
-    cleanPart <- clean_podcasts(cleanPart)  # Clean Podcasts Other
-    cleanPart <- clean_hours_learn(cleanPart) # Clean hours spent learning
-
-    # Clean months programming
-
-    ## Change years to months
-    yearsProgramIdx <- cleanPart %>% select(MonthsProgramming) %>%
-        mutate_each(funs(grepl("years", ., ignore.case = TRUE))) %>%
-        unlist(use.names = FALSE)
-    yearsProgramData <- cleanPart %>% filter(yearsProgramIdx) %>%
-        mutate(MonthsProgramming = years_to_months(MonthsProgramming))
-    cleanPart <- cleanPart %>% filter(!yearsProgramIdx) %>%
-        bind_rows(yearsProgramData)
-
-    ## Remove non-numeric characters
-    cleanPart <- cleanPart %>% sub_and_rm(colName = "MonthsProgramming",
-                              findStr = "[A-Za-z ]",
-                              replaceStr = "")
-
-    ## Average the range of months
-    avgMonthIdx <- cleanPart %>% select(MonthsProgramming) %>%
-        mutate_each(funs(grepl("-", ., ignore.case = TRUE))) %>%
-        unlist(use.names = FALSE)
-    avgMonthData <- cleanPart %>% filter(avgMonthIdx) %>%
-        mutate(MonthsProgramming = average_string_range(MonthsProgramming))
-    cleanPart <- cleanPart %>% filter(!avgMonthIdx) %>%
-        bind_rows(avgMonthData)
-
-
-    ## Remove outlier months of programming
-    ## 744 months = 62 years = 1954 = Year FORTRAN was invented
-    cleanPart <- cleanPart %>%
-        mutate(MonthsProgramming = as.integer(MonthsProgramming)) %>%
-        mutate(MonthsProgramming = remove_outlier(MonthsProgramming, 744)) %>%
-        mutate(MonthsProgramming = as.integer(MonthsProgramming))
-
+    cleanPart <- clean_code_events(cleanPart)   # Clean other coding events
+    cleanPart <- clean_podcasts(cleanPart)   # Clean Podcasts Other
+    cleanPart <- clean_hours_learn(cleanPart)  # Clean hours spent learning
+    cleanPart <- clean_months_program(cleanPart)  # Clean months programming
 
     # Salary post bootcamp
     cleanPart <- cleanPart %>%
