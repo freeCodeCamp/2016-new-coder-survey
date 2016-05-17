@@ -441,6 +441,65 @@ normalize_text <- function(inData, columnName, searchTerms, replaceWith) {
 
 
 # Title:
+#   Clean Job Role Interest
+# Description:
+#   This function targets the other job interests people put down and performs
+#   some cleaning:
+#   - Normalize variants of "Undecided"
+#   - Normalize variants of "Cyber Security"
+#   - Normalize variants of "Game Developer"
+#   - Normalize variants of "Software Engineer"
+# Usage:
+#   > cleanPart <- clean_job_interest(part)
+clean_job_interest <- function(part) {
+    cat("Cleaning responses for other job interests...\n")
+
+    ## Title case answers for other job interests
+    ##  See if I can simplify this by just mutating
+    jobRoleOtherYes <- part %>% filter(!is.na(JobRoleInterestOther)) %>%
+        mutate(JobRoleInterestOther = simple_title_case(JobRoleInterestOther))
+    jobRoleOtherNo <- part %>% filter(is.na(JobRoleInterestOther))
+    cleanPart <- jobRoleOtherNo %>% bind_rows(jobRoleOtherYes)
+
+    ## Change uncertain job roles to "Undecided"
+    undecidedWords <- c("not sure", "don't know", "not certain",
+                        "unsure", "dont know", "undecided",
+                        "all of the above", "no preference", "not",
+                        "any", "no idea")
+    cleanPart <- normalize_text(inData = cleanPart,
+                                columnName = "JobRoleInterestOther",
+                                searchTerms = undecidedWords,
+                                replaceWith = "Undecided")
+
+    ## Normalize cyber security interests to "Cyber Security"
+    ##  e.g. "Cyber security" == "Cybersercurity"
+    cyberWords <- c("cyber", "secure", "penetration tester",
+                    "pentester", "security")
+    cleanPart <- normalize_text(inData = cleanPart,
+                                columnName = "JobRoleInterestOther",
+                                searchTerms = cyberWords,
+                                replaceWith = "Cyber Security")
+
+    ## Normalize game developer interests to "Game Developer"
+    gameWords <- c("game", "games")
+    cleanPart <- normalize_text(inData = cleanPart,
+                                columnName = "JobRoleInterestOther",
+                                searchTerms = gameWords,
+                                replaceWith = "Game Developer")
+
+    ## Normalize software engineer interests to "Software Engineer"
+    softwareWords <- c("software")
+    cleanPart <- normalize_text(inData = cleanPart,
+                                columnName = "JobRoleInterestOther",
+                                searchTerms = softwareWords,
+                                replaceWith = "Software Engineer")
+
+    cat("Finished cleaning responses for other job interests.\n")
+    cleanPart
+}
+
+
+# Title:
 #   Create New Column Based on Grep
 # Description:
 #   This function will search for terms in a given column in the rows. It will
@@ -728,48 +787,10 @@ rename_part_1 <- function(part1) {
 
 # Clean Part 1 of survey
 clean_part <- function(part) {
-    # Job Role Interests
-
-    ## Title case answers for other job interests
-    ##  See if I can simplify this by just mutating
-    jobRoleOtherYes <- part %>% filter(!is.na(JobRoleInterestOther)) %>%
-        mutate(JobRoleInterestOther = simple_title_case(JobRoleInterestOther))
-    jobRoleOtherNo <- part %>% filter(is.na(JobRoleInterestOther))
-    cleanPart <- jobRoleOtherNo %>% bind_rows(jobRoleOtherYes)
-
-    ## Change uncertain job roles to "Undecided"
-    undecidedWords <- c("not sure", "don't know", "not certain",
-                        "unsure", "dont know", "undecided",
-                        "all of the above", "no preference", "not",
-                        "any", "no idea")
-    cleanPart <- normalize_text(inData = cleanPart,
-                   columnName = "JobRoleInterestOther",
-                   searchTerms = undecidedWords,
-                   replaceWith = "Undecided")
     cat("Beginning cleaning of data...\n")
 
-    ## Normalize cyber security interests to "Cyber Security"
-    ##  e.g. "Cyber security" == "Cybersercurity"
-    cyberWords <- c("cyber", "secure", "penetration tester",
-                    "pentester", "security")
-    cleanPart <- normalize_text(inData = cleanPart,
-                   columnName = "JobRoleInterestOther",
-                   searchTerms = cyberWords,
-                   replaceWith = "Cyber Security")
-
-    ## Normalize game developer interests to "Game Developer"
-    gameWords <- c("game", "games")
-    cleanPart <- normalize_text(inData = cleanPart,
-                   columnName = "JobRoleInterestOther",
-                   searchTerms = gameWords,
-                   replaceWith = "Game Developer")
-
-    ## Normalize software engineer interests to "Software Engineer"
-    softwareWords <- c("software")
-    cleanPart <- normalize_text(inData = cleanPart,
-                   columnName = "JobRoleInterestOther",
-                   searchTerms = softwareWords,
-                   replaceWith = "Software Engineer")
+    # Job Role Interests
+    cleanPart <- clean_job_interest(part)
 
 
     # Clean expected earnings column
