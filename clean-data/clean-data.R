@@ -1018,6 +1018,63 @@ clean_age <- function(cleanPart) {
 }
 
 
+# Title:
+#   Clean University Major
+# Usage:
+#   > cleanPart <- clean_major(cleanPart)
+clean_major <- function(cleanPart) {
+    cleanPart
+}
+
+
+# Title:
+#   Clean Mortgage Amount
+# Usage:
+#   > cleanPart <- clean_mortgage_amt(cleanPart)
+clean_mortgage_amt <- function(cleanPart) {
+    cleanPart
+}
+
+
+# Title:
+#   Clean Other Employment Status
+# Usage:
+#   > cleanPart <- clean_other_employment(cleanPart)
+clean_other_employment <- function(cleanPart) {
+    cleanPart
+}
+
+
+# Title:
+#   Clean Other Employment Fields
+# Usage:
+#   > cleanPart <- clean_fields(cleanPart)
+clean_fields <- function(cleanPart) {
+
+    cleanPart
+}
+
+
+# Title:
+#   Clean Income
+# Usage:
+#   > cleanPart <- clean_income(cleanPart)
+clean_income <- function(cleanPart) {
+
+    cleanPart
+}
+
+
+# Title:
+#   Clean Time for Commute
+# Usage:
+#   > cleanPart <- clean_commute(cleanPart)
+clean_commute <- function(cleanPart) {
+
+    cleanPart
+}
+
+
 # Main Process Functions ----------------------------------
 # Description:
 #   These functions encompass the bulk work of the cleaning and transformation
@@ -1187,6 +1244,12 @@ clean_part <- function(part) {
     cleanPart <- clean_salary_post(cleanPart)  # Clean salary post bootcamp
     cleanPart <- clean_money_learning(cleanPart)  # Clean money for learning
     cleanPart <- clean_age(cleanPart)  # Clean age
+    # cleanPart <- clean_major(cleanPart)  # Clean university major
+    # cleanPart <- clean_mortgage_amt(cleanPart)  # Clean mortgage amount
+    # cleanPart <- clean_other_employment(cleanPart)  # Clean other employment
+    # cleanPart <- clean_fields(cleanPart)  # Clean other fields of work
+    # cleanPart <- clean_income(cleanPart)  # Clean income
+    # cleanPart <- clean_commute(cleanPart)  # Clean commute time
 
     # Polish data
     # - Remove rows where JobRoleInterest.y has value, but not in
