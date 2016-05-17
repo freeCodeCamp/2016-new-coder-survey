@@ -524,7 +524,6 @@ clean_expected_earnings <- function(cleanPart1) {
 
     # Change to correct integers e.g. change 0000000 to just 0
     cleanPart1 <- cleanPart1 %>%
-        mutate(ExpectedEarning = as.integer(ExpectedEarning)) %>%
         mutate(ExpectedEarning = as.character(ExpectedEarning))
 
     cat("Finished cleaning responses for expected earnings.\n")
@@ -1015,38 +1014,13 @@ clean_age <- function(cleanPart) {
 
 
 # Title:
-#   Clean University Major
-# Usage:
-#   > cleanPart <- clean_major(cleanPart)
-clean_major <- function(cleanPart) {
-    cleanPart
-}
-
-
-# Title:
 #   Clean Mortgage Amount
 # Usage:
 #   > cleanPart <- clean_mortgage_amt(cleanPart)
 clean_mortgage_amt <- function(cleanPart) {
-    cleanPart
-}
-
-
-# Title:
-#   Clean Other Employment Status
-# Usage:
-#   > cleanPart <- clean_other_employment(cleanPart)
-clean_other_employment <- function(cleanPart) {
-    cleanPart
-}
-
-
-# Title:
-#   Clean Other Employment Fields
-# Usage:
-#   > cleanPart <- clean_fields(cleanPart)
-clean_fields <- function(cleanPart) {
-
+    # Make values to integer so that it'll remove odd answers like 00000
+    cleanPart <- cleanPart %>%
+        mutate(HomeMortgageOwe = as.integer(HomeMortgageOwe))
     cleanPart
 }
 
@@ -1056,7 +1030,92 @@ clean_fields <- function(cleanPart) {
 # Usage:
 #   > cleanPart <- clean_income(cleanPart)
 clean_income <- function(cleanPart) {
+    cat("Cleaning responses for income...\n")
 
+    # Remove dollar signs from income
+    dollarIdx <- cleanPart %>% select(Income) %>%
+        mutate_each(funs(grepl("\\$", ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
+    dollarData <- cleanPart %>% filter(dollarIdx) %>%
+        mutate(Income = sub("\\$", "", Income))
+    cleanPart <- cleanPart %>% filter(!dollarIdx) %>% bind_rows(dollarData)
+
+    # Remove commas from income
+    commaIdx <- cleanPart %>% select(Income) %>%
+        mutate_each(funs(grepl(",", ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
+    commaData <- cleanPart %>% filter(commaIdx) %>%
+        mutate(Income = sub(",", "", Income))
+    cleanPart <- cleanPart %>% filter(!commaIdx) %>% bind_rows(commaData)
+
+    # Remove "k" from income
+    kIdx <- cleanPart %>% select(Income) %>%
+        mutate_each(funs(grepl("k", ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
+    kData <- cleanPart %>% filter(kIdx) %>%
+        mutate(Income = sub("k", "000", Income))
+    cleanPart <- cleanPart %>% filter(!kIdx) %>% bind_rows(kData)
+
+    # Remove period from income like 50.000 which should be just 50000
+    thousandsIdx <- cleanPart %>% select(Income) %>%
+        mutate_each(funs(grepl("^\\d{2}\\.", ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
+    thousandsData <- cleanPart %>% filter(thousandsIdx) %>%
+        mutate(Income = sub("\\.", "", Income))
+    cleanPart <- cleanPart %>% filter(!thousandsIdx) %>%
+        bind_rows(thousandsData)
+
+    # Change all values to numeric for easier manipulation
+    cleanPart <- cleanPart %>%
+        mutate(Income = as.integer(Income))
+
+    # Expected values < 19 set to NA
+    # Too weird to be monthly income and too small for yearly
+    below19 <- cleanPart %>%
+        filter(Income < 19)
+    change19 <- below19 %>%
+        mutate(Income = NA)
+    cleanPart <- cleanPart %>% setdiff(below19) %>% bind_rows(change19)
+
+    # Multiply expected 20--200 by 1000
+    # Too small for monthly, large enough to be annual if 1000x
+    values20to200 <- cleanPart %>%
+        filter(Income >= 20) %>%
+        filter(Income <= 200)
+    change20to200 <- values20to200 %>%
+        mutate(Income = Income * 1000)
+    cleanPart <- cleanPart %>% setdiff(values20to200) %>%
+        bind_rows(change20to200)
+
+    # Remove expected values 201--499
+    # Too high for annual, too small for monthly
+    values201to499 <- cleanPart %>%
+        filter(Income >= 201) %>%
+        filter(Income <= 499)
+    change201to499 <- values201to499 %>%
+        mutate(Income = NA)
+    cleanPart <- cleanPart %>% setdiff(values201to499) %>%
+        bind_rows(change201to499)
+
+    # Multiply values 500--5999 by 12
+    # Looks like monthly salary for poor and middle-rich countries
+    values500to5999 <- cleanPart %>%
+        filter(Income >= 500) %>%
+        filter(Income <= 5999)
+    change500to5999 <- values500to5999 %>%
+        mutate(Income = Income * 12)
+    cleanPart <- cleanPart %>% setdiff(values500to5999) %>%
+        bind_rows(change500to5999)
+
+    # Set limit to 200000
+    values200k <- cleanPart %>%
+        filter(Income > 200000)
+    change200k <- values200k %>%
+        mutate(Income = 200000)
+    cleanPart <- cleanPart %>% setdiff(values200k) %>%
+        bind_rows(change200k)
+
+    cat("Finished cleaning income.\n")
     cleanPart
 }
 
@@ -1240,11 +1299,8 @@ clean_part <- function(part) {
     cleanPart <- clean_salary_post(cleanPart)  # Clean salary post bootcamp
     cleanPart <- clean_money_learning(cleanPart)  # Clean money for learning
     cleanPart <- clean_age(cleanPart)  # Clean age
-    # cleanPart <- clean_major(cleanPart)  # Clean university major
-    # cleanPart <- clean_mortgage_amt(cleanPart)  # Clean mortgage amount
-    # cleanPart <- clean_other_employment(cleanPart)  # Clean other employment
-    # cleanPart <- clean_fields(cleanPart)  # Clean other fields of work
-    # cleanPart <- clean_income(cleanPart)  # Clean income
+    cleanPart <- clean_mortgage_amt(cleanPart)  # Clean mortgage amount
+    cleanPart <- clean_income(cleanPart)  # Clean income
     # cleanPart <- clean_commute(cleanPart)  # Clean commute time
 
     # Polish data
