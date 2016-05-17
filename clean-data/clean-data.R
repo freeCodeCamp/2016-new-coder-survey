@@ -746,6 +746,7 @@ clean_part <- function(part) {
                    columnName = "JobRoleInterestOther",
                    searchTerms = undecidedWords,
                    replaceWith = "Undecided")
+    cat("Beginning cleaning of data...\n")
 
     ## Normalize cyber security interests to "Cyber Security"
     ##  e.g. "Cyber security" == "Cybersercurity"
@@ -933,6 +934,7 @@ clean_part <- function(part) {
 # Usage:
 #   > part2 <- rename_part_2(dat$part2)
 rename_part_2 <- function(part2) {
+    cat("Renaming Part 2 of the survey...\n")
     newPart2 <- part2 %>% rename(
         ID = X.
     ) %>% rename(
@@ -1043,6 +1045,7 @@ rename_part_2 <- function(part2) {
         NetworkID = Network.ID
     )
 
+    cat("Finished renaming Part 2 of the survey.\n")
     newPart2
 }
 
@@ -1062,6 +1065,8 @@ rename_part_2 <- function(part2) {
 #         some were read in as double. So these numeric data types were
 #         standarized to either character or double for ease of use later.
 std_data_type <- function(part1, part2) {
+    cat("Standardizing variables between data for joining...\n")
+
     # Change the string "undefined" to built in "NA"
     changeCols <- c("IsSoftwareDev", "JobRoleInterest", "JobPref",
                     "ExpectedEarning", "JobWherePref", "JobRelocate",
@@ -1089,6 +1094,7 @@ std_data_type <- function(part1, part2) {
     toDbl <- c("BootcampMonthsAgo", "BootcampPostSalary")
     part2 <- change_to_dbl(part2, toDbl)
 
+    cat("Finished standardizing variables between data.\n")
     list(part1=part1, part2=part2)
 }
 
@@ -1116,6 +1122,8 @@ std_data_type <- function(part1, part2) {
 # Usage:
 #   > allData <- time_diff_check(allData)
 time_diff_check <- function(allData) {
+    cat("Checking for inconsistencies within survey after joining...\n")
+
     # Change data type to date so we can easily compare times
     newData <- allData %>%
         mutate(Part1EndTime = as.POSIXct(Part1EndTime)) %>%
@@ -1152,6 +1160,7 @@ time_diff_check <- function(allData) {
     # Join two pieces back together
     newData <- bind_rows(newDataData, newDataNA)
 
+    cat("Finished checking inconsistencies within survey after joining.\n")
     newData
 }
 
