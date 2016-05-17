@@ -588,6 +588,8 @@ clean_job_interest <- function(part) {
 #   The function performs various transformations to coding event data to make
 #   it consistent (e.g. fix spelling) and normalize instances of answers to be
 #   the same.
+# Usage:
+#   > cleanPart <- clean_code_events(cleanPart)
 clean_code_events <- function(cleanPart1) {
     # Convert coding events to binary/boolean
     codeResources <- cleanPart1 %>%
@@ -795,6 +797,39 @@ clean_podcasts <- function(cleanPart) {
 }
 
 
+# Title:
+#   Clean Hours Learned Per Week
+# Usage:
+#   > cleanPart <- clean_hours_learn(cleanPart)
+clean_hours_learn <- function(cleanPart) {
+    cat("Cleaning responses for hours of learning per week...\n")
+
+    ## Remove the word "hour(s)"
+    hoursIdx <- cleanPart %>% select(HoursLearning) %>%
+        mutate_each(funs(grepl("hours", ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
+    hoursData <- cleanPart %>% filter(hoursIdx) %>%
+        mutate(HoursLearning = sub("hours.*", "", HoursLearning))
+    cleanPart <- cleanPart %>% filter(!hoursIdx) %>% bind_rows(hoursData)
+
+    ## Remove hyphen and "to" for ranges of hours
+    rangeHrIdx <- cleanPart %>% select(HoursLearning) %>%
+        mutate_each(funs(grepl("-|to", ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
+    rangeHrData <- cleanPart %>% filter(rangeHrIdx) %>%
+        mutate(HoursLearning = average_string_range(HoursLearning))
+    cleanPart <- cleanPart %>% filter(!rangeHrIdx) %>%
+        bind_rows(rangeHrData)
+
+    ## Remove hours greater than 100 hours
+    cleanPart <- cleanPart %>%
+        mutate(HoursLearning = as.integer(HoursLearning)) %>%
+        mutate(HoursLearning = ifelse(HoursLearning > 100, NA, HoursLearning))
+
+    cat("Cleaning responses for hours of learning per week...\n")
+    cleanPart
+}
+
 # Main Process Functions ----------------------------------
 # Description:
 #   These functions encompass the bulk work of the cleaning and transformation
@@ -947,50 +982,18 @@ rename_part_1 <- function(part1) {
 }
 
 
-# Clean Part 1 of survey
+# Title:
+#   Clean Survey
+# Usage:
+#   > final <- clean_part(allData)
 clean_part <- function(part) {
     cat("Beginning cleaning of data...\n")
 
-    # Job Role Interests
-    cleanPart <- clean_job_interest(part)
-
-
-    # Clean expected earnings column
-    cleanPart <- clean_expected_earnings(cleanPart)
-
-
-    # Clean other coding events column
-    cleanPart <- clean_code_events(cleanPart)
-
-
-    # Clean Podcasts Other
-    cleanPart <- clean_podcasts(cleanPart)
-
-
-    # Clean number of hours spent learning
-
-    ## Remove the word "hour(s)"
-    hoursIdx <- cleanPart %>% select(HoursLearning) %>%
-        mutate_each(funs(grepl("hours", ., ignore.case = TRUE))) %>%
-        unlist(use.names = FALSE)
-    hoursData <- cleanPart %>% filter(hoursIdx) %>%
-        mutate(HoursLearning = sub("hours.*", "", HoursLearning))
-    cleanPart <- cleanPart %>% filter(!hoursIdx) %>% bind_rows(hoursData)
-
-    ## Remove hyphen and "to" for ranges of hours
-    rangeHrIdx <- cleanPart %>% select(HoursLearning) %>%
-        mutate_each(funs(grepl("-|to", ., ignore.case = TRUE))) %>%
-        unlist(use.names = FALSE)
-    rangeHrData <- cleanPart %>% filter(rangeHrIdx) %>%
-        mutate(HoursLearning = average_string_range(HoursLearning))
-    cleanPart <- cleanPart %>% filter(!rangeHrIdx) %>%
-        bind_rows(rangeHrData)
-
-    ## Remove hours greater than 100 hours
-    cleanPart <- cleanPart %>%
-        mutate(HoursLearning = as.integer(HoursLearning)) %>%
-        mutate(HoursLearning = ifelse(HoursLearning > 100, NA, HoursLearning))
-
+    cleanPart <- clean_job_interest(part)  # Clean Job Role Interests
+    cleanPart <- clean_expected_earnings(cleanPart)  # Clean expected earnings
+    cleanPart <- clean_code_events(cleanPart)  # Clean other coding events
+    cleanPart <- clean_podcasts(cleanPart)  # Clean Podcasts Other
+    cleanPart <- clean_hours_learn(cleanPart) # Clean hours spent learning
 
     # Clean months programming
 
