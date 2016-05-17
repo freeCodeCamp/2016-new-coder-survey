@@ -539,6 +539,7 @@ search_and_create <- function(inData, colName, searchTerms, newCol) {
     cleanData
 }
 
+
 # Title:
 #   Clean Code Events
 # Description:
@@ -608,6 +609,59 @@ clean_code_events <- function(cleanPart1) {
                                  replaceWith = "Game Jam(s)")
 
     cleanPart1
+}
+
+
+# Title:
+#   Clean Other Podcasts
+clean_other_podcasts <- function(cleanPart, PodcastOther, .) {
+  ## Convert Podcasts to binary/boolean
+  podcasts <- cleanPart %>%
+      select(starts_with("Podcast"), -PodcastOther) %>%
+      mutate_each(funs(ifelse(!is.na(.), "1", NA)))
+  cleanPart <- cleanPart %>%
+      select(-starts_with("Podcast"), PodcastOther) %>%
+      bind_cols(podcasts)
+
+  ## Normalize variations of "None" in PodcastOther
+  nonePod <- c("non", "none", "haven't", "havent", "not a", "nothing",
+               "didn't", "n/a", "\bna\b", "never", "nil", "nope", "not tried")
+  searchStr <- paste(nonePod, collapse = "|")
+  nonesPodIdx <- cleanPart %>% select(PodcastOther) %>%
+      mutate_each(funs(grepl(searchStr, ., ignore.case = TRUE))) %>%
+      unlist(use.names = FALSE)
+  nonesPodData <- cleanPart %>% filter(nonesPodIdx) %>%
+      mutate(PodcastOther = NA) %>%
+      mutate(PodcastNone = "1")
+  cleanPart <- cleanPart %>% filter(!nonesPodIdx) %>%
+      bind_rows(nonesPodData)
+
+  ## Normalize variations of "Ruby Rogues"
+  ## Change to "Ruby Rogues" if listed first
+  rubyRogues <- c("^rubyRogues", "^ruby rogues", "^ruby rogue")
+  cleanPart <- normalize_text(inData = cleanPart,
+                              columnName = "PodcastOther",
+                              searchTerms = rubyRogues,
+                              replaceWith = "Ruby Rogues")
+
+  ## Normalize variations of "Shop Talk"
+  ## Change to "Shop Talk" if listed first
+  shopTalk <- c("^shoptalk", "^shop talk",
+                "^shoptalk show", "^shop talk show")
+  cleanPart <- normalize_text(inData = cleanPart,
+                              columnName = "PodcastOther",
+                              searchTerms = shopTalk,
+                              replaceWith = "Shop Talk Show")
+
+  ## Normalize variations of "Developer Tea"
+  ## Change to "Developer Tea" if listed first
+  developerTea <- c("^developertea", "^developer's tea", "^developer tea")
+  cleanPart <- normalize_text(inData = cleanPart,
+                              columnName = "PodcastOther",
+                              searchTerms = developerTea,
+                              replaceWith = "Developer Tea")
+
+  cleanPart
 }
 
 
@@ -803,52 +857,7 @@ clean_part <- function(part) {
 
 
     # Clean Podcasts Other
-
-    ## Convert Podcasts to binary/boolean
-    podcasts <- cleanPart %>%
-        select(starts_with("Podcast"), -PodcastOther) %>%
-        mutate_each(funs(ifelse(!is.na(.), "1", NA)))
-    cleanPart <- cleanPart %>%
-        select(-starts_with("Podcast"), PodcastOther) %>%
-        bind_cols(podcasts)
-
-    ## Normalize variations of "None" in PodcastOther
-    nonePod <- c("non", "none", "haven't", "havent", "not a", "nothing",
-               "didn't", "n/a", "\bna\b", "never", "nil", "nope", "not tried")
-    searchStr <- paste(nonePod, collapse = "|")
-    nonesPodIdx <- cleanPart %>% select(PodcastOther) %>%
-        mutate_each(funs(grepl(searchStr, ., ignore.case = TRUE))) %>%
-        unlist(use.names = FALSE)
-    nonesPodData <- cleanPart %>% filter(nonesPodIdx) %>%
-        mutate(PodcastOther = NA) %>%
-        mutate(PodcastNone = "1")
-    cleanPart <- cleanPart %>% filter(!nonesPodIdx) %>%
-        bind_rows(nonesPodData)
-
-    ## Normalize variations of "Ruby Rogues"
-    ## Change to "Ruby Rogues" if listed first
-    rubyRogues <- c("^rubyRogues", "^ruby rogues", "^ruby rogue")
-    cleanPart <- normalize_text(inData = cleanPart,
-                                 columnName = "PodcastOther",
-                                 searchTerms = rubyRogues,
-                                 replaceWith = "Ruby Rogues")
-
-    ## Normalize variations of "Shop Talk"
-    ## Change to "Shop Talk" if listed first
-    shopTalk <- c("^shoptalk", "^shop talk",
-                    "^shoptalk show", "^shop talk show")
-    cleanPart <- normalize_text(inData = cleanPart,
-                                 columnName = "PodcastOther",
-                                 searchTerms = shopTalk,
-                                 replaceWith = "Shop Talk Show")
-
-    ## Normalize variations of "Developer Tea"
-    ## Change to "Developer Tea" if listed first
-    developerTea <- c("^developertea", "^developer's tea", "^developer tea")
-    cleanPart <- normalize_text(inData = cleanPart,
-                                 columnName = "PodcastOther",
-                                 searchTerms = developerTea,
-                                 replaceWith = "Developer Tea")
+    cleanPart <- clean_other_podcasts(cleanPart)
 
 
     # Clean number of hours spent learning
