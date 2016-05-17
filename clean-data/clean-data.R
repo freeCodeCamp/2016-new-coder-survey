@@ -800,10 +800,6 @@ clean_podcasts <- function(cleanPart) {
                                    searchTerms = codingBlocks,
                                    newCol = "PodcastOtherCodingBlocks")
 
-    # Make other column just binary
-    cleanPart <- cleanPart %>%
-        mutate(PodcastOtherYesNo = ifelse(!is.na(PodcastOther), "1", NA))
-
     cat("Finished cleaning responses for other podcasts.\n")
     cleanPart
 }
