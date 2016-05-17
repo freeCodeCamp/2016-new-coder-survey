@@ -371,12 +371,20 @@ search_and_create <- function(inData, colName, searchTerms, newCol) {
 # Description:
 #   Temporary function to use to check if regular expression is targeting the
 #   rows we think it should be targeting.
+# Input:
+#   part      = dplyr data frame,
+#   col       = column you want to target,
+#   words     = string or vector of strings you want to search for,
+#   printYes  = default to NA to just view data, set to 1 to print our data
+#               frame, and set to anything else to count number of instances
 # Usage:
 #   > part <- part2
 #   > col <- "MoneyForLearning"
 #   > words <- c("[^0-9]")
-#   > helper_filter(part = part, col = col, words = words)
-helper_filter <- function(part, col, words) {
+#   > helper_filter(part, col, words)     # To View
+#   > helper_filter(part, col, words, 1)  # To print data to console
+#   > helper_filter(part, col, words)     # To print number of instances
+helper_filter <- function(part, col, words, printYes = NA) {
     # Helper code to look at data being filtered to be changed
     columnToLookAt <- col # Column name you want to examine
     wordSearch <- words %>% # Array of regular expressions to search
@@ -384,8 +392,15 @@ helper_filter <- function(part, col, words) {
     charIdx <- part %>% select_(columnToLookAt) %>%
         mutate_each(funs(grepl(wordSearch, ., ignore.case = TRUE))) %>%
         unlist(use.names = FALSE)
-    part %>% filter(charIdx) %>% select_(columnToLookAt) %>%
-        distinct() %>% View
+    if (is.na(printYes)) {
+        part %>% filter(charIdx) %>% count_(columnToLookAt) %>% View
+    } else if (printYes == 1) {
+        part %>% filter(charIdx) %>% select_(columnToLookAt) %>%
+            distinct() %>% as.data.frame
+    } else {
+        part %>% filter(charIdx) %>% count_(columnToLookAt) %>%
+            summarise(total = sum(n))
+    }
 }
 
 
