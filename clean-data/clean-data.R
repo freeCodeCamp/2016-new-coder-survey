@@ -1,4 +1,10 @@
 # Clean and Combine Free Code Camp's 2016 New Coder Survey
+# Description:      This script cleans specifically Free Code Camp's 2016 New
+#                   Coder Survey. The following code is split into four main
+#                   sections: Utility function, Sub-Process functions,
+#                   Sub-Cleaning functions, Main Process functions. The main
+#                   function to perform the entire cleaning and combining is
+#                   the `main()` function at the end of this script.
 # Author:           Eric Leung (@erictleung)
 # Help from:        @evaristoc and @SamAI-Software
 # Last Updated:     2016 May 15th
