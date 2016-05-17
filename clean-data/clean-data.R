@@ -963,24 +963,24 @@ clean_salary_post <- function(cleanPart) {
 clean_money_learning <- function(cleanPart) {
     cat("Cleaning responses for money used for learning...\n")
 
-    ## Change variants of "None" to 0
+    # Change variants of "None" to 0
     moneyNone <- c("nil", "none", "not")
     cleanPart <- cleanPart %>%
         normalize_text(columnName = "MoneyForLearning",
                        searchTerms = moneyNone,
                        replaceWith = "0")
 
-    ## Remove dollar sign and other symbols not including periods
+    # Remove dollar sign and other symbols not including periods
     cleanPart <- cleanPart %>% sub_and_rm(colName = "MoneyForLearning",
                                           findStr = "\\$|>|<|\\(|\\)",
                                           replaceStr = "")
 
-    ## Remove other text
+    # Remove other text
     cleanPart <- cleanPart %>% sub_and_rm(colName = "MoneyForLearning",
                                           findStr = "[A-Za-z ]",
                                           replaceStr = "")
 
-    ## Average ranges
+    # Average ranges
     avgLearnIdx <- cleanPart %>% select(MoneyForLearning) %>%
         mutate_each(funs(grepl("-", ., ignore.case = TRUE))) %>%
         unlist(use.names = FALSE)
@@ -988,6 +988,14 @@ clean_money_learning <- function(cleanPart) {
         mutate(MoneyForLearning = average_string_range(MoneyForLearning))
     cleanPart <- cleanPart %>% filter(!avgLearnIdx) %>%
         bind_rows(avgLearnData)
+
+    # Floor values to nearest dollar using as.integer
+    cleanPart <- cleanPart %>%
+        mutate(MoneyForLearning = as.integer(MoneyForLearning))
+
+    # Remove outliers
+    cleanPart <- cleanPart %>%
+        mutate(MoneyForLearning = remove_outlier(MoneyForLearning, 250000))
 
     cat("Finished cleaning responses for money used for learning.\n")
     cleanPart
