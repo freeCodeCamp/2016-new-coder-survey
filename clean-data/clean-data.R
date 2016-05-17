@@ -838,7 +838,7 @@ clean_hours_learn <- function(cleanPart) {
         mutate(HoursLearning = as.integer(HoursLearning)) %>%
         mutate(HoursLearning = ifelse(HoursLearning > 100, NA, HoursLearning))
 
-    cat("Cleaning responses for hours of learning per week...\n")
+    cat("Finished cleaning responses for hours of learning per week.\n")
     cleanPart
 }
 
