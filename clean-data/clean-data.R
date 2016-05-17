@@ -950,6 +950,44 @@ clean_salary_post <- function(cleanPart) {
 }
 
 
+# Title:
+#   Clean Money Spent on Learning
+# Usage:
+#   > cleanPart <- clean_money_learning(cleanPart)
+clean_money_learning <- function(cleanPart) {
+    cat("Cleaning responses for money used for learning...\n")
+
+    ## Change variants of "None" to 0
+    moneyNone <- c("nil", "none", "not")
+    cleanPart <- cleanPart %>%
+        normalize_text(columnName = "MoneyForLearning",
+                       searchTerms = moneyNone,
+                       replaceWith = "0")
+
+    ## Remove dollar sign and other symbols not including periods
+    cleanPart <- cleanPart %>% sub_and_rm(colName = "MoneyForLearning",
+                                          findStr = "\\$|>|<|\\(|\\)",
+                                          replaceStr = "")
+
+    ## Remove other text
+    cleanPart <- cleanPart %>% sub_and_rm(colName = "MoneyForLearning",
+                                          findStr = "[A-Za-z ]",
+                                          replaceStr = "")
+
+    ## Average ranges
+    avgLearnIdx <- cleanPart %>% select(MoneyForLearning) %>%
+        mutate_each(funs(grepl("-", ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
+    avgLearnData <- cleanPart %>% filter(avgLearnIdx) %>%
+        mutate(MoneyForLearning = average_string_range(MoneyForLearning))
+    cleanPart <- cleanPart %>% filter(!avgLearnIdx) %>%
+        bind_rows(avgLearnData)
+
+    cat("Finished cleaning responses for money used for learning.\n")
+    cleanPart
+}
+
+
 # Main Process Functions ----------------------------------
 # Description:
 #   These functions encompass the bulk work of the cleaning and transformation
@@ -1116,37 +1154,9 @@ clean_part <- function(part) {
     cleanPart <- clean_hours_learn(cleanPart)  # Clean hours spent learning
     cleanPart <- clean_months_program(cleanPart)  # Clean months programming
     cleanPart <- clean_salary_post(cleanPart)  # Clean salary post bootcamp
+    cleanPart <- clean_money_learning(cleanPart)  # Clean money for learning
 
-
-    # Money used for learning (not including tuition)
-
-    ## Change variants of "None" to 0
-    moneyNone <- c("nil", "none", "not")
-    cleanPart <- cleanPart %>%
-        normalize_text(columnName = "MoneyForLearning",
-                       searchTerms = moneyNone,
-                       replaceWith = "0")
-
-    ## Remove dollar sign and other symbols not including periods
-    cleanPart <- cleanPart %>% sub_and_rm(colName = "MoneyForLearning",
-                                            findStr = "\\$|>|<|\\(|\\)",
-                                            replaceStr = "")
-
-    ## Remove other text
-    cleanPart <- cleanPart %>% sub_and_rm(colName = "MoneyForLearning",
-                                            findStr = "[A-Za-z ]",
-                                            replaceStr = "")
-
-    ## Average ranges
-    avgLearnIdx <- cleanPart %>% select(MoneyForLearning) %>%
-        mutate_each(funs(grepl("-", ., ignore.case = TRUE))) %>%
-        unlist(use.names = FALSE)
-    avgLearnData <- cleanPart %>% filter(avgLearnIdx) %>%
-        mutate(MoneyForLearning = average_string_range(MoneyForLearning))
-    cleanPart <- cleanPart %>% filter(!avgLearnIdx) %>%
-        bind_rows(avgLearnData)
-
-
+    cat("Finished cleaning survey data.\n")
     cleanPart
 }
 
