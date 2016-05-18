@@ -793,21 +793,21 @@ clean_podcasts <- function(cleanPart) {
     cleanPart <- search_and_create(inData = cleanPart,
                                    colName = "PodcastOther",
                                    searchTerms = hansel,
-                                   newCol = "PodcastOtherHanselminutes")
+                                   newCol = "PodcastHanselminutes")
 
     # New column for "The Web Ahead"
     webAhead <- c("web ahead")
     cleanPart <- search_and_create(inData = cleanPart,
                                    colName = "PodcastOther",
                                    searchTerms = webAhead,
-                                   newCol = "PodcastOtherWebAhead")
+                                   newCol = "PodcastWebAhead")
 
     # New column for "Coding Blocks"
     codingBlocks <- c("codingblocks", "coding blocks")
     cleanPart <- search_and_create(inData = cleanPart,
                                    colName = "PodcastOther",
                                    searchTerms = codingBlocks,
-                                   newCol = "PodcastOtherCodingBlocks")
+                                   newCol = "PodcastCodingBlocks")
 
     cat("Finished cleaning responses for other podcasts.\n")
     cleanPart
