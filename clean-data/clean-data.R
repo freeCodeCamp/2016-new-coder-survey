@@ -731,7 +731,7 @@ clean_podcasts <- function(cleanPart) {
     cleanPart <- search_and_create(inData = cleanPart,
                                    colName = "PodcastOther",
                                    searchTerms = rubyRogues,
-                                   newCol = "PodcastOtherRubyRogues")
+                                   newCol = "PodcastRubyRogues")
 
     # New column for "Shop Talk Show"
     shopTalk <- c("shoptalk", "shop talk", "talk shop show",
@@ -739,7 +739,7 @@ clean_podcasts <- function(cleanPart) {
     cleanPart <- search_and_create(inData = cleanPart,
                                    colName = "PodcastOther",
                                    searchTerms = shopTalk,
-                                   newCol = "PodcastOtherShopTalk")
+                                   newCol = "PodcastShopTalk")
 
     # New column for "Developer Tea"
     developerTea <- c("developertea", "developer's tea", "developer tea",
@@ -747,7 +747,7 @@ clean_podcasts <- function(cleanPart) {
     cleanPart <- search_and_create(inData = cleanPart,
                                    colName = "PodcastOther",
                                    searchTerms = developerTea,
-                                   newCol = "PodcastOtherDeveloperTea")
+                                   newCol = "PodcastDeveloperTea")
 
     # New column for "Programming Throwdown"
     progThrow <- c("programming throwdown", "programmer throwdown",
@@ -755,28 +755,28 @@ clean_podcasts <- function(cleanPart) {
     cleanPart <- search_and_create(inData = cleanPart,
                                   colName = "PodcastOther",
                                   searchTerms = progThrow,
-                                  newCol = "PodcastOtherProgrammingThrowDown")
+                                  newCol = "PodcastProgrammingThrowDown")
 
     # New column for ".Net Rocks"
     dotNet <- c("net rocks", "rocks", "dotnetrocks")
     cleanPart <- search_and_create(inData = cleanPart,
                                    colName = "PodcastOther",
                                    searchTerms = dotNet,
-                                   newCol = "PodcastOtherDotNetRocks")
+                                   newCol = "PodcastDotNetRocks")
 
     # New column for "Talk Python to Me"
     talkPython <- c("talk python", "talkpython")
     cleanPart <- search_and_create(inData = cleanPart,
                                    colName = "PodcastOther",
                                    searchTerms = talkPython,
-                                   newCol = "PodcastOtherTalkPython")
+                                   newCol = "PodcastTalkPython")
 
     # New column for "JavaScript Air"
     jsAir <- c("jsair", "js air", "javascript air")
     cleanPart <- search_and_create(inData = cleanPart,
                                    colName = "PodcastOther",
                                    searchTerms = jsAir,
-                                   newCol = "PodcastOtherJsAir")
+                                   newCol = "PodcastJsAir")
 
     # New column for "Hanselminutes"
     hansel <- c("hanselminutes")
