@@ -615,19 +615,12 @@ clean_code_events <- function(cleanPart1) {
     codeEventsElse <- cleanPart1 %>% filter(is.na(CodeEventOther))
     cleanPart1 <- codeEventsElse %>% bind_rows(codingEvents)
 
-    # Normalize variations of "meetup" to "Meetups"
-    meetupWords <- c("meetup", "meet")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
-                                 columnName = "CodeEventOther",
-                                 searchTerms = meetupWords,
-                                 replaceWith = "Meetup(s)")
-
-    # Normalize FreeCodeCamp
-    fccWords <- c("fcc", "freecodecamp", "free code camp")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
-                                 columnName = "CodeEventOther",
-                                 searchTerms = fccWords,
-                                 replaceWith = "Free Code Camp")
+    # Create new column for response variants of "meetup"
+    meetupWords <- c("meetup", "meet up", "meet-up", "meetuos")
+    cleanPart1 <- search_and_create(inData = cleanPart1,
+                                    colName = "CodeEventOther",
+                                    searchTerms = meetupWords,
+                                    newCol = "CodeEventMeetup")
 
     # Normalize variations of "None"
     nones <- c("non", "none", "haven't", "havent", "not", "nothing",
@@ -641,26 +634,47 @@ clean_code_events <- function(cleanPart1) {
         mutate(CodeEventNone = "1")
     cleanPart1 <- cleanPart1 %>% filter(!nonesIdx) %>% bind_rows(nonesData)
 
-    # Normalize "bootcamps"
-    bootcamps <- c("^bootcamp")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
-                                 columnName = "CodeEventOther",
-                                 searchTerms = bootcamps,
-                                 replaceWith = "Bootcamp")
+    # Create new column for response variants of "bootcamps"
+    bootcamps <- c("bootcamp", "boot camp")
+    cleanPart1 <- search_and_create(inData = cleanPart1,
+                                    colName = "CodeEventOther",
+                                    searchTerms = bootcamps,
+                                    newCol = "CodeEventBootcamp")
 
-    # Normalize "Rails Girls"
-    railsGirls <- c("^rails? ?girls$")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
-                                 columnName = "CodeEventOther",
-                                 searchTerms = railsGirls,
-                                 replaceWith = "Rails Girls")
+    # Create new column for response variants of "Rails Girls"
+    railsGirls <- c("railgirls", "rails girls", "girls on rails", "rail girls")
+    cleanPart1 <- search_and_create(inData = cleanPart1,
+                                    colName = "CodeEventOther",
+                                    searchTerms = railsGirls,
+                                    newCol = "CodeEventRailsGirls")
 
-    # Normalize "Game Jams" to "Game Jam(s)"
+    # Create new column for response variants of "Django Girls"
+    djangoGirls <- c("django girl", "djangogirl")
+    cleanPart1 <- search_and_create(inData = cleanPart1,
+                                    colName = "CodeEventOther",
+                                    searchTerms = djangoGirls,
+                                    newCol = "CodeEventDjangoGirls")
+
+    # Create new column for response variants of "Game Jams"
     gameJams <- c("game.*?jams?")
-    cleanPart1 <- normalize_text(inData = cleanPart1,
-                                 columnName = "CodeEventOther",
-                                 searchTerms = gameJams,
-                                 replaceWith = "Game Jam(s)")
+    cleanPart1 <- search_and_create(inData = cleanPart1,
+                                    colName = "CodeEventOther",
+                                    searchTerms = gameJams,
+                                    newCol = "CodeEventGameJam")
+
+    # Create new column for response variants of "LaunchCode"
+    launchCode <- c("launchcode", "launch code")
+    cleanPart1 <- search_and_create(inData = cleanPart1,
+                                    colName = "CodeEventOther",
+                                    searchTerms = launchCode,
+                                    newCol = "CodeEventLaunchCode")
+
+    # Create new column for response variants of "Workshop"
+    workshop <- c("workshop")
+    cleanPart1 <- search_and_create(inData = cleanPart1,
+                                    colName = "CodeEventOther",
+                                    searchTerms = workshop,
+                                    newCol = "CodeEventWorkshop")
 
     cat("Finished cleaning responses for coding events.\n")
     cleanPart1
