@@ -1477,9 +1477,18 @@ clean_part <- function(part) {
     cleanPart <- clean_commute(cleanPart)  # Clean commute time
     cleanPart <- clean_resources(cleanPart)  # Clean other resources
 
-    # Polish data
-    # - Remove rows where JobRoleInterest.y has value, but not in
-    #   JobRoleInterest.x and JobInterestOther
+    # Remove inconsistent responses between job roles
+    jobRole <- cleanPart %>%
+        filter(is.na(JobRoleInterest.x)) %>%
+        filter(is.na(JobRoleInterestOther)) %>%
+        filter(!is.na(JobRoleInterest.y))
+    cleanPart <- cleanPart %>%
+        setdiff(jobRole) %>%
+        select(-JobRoleInterest.y) %>%
+        rename(JobRoleInterest = JobRoleInterest.x)
+
+    # Remove unnecessary columns
+    cleanPart <- cleanPart %>% select(-OneTwoDiff, -Resources, -Podcast)
 
     cat("Finished cleaning survey data.\n")
     cleanPart
