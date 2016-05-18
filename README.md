@@ -5,9 +5,18 @@ We announced on [March 29th,
 
 Survey development was lead by [Quincy Larson](https://twitter.com/ossia) with Free Code Camp and [Saron Yitbarek](https://twitter.com/saronyitbarek) with Code Newbie. For more about why we made this survey: ["How we crafted a survey for thousands of people who are learning to code"](https://medium.freecodecamp.com/we-just-launched-the-biggest-ever-survey-of-people-learning-to-code-cac81dadf1ea#.8g9ts8gm5).
 
+## Table of Contents
+
+- [About the Data](#about-the-data)
+- [How to Contribute](#how-to-contribute)
+- [Analysis of other relevant recent data](#analysis-of-other-relevant-recent-data)
+- [License](#license)
+
 ## About the Data
 
-The survey results are located in the [`data/`](data/) directory, in .csv format.
+The raw survey results are located in the [`raw-data/`](raw-data/) directory, in `.csv` format.
+
+We have cleaned and combined the data for convenience of downstream analyses and visualizations. The cleaned data is located in the [`clean-data/`](clean-data/) directory.
 
 ## How to Contribute
 
