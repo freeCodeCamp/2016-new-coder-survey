@@ -1303,6 +1303,29 @@ clean_resources <- function(cleanPart) {
     cleanPart
 }
 
+
+# Title:
+#   Clean Student Debt Amount
+# Description:
+#   Remove commas.
+# Usage:
+#   cleanPart <- clean_student_debt(cleanPart)
+clean_student_debt <- function(cleanPart) {
+    cat("Cleaning responses for student debt owed...\n")
+
+    # Remove commas from expected earnings
+    commaIdx <- cleanPart %>% select(StudentDebtOwe) %>%
+        mutate_each(funs(grepl(",", ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
+    commaData <- cleanPart %>% filter(commaIdx) %>%
+        mutate(StudentDebtOwe = sub(",", "", StudentDebtOwe))
+    cleanPart <- cleanPart %>% filter(!commaIdx) %>% bind_rows(commaData)
+
+    cat("Finished cleaning responses for student debt owed.\n")
+    cleanPart
+}
+
+
 # Main Process Functions ----------------------------------
 # Description:
 #   These functions encompass the bulk work of the cleaning and transformation
@@ -1476,6 +1499,7 @@ clean_part <- function(part) {
     cleanPart <- clean_income(cleanPart)  # Clean income
     cleanPart <- clean_commute(cleanPart)  # Clean commute time
     cleanPart <- clean_resources(cleanPart)  # Clean other resources
+    cleanPart <- clean_student_debt(cleanPart)  # Clean student debt amount
 
     # Remove inconsistent responses between job roles
     jobRole <- cleanPart %>%
