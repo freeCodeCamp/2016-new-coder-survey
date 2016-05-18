@@ -1168,6 +1168,133 @@ clean_commute <- function(cleanPart) {
 }
 
 
+# Title:
+#   Clean Other Resources
+# Description:
+#   Searches for mentions of other resources and creates new columns for
+#   mentions greater than 1% of responses for other resources. Columns
+#   targeted:
+#   - "Treehouse"                      - "Lynda.com"
+#   - "Stack Overflow"                 - "Books"
+#   - "W3Schools"                      - "Skillcrush"
+#   - "YouTube"                        - "Google"
+#   - "HackerRank"                     - "Reddit"
+#   - "Mozilla MDN"                    - "SoloLearn"
+#   - "Blogs"                          - "EggHead"
+# Note: honorable mentions to:
+#   - "Laracasts"
+#   - "StackExchange"
+#   - "Project Euler"
+#   - "CSS Tricks"
+#   - "The New Boston"
+#   - "Frontend Masters"
+# Usage:
+#   > cleanPart <- clean_resources(cleanPart)
+clean_resources <- function(cleanPart) {
+    cat("Cleaning responses for other resources...\n")
+
+    # New column for "Treehouse"
+    treehouse <- c("house", "team threehouse", "treehouse", "threehouse")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "ResourceOther",
+                                   searchTerms = treehouse,
+                                   newCol = "ResourceTreehouse")
+
+    # New column for "Lynda.com"
+    lynda <- c("lynda", "lynda.co", "lynda.com", "linda")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "ResourceOther",
+                                   searchTerms = lynda,
+                                   newCol = "ResourceLynda")
+
+    # New column for "Stack Overflow"
+    stackoverflow <- c("stack overflow", "stackoverflow")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "ResourceOther",
+                                   searchTerms = stackoverflow,
+                                   newCol = "ResourceStackOverflow")
+
+    # New column for "Books"
+    books <- c("book", "books")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "ResourceOther",
+                                   searchTerms = books,
+                                   newCol = "ResourceBooks")
+
+    # New column for "W3Schools"
+    w3 <- c("w3school", "wc3", "w3")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "ResourceOther",
+                                   searchTerms = w3,
+                                   newCol = "ResourceW3Schools")
+
+    # New column for "Skillcrush"
+    skillcrush <- c("skillcrush")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "ResourceOther",
+                                   searchTerms = skillcrush,
+                                   newCol = "ResourceSkillCrush")
+
+    # New column for "YouTube"
+    youtube <- c("youtube", "utube", "you tube")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "ResourceOther",
+                                   searchTerms = youtube,
+                                   newCol = "ResourceYouTube")
+
+    # New column for "Google"
+    google <- c("google", "googling")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "ResourceOther",
+                                   searchTerms = google,
+                                   newCol = "ResourceGoogle")
+
+    # New column for "HackerRank"
+    hackerrank <- c("hackerrank", "hacker rank", "hakerrank")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "ResourceOther",
+                                   searchTerms = hackerrank,
+                                   newCol = "ResourceHackerRank")
+
+    # New column for "Reddit"
+    reddit <- c("r/", "reddit")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "ResourceOther",
+                                   searchTerms = reddit,
+                                   newCol = "ResourceReddit")
+
+    # New column for "Mozilla MDN"
+    mdn <- c("mozilla", "mdn")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "ResourceOther",
+                                   searchTerms = mdn,
+                                   newCol = "ResourceMDN")
+
+    # New column for "SoloLearn"
+    solo <- c("solo", "solo learn", "sololearn")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "ResourceOther",
+                                   searchTerms = solo,
+                                   newCol = "ResourceSoloLearn")
+
+    # New column for "Blogs"
+    blog <- c("blog", "blogs")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "ResourceOther",
+                                   searchTerms = blog,
+                                   newCol = "ResourceBlogs")
+
+    # New column for "EggHead"
+    eggHead <- c("egghead", "eggheah", "egg")
+    cleanPart <- search_and_create(inData = cleanPart,
+                                   colName = "ResourceOther",
+                                   searchTerms = eggHead,
+                                   newCol = "ResourceEggHead")
+
+    cat("Finished cleaning responses for other resources.\n")
+    cleanPart
+}
+
 # Main Process Functions ----------------------------------
 # Description:
 #   These functions encompass the bulk work of the cleaning and transformation
@@ -1340,6 +1467,7 @@ clean_part <- function(part) {
     cleanPart <- clean_mortgage_amt(cleanPart)  # Clean mortgage amount
     cleanPart <- clean_income(cleanPart)  # Clean income
     cleanPart <- clean_commute(cleanPart)  # Clean commute time
+    cleanPart <- clean_resources(cleanPart)  # Clean other resources
 
     # Polish data
     # - Remove rows where JobRoleInterest.y has value, but not in
