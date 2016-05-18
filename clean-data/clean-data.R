@@ -1512,7 +1512,8 @@ clean_part <- function(part) {
         rename(JobRoleInterest = JobRoleInterest.x)
 
     # Remove unnecessary columns
-    cleanPart <- cleanPart %>% select(-OneTwoDiff, -Resources, -Podcast)
+    cleanPart <- cleanPart %>%
+        select(-OneTwoDiff, -Resources, -Podcast, -CodeEvent)
 
     cat("Finished cleaning survey data.\n")
     cleanPart
