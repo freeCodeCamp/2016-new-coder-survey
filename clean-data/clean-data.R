@@ -1759,6 +1759,84 @@ time_diff_check <- function(allData) {
 }
 
 
+# Title:
+#   Final Polish
+# Description:
+#   This function does some final polishing like arranging the columns, making
+#   sure the columns are of a certain type, and renaming columns.
+# Usage:
+#   > final <- polish_data(cleanData)
+polish_data <- function(cleanData) {
+    cat("Putting on finishing touches...\n")
+
+    # Rename and confirm desired data type
+    cleanData <- cleanData %>%
+        mutate(Age = as.integer(Age)) %>%
+        mutate(BootcampFinish = as.integer(BootcampFinish)) %>%
+        mutate(BootcampFullJobAfter = as.integer(BootcampFullJobAfter)) %>%
+        mutate(BootcampLoan = as.integer(BootcampLoan)) %>%
+        rename(BootcampLoanYesNo = BootcampLoan) %>%
+        mutate(BootcampMonthsAgo = as.integer(BootcampMonthsAgo)) %>%
+        mutate(BootcampPostSalary = as.integer(BootcampPostSalary)) %>%
+        mutate(BootcampYesNo = as.integer(BootcampYesNo)) %>%
+        rename(AttendedBootcamp = BootcampYesNo) %>%
+        mutate(ExpectedEarning = as.integer(ExpectedEarning)) %>%
+        rename(HasDebt = DebtAmount) %>%
+        mutate(Income = as.integer(Income)) %>%
+        mutate(IsSoftwareDev = as.integer(IsSoftwareDev)) %>%
+        rename(JobRelocateYesNo = JobRelocate) %>%
+        mutate(MoneyForLearning = as.integer(MoneyForLearning)) %>%
+        mutate(CodeEventCoffee = as.integer(CodeEventCoffee)) %>%
+        mutate(CodeEventConferences = as.integer(CodeEventConferences)) %>%
+        mutate(CodeEventGirlDev = as.integer(CodeEventGirlDev)) %>%
+        mutate(CodeEventHackathons = as.integer(CodeEventHackathons)) %>%
+        mutate(CodeEventNodeSchool = as.integer(CodeEventNodeSchool)) %>%
+        mutate(CodeEventNone = as.integer(CodeEventNone)) %>%
+        mutate(CodeEventRailsBridge = as.integer(CodeEventRailsBridge)) %>%
+        mutate(CodeEventStartUpWknd = as.integer(CodeEventStartUpWknd)) %>%
+        mutate(CodeEventWomenCode = as.integer(CodeEventWomenCode)) %>%
+        mutate(CodeEventMeetup = as.integer(CodeEventMeetup)) %>%
+        mutate(CodeEventBootcamp = as.integer(CodeEventBootcamp)) %>%
+        mutate(CodeEventRailsGirls = as.integer(CodeEventRailsGirls)) %>%
+        mutate(CodeEventDjangoGirls = as.integer(CodeEventDjangoGirls)) %>%
+        mutate(CodeEventGameJam = as.integer(CodeEventGameJam)) %>%
+        mutate(CodeEventWorkshop = as.integer(CodeEventWorkshop)) %>%
+        mutate(PodcastChangeLog = as.integer(PodcastChangeLog)) %>%
+        mutate(PodcastCodeNewbie = as.integer(PodcastCodeNewbie)) %>%
+        mutate(PodcastJSJabber = as.integer(PodcastJSJabber)) %>%
+        mutate(PodcastNone = as.integer(PodcastNone)) %>%
+        mutate(PodcastSEDaily = as.integer(PodcastSEDaily)) %>%
+        mutate(PodcastRubyRogues = as.integer(PodcastRubyRogues)) %>%
+        mutate(PodcastShopTalk = as.integer(PodcastShopTalk)) %>%
+        mutate(PodcastDeveloperTea = as.integer(PodcastDeveloperTea)) %>%
+        mutate(PodcastProgrammingThrowDown =
+                   as.integer(PodcastProgrammingThrowDown)) %>%
+        mutate(PodcastDotNetRocks = as.integer(PodcastDotNetRocks)) %>%
+        mutate(PodcastTalkPython = as.integer(PodcastTalkPython)) %>%
+        mutate(PodcastJsAir = as.integer(PodcastJsAir)) %>%
+        mutate(PodcastHanselminutes = as.integer(PodcastHanselminutes)) %>%
+        mutate(PodcastWebAhead = as.integer(PodcastWebAhead)) %>%
+        mutate(PodcastCodingBlocks = as.integer(PodcastCodingBlocks)) %>%
+        mutate(ResourceCodeWars = as.integer(ResourceCodeWars)) %>%
+        mutate(ResourceCodeacademy = as.integer(ResourceCodeacademy)) %>%
+        rename(ResourceCodecademy = ResourceCodeacademy) %>%
+        mutate(ResourceCoursera = as.integer(ResourceCoursera)) %>%
+        mutate(ResourceDevTips = as.integer(ResourceDevTips)) %>%
+        mutate(ResourceEdX = as.integer(ResourceEdX)) %>%
+        mutate(ResourceFCC = as.integer(ResourceFCC)) %>%
+        mutate(ResourceKhanAcademy = as.integer(ResourceKhanAcademy)) %>%
+        mutate(ResourceOdinProj = as.integer(ResourceOdinProj)) %>%
+        mutate(ResourcePluralSight = as.integer(ResourcePluralSight)) %>%
+        mutate(ResourceUdacity = as.integer(ResourceUdacity)) %>%
+        mutate(ResourceUdemy = as.integer(ResourceUdemy))
+
+    # Order columns alphabetically
+    cleanData <- cleanData %>% select(noquote(order(colnames(cleanData))))
+
+    cat("Finished last polish of data.\n")
+    cleanData
+}
+
 # Main Function -------------------------------------------
 
 # Title:
@@ -1791,7 +1869,10 @@ main <- function() {
     allData <- time_diff_check(allData)
 
     # Clean both parts of the data
-    final <- clean_part(allData)
+    cleanData <- clean_part(allData)
+
+    # Polish data with small changes e.g. give correct datatypes to columns
+    final <- polish_data(cleanData)
 
     # Combine data and create cleaned data
     write.csv(x = final,
@@ -1799,4 +1880,4 @@ main <- function() {
               na = "NA",
               row.names = FALSE)
 }
-# main()
+main()
