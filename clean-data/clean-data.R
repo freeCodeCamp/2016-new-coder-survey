@@ -1018,6 +1018,10 @@ clean_age <- function(cleanPart) {
     cleanPart <- cleanPart %>%
         mutate(Age = remove_outlier(Age, 100))
 
+    # Make ages <10 equal to NA
+    cleanPart <- cleanPart %>%
+        mutate(Age = ifelse(Age < 10, NA, Age))
+
     cat("Finished cleaning responses for age.\n")
     cleanPart
 }
