@@ -14,7 +14,7 @@ require(dplyr)
 
 # Utility Functions ---------------------------------------
 # Description:
-#   These functions take in arguments to perform simplier transformations
+#   These functions take in arguments to perform simpler transformations
 
 # Title:
 #   Fix Truncated Job Apply Answer
@@ -1657,7 +1657,7 @@ rename_part_2 <- function(part2) {
 #         to what they were.
 #       - Lastly, some of the numeric values were read into R as numeric, but
 #         some were read in as double. So these numeric data types were
-#         standarized to either character or double for ease of use later.
+#         standardized to either character or double for ease of use later.
 std_data_type <- function(part1, part2) {
     cat("Standardizing variables between data for joining...\n")
 
@@ -1871,7 +1871,7 @@ main <- function() {
     # Clean both parts of the data
     cleanData <- clean_part(allData)
 
-    # Polish data with small changes e.g. give correct datatypes to columns
+    # Polish data with small changes e.g. give correct data types to columns
     final <- polish_data(cleanData)
 
     # Combine data and create cleaned data
