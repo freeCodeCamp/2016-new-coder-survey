@@ -1193,6 +1193,14 @@ clean_commute <- function(cleanPart) {
 clean_resources <- function(cleanPart) {
     cat("Cleaning responses for other resources...\n")
 
+    # Convert Resources to binary/boolean
+    resources <- cleanPart %>%
+        select(starts_with("Resource"), -ResourceOther, -Resources) %>%
+        mutate_each(funs(ifelse(!is.na(.), "1", NA)))
+    cleanPart <- cleanPart %>%
+        select(-starts_with("Resource"), ResourceOther, Resources) %>%
+        bind_cols(resources)
+
     # New column for "Treehouse"
     treehouse <- c("house", "team threehouse", "treehouse", "threehouse")
     cleanPart <- search_and_create(inData = cleanPart,
