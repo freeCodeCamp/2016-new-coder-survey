@@ -595,7 +595,10 @@ clean_job_interest <- function(part) {
 # Description:
 #   The function performs various transformations to coding event data to make
 #   it consistent (e.g. fix spelling) and normalize instances of answers to be
-#   the same.
+#   the same. Also, new columns are made for mentions that appear more than
+#   1.5% of all other code events.
+# Note: honorable mentions to:
+#   - "LaunchCode"
 # Usage:
 #   > cleanPart <- clean_code_events(cleanPart)
 clean_code_events <- function(cleanPart1) {
@@ -661,13 +664,6 @@ clean_code_events <- function(cleanPart1) {
                                     colName = "CodeEventOther",
                                     searchTerms = gameJams,
                                     newCol = "CodeEventGameJam")
-
-    # Create new column for response variants of "LaunchCode"
-    launchCode <- c("launchcode", "launch code")
-    cleanPart1 <- search_and_create(inData = cleanPart1,
-                                    colName = "CodeEventOther",
-                                    searchTerms = launchCode,
-                                    newCol = "CodeEventLaunchCode")
 
     # Create new column for response variants of "Workshop"
     workshop <- c("workshop")
