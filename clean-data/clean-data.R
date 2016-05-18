@@ -1738,7 +1738,7 @@ main <- function() {
              "MonthsProgramming", "BootcampFinish",
              "BootcampFullJobAfter", "BootcampPostSalary", "BootcampLoan",
              "BootcampRecommend", "MoneyForLearning", "NetworkID",
-             "HoursLearning", "BootcampMonthsAgo")
+             "HoursLearning", "BootcampMonthsAgo", "BootcampName" = "Bootcamp")
     allData <- left_join(consistentData$part1, consistentData$part2, by = key)
 
     # Check survey times and unique IDs
