@@ -686,7 +686,7 @@ clean_code_events <- function(cleanPart1) {
 #   - Normalize variations of "None" in Podcast Other back to designated col
 #   - Normalize variations of "Software Engineering Daily" in Podcast Other
 #     back to designated column
-#   - Add new columns for other podcasts greater than 15 mentions
+#   - Add new columns for other podcasts greater than 1.5% of mentions in Other
 #       - "Ruby Rogues"
 #       - "Shop Talk Show"
 #       - "Developer Tea"
