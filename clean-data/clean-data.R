@@ -7,7 +7,7 @@
 #                   the `main()` function at the end of this script.
 # Author:           Eric Leung (@erictleung)
 # Help from:        @evaristoc and @SamAI-Software
-# Last Updated:     2016 May 15th
+# Last Updated:     2016 May 17th
 
 # Load in necessary packages
 require(dplyr)
