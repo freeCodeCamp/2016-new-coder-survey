@@ -1125,7 +1125,31 @@ clean_income <- function(cleanPart) {
 # Usage:
 #   > cleanPart <- clean_commute(cleanPart)
 clean_commute <- function(cleanPart) {
+    cat("Cleaning responses for commute time...\n")
 
+    # Replace commas with decimal places
+    cleanPart <- cleanPart %>% sub_and_rm("CommuteTime", ",", ".")
+
+    # Remove the word "minutes"
+    cleanPart <- cleanPart %>% sub_and_rm("CommuteTime", "minutes", "")
+
+    # Remove the word "none"
+    cleanPart <- cleanPart %>% sub_and_rm("CommuteTime", "none", "")
+
+    # Remove the word "hour(s)" and convert to minutes
+    searchStr <- "hours|h|hrs"
+    hoursIdx <- cleanPart %>% select(CommuteTime) %>%
+        mutate_each(funs(grepl(searchStr, ., ignore.case = TRUE))) %>%
+        unlist(use.names = FALSE)
+    hoursData <- cleanPart %>% filter(hoursIdx) %>%
+        mutate(CommuteTime = as.numeric(gsub("[A-Za-z ]", "", CommuteTime))*60)
+    hoursData <- hoursData %>% mutate(CommuteTime = as.character(CommuteTime))
+    cleanPart <- cleanPart %>% filter(!hoursIdx) %>% bind_rows(hoursData)
+
+    # Convert to integer
+    cleanPart <- cleanPart %>% mutate(CommuteTime = as.integer(CommuteTime))
+
+    cat("Finished cleaning responses for commute time.\n")
     cleanPart
 }
 
@@ -1301,7 +1325,7 @@ clean_part <- function(part) {
     cleanPart <- clean_age(cleanPart)  # Clean age
     cleanPart <- clean_mortgage_amt(cleanPart)  # Clean mortgage amount
     cleanPart <- clean_income(cleanPart)  # Clean income
-    # cleanPart <- clean_commute(cleanPart)  # Clean commute time
+    cleanPart <- clean_commute(cleanPart)  # Clean commute time
 
     # Polish data
     # - Remove rows where JobRoleInterest.y has value, but not in
