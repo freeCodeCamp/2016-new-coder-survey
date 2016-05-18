@@ -606,10 +606,10 @@ clean_code_events <- function(cleanPart1) {
 
     # Convert coding events to binary/boolean
     codeResources <- cleanPart1 %>%
-        select(starts_with("CodeEvent"), -CodeEventOther) %>%
+        select(starts_with("CodeEvent"), -CodeEventOther, -CodeEvent) %>%
         mutate_each(funs(ifelse(!is.na(.), "1", NA)))
     cleanPart1 <- cleanPart1 %>%
-        select(-starts_with("CodeEvent"), CodeEventOther) %>%
+        select(-starts_with("CodeEvent"), CodeEventOther, CodeEvent) %>%
         bind_cols(codeResources)
 
     # Title case other coding events
@@ -704,10 +704,10 @@ clean_podcasts <- function(cleanPart) {
 
     # Convert Podcasts to binary/boolean
     podcasts <- cleanPart %>%
-        select(starts_with("Podcast"), -PodcastOther) %>%
+        select(starts_with("Podcast"), -PodcastOther, -Podcast) %>%
         mutate_each(funs(ifelse(!is.na(.), "1", NA)))
     cleanPart <- cleanPart %>%
-        select(-starts_with("Podcast"), PodcastOther) %>%
+        select(-starts_with("Podcast"), PodcastOther, Podcast) %>%
         bind_cols(podcasts)
 
     # Normalize variations of "None" in PodcastOther
