@@ -1,0 +1,16 @@
+Number,IsSoftwareDev,IsSoftwareDevPpl,IsSoftwareDevPerc,JobPref,JobPrefPpl,JobPrefPerc,JobRoleInterest,JobRoleInterestPpl,JobRoleInterestPerc,JobRelocateYesNo,JobRelocateYesNoPpl,JobRelocateYesNoPerc,Gender,GenderPpl,GenderPerc,SchoolDegree,SchoolDegreePpl,SchoolDegreePerc,SchoolMajor,SchoolMajorPpl,SchoolMajorPerc,HasServedInMilitary,HasServedInMilitaryPpl,HasServedInMilitaryPerc,FinanciallySupporting,FinanciallySupportingPpl,FinanciallySupportingPerc,,,,MaritalStatus,MaritalStatusPpl,MaritalStatusPerc,HasChildren,HasChildrenPpl,HasChildrenPerc,ChildrenNumber,ChildrenNumberPpl,ChildrenNumberPerc
+1,No,11234,0.723048208,work for a medium-sized company,3281,0.293234427,Full-Stack Web Developer,2571,0.39535599,Yes,4036,0.735556771,Male,10766,0.783209661,bachelor's degree,5644,0.41260326,Computer Science,1387,0.164142012,No,12517,0.923763838,No,3210,0.803303303,,,,married or domestic partnership,2915,0.726932668,Yes,2579,0.642821535,1,1067,0.417776038
+2,Yes,4303,0.276951792,freelance,2261,0.202073465,Front-End Web Developer,1379,0.212055974,No,1451,0.264443229,Female,2840,0.206605558,"some college credit, no degree",2268,0.165801594,Information Technology,408,0.048284024,Yes,1033,0.076236162,Yes,786,0.196696697,,,,single,1095,0.273067,No,1433,0.357178465,2,961,0.376272514
+3,,,,start your own business,2234,0.199660381,Back-End Web Developer,704,0.108257727,,,,Other,140,0.010184,master's degree (non-professional),1445,0.105636377,Business Administration,284,0.033609467,,,,,,,,,,,,,,,,3+,350,0.205951
+4,,,,work for a startup,2031,0.181517562,Data Scientist / Data Engineer,646,0.099338767,,,,,,,high school diploma or equivalent (GED),1356,0.099130053,Economics,252,0.029822485,,,,,,,,,,,,,,,,,,
+5,,,,work for a multinational corporation,1382,0.123514166,Mobile Developer,414,0.063662925,,,,,,,some high school,764,0.055852036,Electrical Engineering,220,0.026035503,,,,,,,,,,,,,,,,,,
+6,,,,,,,User Experience Designer,275,0.042288175,,,,,,,"professional degree (MBA, MD, JD, etc.)",692,0.050588493,English,204,0.024142012,,,,,,,,,,,,,,,,,,
+7,,,,,,,DevOps / SysAdmin,219,0.033676765,,,,,,,associate's degree,649,0.047444989,Psychology,187,0.022130178,,,,,,,,,,,,,,,,,,
+8,,,,,,,Product Manager,191,0.02937106,,,,,,,"trade, technical, or vocational training",443,0.032385408,Electrical and Electronics Engineering,164,0.019408284,,,,,,,,,,,,,,,,,,
+9,,,,,,,Quality Assurance Engineer,104,0.015992619,,,,,,,no high school (secondary school),258,0.018861028,Software Engineering,159,0.018816568,,,,,,,,,,,,,,,,,,
+10,,,,,,,,,,,,,,,,Ph.D.,160,0.011696761,Liberal Arts,157,0.018579882,,,,,,,,,,,,,,,,,,
+11,,,,,,,,,,,,,,,,,,,Engineering,148,0.017514793,,,,,,,,,,,,,,,,,,
+12,,,,,,,,,,,,,,,,,,,Computer Programming,147,0.01739645,,,,,,,,,,,,,,,,,,
+13,,,,,,,,,,,,,,,,,,,Mechanical Engineering,141,0.016686391,,,,,,,,,,,,,,,,,,
+14,,,,,,,,,,,,,,,,,,,Physics,132,0.015621302,,,,,,,,,,,,,,,,,,
+15,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

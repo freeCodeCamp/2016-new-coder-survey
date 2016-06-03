@@ -4,7 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>2016 New Coder Survey</title>
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+
+    <script src="./javascript/barcharts.js" type="text/javascript" charset="utf-8"></script>
     <script src="./javascript/main.js" type="text/javascript" charset="utf-8"></script>
+
     <link href="./stylesheets/style.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:900,500,400,300,100' rel='stylesheet' type='text/css'>
   </head>
@@ -77,19 +81,19 @@
         <article class="chart">
           <h3>Gender</h3>
           <p>What's your gender?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="Gender">
           </div>
         </article>
         <article class="chart">
           <h3>Disability</h3>
           <p>Do you receive disability benefits from your government?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="FinanciallySupporting">
           </div>
         </article>
         <article class="chart">
           <h3>Military</h3>
           <p>Have you served in your country's military before?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="HasServedInMilitary">
           </div>
         </article>
       </div>
@@ -101,18 +105,18 @@
           </div>
         </article>
       </div>
-      <div class="charts medium">
+      <div class="charts">
         <h3>Education</h3>
         <article class="chart">
           <p>What's the highest degree or level of school you have
             completed?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="SchoolDegree">
         </div>
         <p class="footnote">(If currently enrolled, highest degree received.)</p>
         </article>
         <article class="chart">
           <p>What was the main subject you studied in university?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="SchoolMajor">
           </div>
         </article>
       </div>
@@ -120,17 +124,17 @@
         <h3>Family</h3>
         <article class="chart">
           <p>What's your marital status?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="MaritalStatus">
           </div>
         </article>
         <article class="chart">
           <p>Do you have children?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="HasChildren">
           </div>
         </article>
         <article class="chart">
           <p>How many children do you have?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="ChildrenNumber">
           </div>
         </article>
       </div>
@@ -190,11 +194,15 @@
         <h3>Employment</h3>
         <article class="chart">
           <p>Are you already working as a software developer?</p>
-          <img src="images/Are_you_already_working_as_a_software_developer.png">
+          <!-- <img src="images/Are_you_already_working_as_a_software_developer.png"> -->
+          <div class="chart-graphic" id="IsSoftwareDev">
+          </div>
         </article>
         <article class="chart">
           <p>Are you willing to relocate for a job?</p>
-          <img src="images/Are_you_willing_to_relocate_for_a_job.png">
+          <!-- <img src="images/Are_you_willing_to_relocate_for_a_job.png"> -->
+          <div class="chart-graphic" id="JobRelocateYesNo">
+          </div>
         </article>
         <article class="chart">
           <p>Do you consider yourself under-employed?</p>
@@ -255,16 +263,15 @@
         </article>
         <article class="chart">
           <p>Would you prefer to...</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="JobPref">
           </div>
         </article>
       </div>
       <div class="charts large">
         <article class="chart">
           <p>Which one of these roles are you most interested in?</p>
-          <img
-          src="images/Which_one_of_these_roles_are_you_most_interested_in.png">
-          <div class="chart-graphic">
+          <!-- <img src="images/Which_one_of_these_roles_are_you_most_interested_in.png"> -->
+          <div class="chart-graphic" id="JobRoleInterest">
           </div>
         </article>
       </div>

@@ -28,4 +28,26 @@ $("document").ready(function(){
     $(".raw-data").fadeOut();
     return false;
   });
+
+barCharts("JobPref", "H4", "270", "50");
+barCharts("JobRelocateYesNo", "H5", "5", "5");
+barCharts("IsSoftwareDev", "H5", "5", "5");
+barCharts("JobRoleInterest", "H4", "225", "50");
+barCharts("Gender", "H4", "60", "40");
+barCharts("SchoolDegree", "H4", "290", "40");
+barCharts("SchoolMajor", "H4", "270", "40");
+barCharts("HasServedInMilitary", "H4", "30", "40");
+barCharts("FinanciallySupporting", "H4", "30", "40");
+barCharts("MaritalStatus", "H5", "0", "0");
+barCharts("HasChildren", "H5", "0", "0");
+barCharts("ChildrenNumber", "H5", "0", "0");
+
+// 01_IsSoftwareDev: 2,
+// 02_JobPref: 5,
+// 03_JobRoleInterest: 9,
+// 06_JobRelocateYesNo: 2
+// 51_MaritalStatus: 2(5),
+// 52_HasChildren: 2,
+// 53_ChildrenNumber: 3(14),
+
 });

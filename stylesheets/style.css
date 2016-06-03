@@ -83,12 +83,13 @@ nav {
       left: 25%; } }
 
 .charts {
-  padding: 0px 50px 5px; }
+  padding: 0px 10px 5px; }
   .charts::after {
     clear: both;
     content: "";
     display: table; }
   .charts .chart {
+    border: 1px solid blue;
     float: left;
     display: block;
     margin-right: 2.35765%;
@@ -118,7 +119,7 @@ nav {
 .chart .chart-graphic {
   border: solid #F6F6F6 3px;
   width: 100%;
-  height: 60px; }
+  height: auto; }
 @media screen and (min-width: 800px) {
   .chart {
     display: table-cell; } }
@@ -197,5 +198,46 @@ section article.tags {
         background: #7ED321;
         color: white;
         border-color: #7ED321; }
+
+
+/* toDO: barcharts.scss*/
+/* Shows the small ticks on Y axis */
+.axis path,
+.axis line {
+  fill: none;
+}
+
+.x.axis {
+  display: none;
+}
+
+.y.axis {
+  display: none;
+  font-size: 16px;
+}
+
+.y.axis path {
+  display: none;
+}
+
+.bar {
+  position: absolute;
+  fill: #006400;
+  stroke: #006400;
+}
+
+.bar:hover {
+  fill: #008400;
+  stroke: #008400;
+}
+
+.barLabel {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.barTitle {
+  font-size: 16px;
+}
 
 /*# sourceMappingURL=style.css.map */
