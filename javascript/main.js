@@ -29,13 +29,13 @@ $("document").ready(function(){
     return false;
   });
 
-barCharts("JobPref", "H4", "270", "50");
+barCharts("JobPref", "H4", "170", "50");
 barCharts("JobRelocateYesNo", "H5", "5", "5");
 barCharts("IsSoftwareDev", "H5", "5", "5");
-barCharts("JobRoleInterest", "H4", "225", "50");
+barCharts("JobRoleInterest", "H4", "190", "50");
 barCharts("Gender", "H4", "60", "40");
-barCharts("SchoolDegree", "H4", "290", "40");
-barCharts("SchoolMajor", "H4", "270", "40");
+barCharts("SchoolDegree", "H4", "252", "35");
+barCharts("SchoolMajor", "H4", "175", "40");
 barCharts("HasServedInMilitary", "H4", "30", "40");
 barCharts("FinanciallySupporting", "H4", "30", "40");
 barCharts("MaritalStatus", "H5", "0", "0");

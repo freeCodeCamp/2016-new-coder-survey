@@ -240,4 +240,17 @@ section article.tags {
   font-size: 16px;
 }
 
+/*Individual bar charts*/
+/*For responsiveness until find a better solution
+Other solutions:
+1.) Vertical layout for bars and titles (titles on top of bars)
+2.) Vertical bar charts with titles rotated 180 deg*/
+
+#SchoolDegree .barTitle,
+#SchoolMajor .barTitle,
+#JobPref .barTitle,
+#JobRoleInterest .barTitle {
+  font-size: 14px;
+}
+
 /*# sourceMappingURL=style.css.map */
