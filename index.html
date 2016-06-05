@@ -101,7 +101,7 @@
         <article class="chart">
           <h3>Age</h3>
           <p>How old are you?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="Age">
           </div>
         </article>
       </div>
@@ -142,17 +142,17 @@
         <h3>Money</h3>
         <article class="chart">
           <p>About how much money did you make last year (in US dollars)?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="Income">
           </div>
         </article>
         <article class="chart">
           <p>Do you have any debt?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="DebtAmount">
           </div>
         </article>
         <article class="chart">
           <p>Do you financially support any dependents?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="HasFinancialDependents">
           </div>
           <p class="description">(Dependents include a
             spouse, children, elderly relatives, and relatices with
@@ -162,31 +162,31 @@
       <div class="charts small">
         <article class="chart">
           <p>Do you have student loan debt?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="HasStudentDebt">
           </div>
         </article>
         <article class="chart">
           <p>About how much do you owe in student loans (in US Dollars)?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="StudentDebtOwe">
           </div>
         </article>
         <article class="chart">
           <h3></h3>
           <p>Do you financially support any elderly relatives or relavites with
           disabilities?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="FinanciallySupporting">
           </div>
         </article>
       </div>
       <div class="charts small">
         <article class="chart">
           <p>Do you have a home mortgage?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="HasHomeMortgage">
           </div>
         </article>
         <article class="chart">
           <p>Do you have high speed internet an your home?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="HasHighSpdInternet">
           </div>
         </article>
       </div>
@@ -206,7 +206,7 @@
         </article>
         <article class="chart">
           <p>Do you consider yourself under-employed?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="IsUnderEmployed">
           </div>
           <p class="description">(Underemployed means
             working a job that is below your education level.)</p>
@@ -215,12 +215,12 @@
       <div class="charts medium">
         <article class="chart">
           <p>Regarding employment status, are you currently ...</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="EmploymentStatus">
           </div>
         </article>
         <article class="chart">
           <p>Which field do you work in?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic"id="EmploymentField">
           </div>
         </article>
       </div>
@@ -230,19 +230,19 @@
           <!-- <p>Which country are you a citizen of?</p> -->
           <p>Which country do you currently live in?</p>
           <p>322 countries</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="CountryLive">
           </div>
         </article>
       </div>
       <div class="charts medium">
         <article class="chart">
           <p>Are you an ethnic minority in your country?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="IsEthnicMinority">
           </div>
         </article>
         <article class="chart">
           <p>About how many people live in your city?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic"id="CityPopulation">
           </div>
         </article>
       </div>
@@ -250,7 +250,7 @@
         <article class="chart">
           <h3>Language</h3>
           <p>Which language do you speak at home with your family?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="LanguageAtHome">
           </div>
         </article>
       </div>
@@ -258,7 +258,7 @@
         <h3>Career & Money</h3>
         <article class="chart">
           <p>Would you prefer to work...</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="JobWherePref">
           </div>
         </article>
         <article class="chart">
@@ -278,12 +278,14 @@
       <div class="charts medium">
         <article class="chart">
           <p>When do you plan to start applying for developers jobs?</p>
-          <img src="images/When_do_you_plan_to_start_applying_for_developer_jobs.png">
+          <!-- <img src="images/When_do_you_plan_to_start_applying_for_developer_jobs.png"> -->
         </article>
+          <div class="chart-graphic" id="JobApplyWhen">
+          </div>
         <article class="chart">
           <p>About how much money do you expect to earn per year at your first
-            develoepr job (in US Dollars)?</p>
-          <div class="chart-graphic">
+            developer job (in US Dollars)?</p>
+          <div class="chart-graphic" id="ExpectedEarning">
           </div>
         </article>
       </div>
@@ -291,49 +293,49 @@
         <h3>Bootcamp</h3>
         <article class="chart">
           <p>Have you attended a full-time coding bootcamp?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="BootcampYesNo">
           </div>
         </article>
         <article class="chart">
           <p>Have you finished yet?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="BootcampFinish">
           </div>
         </article>
       </div>
       <div class="charts large">
         <article class="chart">
           <p>Which bootcamp did you attend?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="BootcampName">
           </div>
         </article>
       </div>
       <div class="charts medium">
         <article class="chart">
           <p>How many months ago did you finish your bootcamp?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="BootcampMonthsAgo">
           </div>
         </article>
         <article class="chart">
           <p>Based on your experience, would you recommend this bootcamp to your
           friends?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="BootcampRecommend">
           </div>
         </article>
       </div>
       <div class="charts small">
         <article class="chart">
           <p>Were you able to get a full time developer job afterwards?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="BootcampFullJobAfter">
           </div>
         </article>
         <article class="chart">
           <p>How much was your salary?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="BootcampPostSalary">
           </div>
         </article>
         <article class="chart">
           <p>Did you take out a loan to pay for the bootcamp?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="BootcampLoan">
           </div>
         </article>
       </div>
@@ -341,26 +343,26 @@
         <h3>Learning to Code</h3>
         <article class="chart">
           <p>About how many months have you been programming for?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="MonthsProgramming">
           </div>
         </article>
         <article class="chart">
           <p>About how many hours do you spend learning each week?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="HoursLearning">
           </div>
         </article>
         <article class="chart">
           <p>Aside from the university tuition, about how much money have you
             spent on learning to code so far (in US Dollars)?</p>
-          <div class="chart-graphic">
+          <div class="chart-graphic" id="MoneyForLearning">
           </div>
         </article>
       </div>
       <div class="charts large">
         <article class="chart">
           <p>Which learning resources have you found helpful?</p>
-          <img src="images/Which_learning_resources_have_you_found_helpful.png">
-          <div class="chart-graphic">
+          <!-- <img src="images/Which_learning_resources_have_you_found_helpful.png"> -->
+          <div class="chart-graphic" id="Resources">
           </div>
         </article>
       </div>
