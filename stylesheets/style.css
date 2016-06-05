@@ -249,8 +249,11 @@ Other solutions:
 #SchoolDegree .barTitle,
 #SchoolMajor .barTitle,
 #JobPref .barTitle,
-#JobRoleInterest .barTitle {
+#JobRoleInterest .barTitle,
+#CountryLive .barTitle
+ {
   font-size: 14px;
 }
+
 
 /*# sourceMappingURL=style.css.map */

@@ -9,6 +9,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
   var formats = {
       //  H4 - labels & titles outside the bar (for short bars) //
       H4: {
+        name: "H4",
         //bar value
         labels: {
           color: "#006400", //black //white //#006400
@@ -31,6 +32,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
 
       //  H5 - labels & titles inside the bar (for long bars) //
       H5: {
+        name: "H5",
         // bar value
         labels: {
           color: "white", //black //white //#006400
@@ -76,7 +78,13 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
     FinanciallySupporting: 2,
     MaritalStatus: 2, //5
     HasChildren: 2,
-    ChildrenNumber: 3 //14
+    ChildrenNumber: 3, //14
+    CountryLive: 15,
+    BootcampFinish: 2,
+    BootcampName: 15,
+    BootcampMonthsAgo: 14,
+    BootcampRecommend: 2,
+    BootcampFullJobAfter: 2
   }
 
   var bars = {
@@ -88,6 +96,13 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
       delay: 50
     }
   };
+
+  
+  function countBars() {
+    console.log(topic + " bars.total = " + bars.total + "; yColumn = " + yColumn);
+    // forEach()
+    console.log(typeof yColumn);
+  }
 
   // -------- SPECIFIC SETTINGS -------- //
   var margin = {
@@ -102,7 +117,8 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
 
   var xColumn = topic + "Perc"; // "Perc" is added because of special format of a current .csv file
   var yColumn = topic; // topic is passed value
-
+  countBars();
+  
   var yAxisLabel = "This is the best Y label ever"; // CSS .y.axis { display: none }
 
   var formatPercent = d3.format(".0%");
@@ -129,6 +145,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
     var svg = d3.select(place).append("svg")
       .attr("width", "100%")
       .attr("height", height + margin.top + margin.bottom)
+      .attr("class", format.name)
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 

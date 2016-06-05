@@ -29,19 +29,6 @@ $("document").ready(function(){
     return false;
   });
 
-barCharts("JobPref", "H4", "170", "50");
-barCharts("JobRelocateYesNo", "H5", "5", "5");
-barCharts("IsSoftwareDev", "H5", "5", "5");
-barCharts("JobRoleInterest", "H4", "190", "50");
-barCharts("Gender", "H4", "60", "40");
-barCharts("SchoolDegree", "H4", "252", "35");
-barCharts("SchoolMajor", "H4", "175", "40");
-barCharts("HasServedInMilitary", "H4", "30", "40");
-barCharts("FinanciallySupporting", "H4", "30", "40");
-barCharts("MaritalStatus", "H5", "0", "0");
-barCharts("HasChildren", "H5", "0", "0");
-barCharts("ChildrenNumber", "H5", "0", "0");
-
 // 01_IsSoftwareDev: 2,
 // 02_JobPref: 5,
 // 03_JobRoleInterest: 9,
@@ -49,5 +36,121 @@ barCharts("ChildrenNumber", "H5", "0", "0");
 // 51_MaritalStatus: 2(5),
 // 52_HasChildren: 2,
 // 53_ChildrenNumber: 3(14),
+
+
+// FinanciallySupporting: 2,
+
+
+
+
+// All Topics(in same order as in HTML)
+// Gender
+barCharts("Gender", "H4", "60", "40");
+// FinanciallySupporting
+barCharts("FinanciallySupporting", "H4", "30", "40");
+// HasServedInMilitary
+barCharts("HasServedInMilitary", "H4", "30", "40");
+// Age
+// SchoolDegree
+barCharts("SchoolDegree", "H4", "252", "35");
+// SchoolMajor
+barCharts("SchoolMajor", "H4", "175", "40");
+// MaritalStatus
+barCharts("MaritalStatus", "H5", "0", "0");
+// HasChildren
+barCharts("HasChildren", "H5", "0", "0");
+// ChildrenNumber
+barCharts("ChildrenNumber", "H5", "0", "0");
+// Income
+// DebtAmount
+// HasFinancialDependents
+// HasStudentDebt
+// StudentDebtOwe
+// HasFinancialDependents
+// barCharts("HasFinancialDependents","H5","0","0");
+// HasHomeMortgage
+// HasHighSpdInternet
+// IsSoftwareDev
+barCharts("IsSoftwareDev", "H5", "5", "5");
+// JobRelocateYesNo
+barCharts("JobRelocateYesNo", "H5", "5", "5");
+// IsUnderEmployed
+// EmploymentStatus
+// EmploymentField
+// CountryLive
+barCharts("CountryLive", "H4", "195", "40"); //15
+// IsEthnicMinority
+// CityPopulation
+// LanguageAtHome
+// JobWherePref
+// JobPref
+barCharts("JobPref", "H4", "170", "40");
+// JobRoleInterest
+barCharts("JobRoleInterest", "H4", "190", "40");
+// JobApplyWhen
+// ExpectedEarning
+// BootcampYesNo
+// BootcampFinish
+barCharts("BootcampFinish", "H5", "5", "5"); //2
+// BootcampName
+barCharts("BootcampName", "H4", "195", "40");
+// BootcampMonthsAgo 
+barCharts("BootcampMonthsAgo", "H5", "5", "5");
+// BootcampRecommend 
+barCharts("BootcampRecommend", "H5", "5", "5");
+// BootcampFullJobAfter
+barCharts("BootcampFullJobAfter", "H5", "5", "5");
+// BootcampPostSalary 
+// BootcampLoan 
+// MonthsProgramming 
+// HoursLearning 
+// MoneyForLearning
+// Resources
+
+
+// All Topics(in same order as in HTML)
+// Gender
+// FinanciallySupporting
+// HasServedInMilitary
+// Age
+// SchoolDegree
+// SchoolMajor
+// MaritalStatus
+// HasChildren
+// ChildrenNumber
+// Income
+// DebtAmount
+// HasFinancialDependents
+// HasStudentDebt
+// StudentDebtOwe
+// FinanciallySupporting
+// HasHomeMortgage
+// HasHighSpdInternet
+// IsSoftwareDev
+// JobRelocateYesNo
+// IsUnderEmployed
+// EmploymentStatus
+// EmploymentField
+// CountryLive
+// IsEthnicMinority
+// CityPopulation
+// LanguageAtHome
+// JobWherePref
+// JobPref
+// JobRoleInterest
+// JobApplyWhen
+// ExpectedEarning
+// BootcampYesNo
+// BootcampFinish
+// BootcampName
+// BootcampMonthsAgo 
+// BootcampRecommend 
+// BootcampFullJobAfter
+// BootcampPostSalary 
+// BootcampLoan 
+// MonthsProgramming 
+// HoursLearning 
+// MoneyForLearning
+// Resources
 
 });
