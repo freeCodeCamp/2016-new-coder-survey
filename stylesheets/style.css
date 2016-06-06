@@ -117,12 +117,13 @@ nav {
     padding-bottom: 50px; }
 
 .chart .chart-graphic {
-  border: solid #F6F6F6 3px;
   width: 100%;
   height: auto; }
 @media screen and (min-width: 800px) {
   .chart {
-    display: table-cell; } }
+    display: table-cell; } 
+    .chart .chart-graphic {
+      border: solid #F6F6F6 3px; } }
 
 footer {
   padding: 30px 50px;

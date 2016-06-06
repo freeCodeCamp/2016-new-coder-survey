@@ -52,9 +52,9 @@ barCharts("FinanciallySupporting", "H4", "30", "40");
 barCharts("HasServedInMilitary", "H4", "30", "40");
 // Age
 // SchoolDegree
-barCharts("SchoolDegree", "H4", "252", "35");
+barCharts("SchoolDegree", "H4", "252", "45");
 // SchoolMajor
-barCharts("SchoolMajor", "H4", "175", "40");
+barCharts("SchoolMajor", "H4", "175", "45");
 // MaritalStatus
 barCharts("MaritalStatus", "H5", "0", "0");
 // HasChildren
@@ -78,22 +78,22 @@ barCharts("JobRelocateYesNo", "H5", "5", "5");
 // EmploymentStatus
 // EmploymentField
 // CountryLive
-barCharts("CountryLive", "H4", "195", "40"); //15
+barCharts("CountryLive", "H4", "195", "45"); //15
 // IsEthnicMinority
 // CityPopulation
 // LanguageAtHome
 // JobWherePref
 // JobPref
-barCharts("JobPref", "H4", "170", "40");
+barCharts("JobPref", "H4", "170", "45");
 // JobRoleInterest
-barCharts("JobRoleInterest", "H4", "190", "40");
+barCharts("JobRoleInterest", "H4", "190", "45");
 // JobApplyWhen
 // ExpectedEarning
 // BootcampYesNo
 // BootcampFinish
 barCharts("BootcampFinish", "H5", "5", "5"); //2
 // BootcampName
-barCharts("BootcampName", "H4", "195", "40");
+barCharts("BootcampName", "H4", "195", "45");
 // BootcampMonthsAgo 
 barCharts("BootcampMonthsAgo", "H5", "5", "5");
 // BootcampRecommend 
