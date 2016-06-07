@@ -51,6 +51,7 @@ barCharts("FinanciallySupporting", "H4", "30", "40");
 // HasServedInMilitary
 barCharts("HasServedInMilitary", "H4", "30", "40");
 // Age
+barCharts("Age" ,"H5", "5", "5"); //15
 // SchoolDegree
 barCharts("SchoolDegree", "H4", "252", "45");
 // SchoolMajor
@@ -62,34 +63,51 @@ barCharts("HasChildren", "H5", "0", "0");
 // ChildrenNumber
 barCharts("ChildrenNumber", "H5", "0", "0");
 // Income
-// DebtAmount
+barCharts("Income","H5", "5", "5"); //15
+// DebtAmount //BUG FIX! WHERE IS DebtAmount???
+barCharts("HasDebt","H5", "5", "5"); //2
 // HasFinancialDependents
+barCharts("HasFinancialDependents","H5", "5", "5"); //2
 // HasStudentDebt
+barCharts("HasStudentDebt","H5", "5", "5"); //2
 // StudentDebtOwe
+barCharts("StudentDebtOwe","H5", "5", "5"); //15
 // HasFinancialDependents
-// barCharts("HasFinancialDependents","H5","0","0");
+barCharts("HasFinancialDependents","H5", "5", "5"); //2 SOME BUG! WHY NOTHING???
 // HasHomeMortgage
+barCharts("HasHomeMortgage","H5", "5", "5"); //2
 // HasHighSpdInternet
+barCharts("HasHighSpdInternet","H4", "35", "45"); //2
 // IsSoftwareDev
-barCharts("IsSoftwareDev", "H5", "5", "5");
+barCharts("IsSoftwareDev", "H5", "5", "5"); //2
 // JobRelocateYesNo
-barCharts("JobRelocateYesNo", "H5", "5", "5");
+barCharts("JobRelocateYesNo", "H5", "5", "5"); //2
 // IsUnderEmployed
+barCharts("IsUnderEmployed","H5", "5", "5"); //2
 // EmploymentStatus
+barCharts("EmploymentStatus","H5", "5", "5"); //10
 // EmploymentField
+barCharts("EmploymentField","H5", "5", "5"); //15
 // CountryLive
 barCharts("CountryLive", "H4", "195", "45"); //15
 // IsEthnicMinority
+barCharts("IsEthnicMinority","H5", "5", "5"); //2
 // CityPopulation
+barCharts("CityPopulation","H5", "5", "5"); //3
 // LanguageAtHome
+barCharts("LanguageAtHome","H5", "5", "5"); //15
 // JobWherePref
+barCharts("JobWherePref","H5", "5", "5"); //3
 // JobPref
 barCharts("JobPref", "H4", "170", "45");
 // JobRoleInterest
 barCharts("JobRoleInterest", "H4", "190", "45");
 // JobApplyWhen
+barCharts("JobApplyWhen","H5", "5", "5"); //5
 // ExpectedEarning
+barCharts("ExpectedEarning","H5", "5", "5"); //15
 // BootcampYesNo
+barCharts("BootcampYesNo","H5", "5", "5"); //2
 // BootcampFinish
 barCharts("BootcampFinish", "H5", "5", "5"); //2
 // BootcampName
@@ -101,11 +119,17 @@ barCharts("BootcampRecommend", "H5", "5", "5");
 // BootcampFullJobAfter
 barCharts("BootcampFullJobAfter", "H5", "5", "5");
 // BootcampPostSalary 
+barCharts("BootcampPostSalary","H5", "5", "5"); //15
 // BootcampLoan 
+barCharts("BootcampLoan","H5", "5", "5"); //2
 // MonthsProgramming 
+barCharts("MonthsProgramming","H5", "5", "5"); //3
 // HoursLearning 
+barCharts("HoursLearning","H5", "5", "5"); //3
 // MoneyForLearning
+barCharts("MoneyForLearning","H5", "5", "5"); //15
 // Resources
+// barCharts("Resources","H5", "5", "5"); //15
 
 
 // All Topics(in same order as in HTML)
