@@ -251,7 +251,12 @@ Other solutions:
 #SchoolMajor .barTitle,
 #JobPref .barTitle,
 #JobRoleInterest .barTitle,
-#CountryLive .barTitle
+#CountryLive .barTitle,
+#EmploymentStatus .barTitle,
+#EmploymentField .barTitle,
+#CityPopulation .barTitle,
+#JobWherePref .barTitle,
+#JobApplyWhen .barTitle
  {
   font-size: 14px;
 }
