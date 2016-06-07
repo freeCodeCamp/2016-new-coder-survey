@@ -231,7 +231,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         })
         .attr("height", bars.height)
         .filter(function(d) {
-          return d[yColumn] == 0;
+          return d[xColumn] == 0;
         }).remove();
 
       // Bar labels
@@ -263,7 +263,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         })
         .style("text-anchor", format.labels.position.anchor)
         .filter(function(d) {
-          return d[yColumn] == 0;
+          return d[xColumn] == 0;
         }).remove();
 
       // Bar titles
@@ -284,7 +284,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         .style("fill", format.titles.color)
         .style("text-anchor", format.titles.position.anchor)
         .filter(function(d) {
-          return d[yColumn] == 0;
+          return d[xColumn] == 0;
         }).remove();
 
     });
