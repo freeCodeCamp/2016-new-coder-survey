@@ -115,6 +115,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
     HasHomeMortgage: 2,
     HasServedInMilitary: 2,
     HasStudentDebt: 2,
+    HomeMortgageOwe: 5, //15
     HoursLearning: 3,
     IsEthnicMinority: 2,
     IsReceiveDiabilitiesBenefits: 2,

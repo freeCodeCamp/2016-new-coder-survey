@@ -76,6 +76,8 @@ barCharts("StudentDebtOwe","H4", "140", "45"); //5 (15)
 barCharts("FinanciallySupporting","H5", "5", "5"); //2 SOME BUG! WHY NOTHING???
 // HasHomeMortgage
 barCharts("HasHomeMortgage","H5", "5", "5"); //2
+// HomeMortgageOwe
+barCharts("HomeMortgageOwe","H4", "145", "45"); //5 (15)
 // HasHighSpdInternet
 barCharts("HasHighSpdInternet","H4", "35", "45"); //2
 // IsSoftwareDev
