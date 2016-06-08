@@ -51,7 +51,7 @@ barCharts("IsReceiveDiabilitiesBenefits", "H4", "30", "40");
 // HasServedInMilitary
 barCharts("HasServedInMilitary", "H4", "30", "40");
 // Age
-barCharts("Age" ,"H5", "5", "5"); //15
+barCharts("Age" ,"H5", "5", "5"); //4 (15)
 // SchoolDegree
 barCharts("SchoolDegree", "H4d", "255", "60");
 // SchoolMajor
@@ -63,7 +63,7 @@ barCharts("HasChildren", "H5", "0", "0");
 // ChildrenNumber
 barCharts("ChildrenNumber", "H5", "0", "0");
 // Income
-barCharts("Income","H5", "5", "5"); //15
+barCharts("Income","H4", "140", "45"); //5 (15)
 // DebtAmount //BUG FIX! WHERE IS DebtAmount???
 barCharts("HasDebt","H5", "5", "5"); //2
 // HasFinancialDependents
@@ -71,7 +71,7 @@ barCharts("HasFinancialDependents","H5", "5", "5"); //2
 // HasStudentDebt
 barCharts("HasStudentDebt","H5", "5", "5"); //2
 // StudentDebtOwe
-barCharts("StudentDebtOwe","H4d", "70", "60"); //15
+barCharts("StudentDebtOwe","H4", "140", "45"); //5 (15)
 // FinanciallySupporting
 barCharts("FinanciallySupporting","H5", "5", "5"); //2 SOME BUG! WHY NOTHING???
 // HasHomeMortgage
@@ -105,7 +105,7 @@ barCharts("JobRoleInterest", "H4", "195", "50");
 // JobApplyWhen
 barCharts("JobApplyWhen","H4", "210", "45"); //5
 // ExpectedEarning
-barCharts("ExpectedEarning","H4", "70", "45"); //15
+barCharts("ExpectedEarning","H4", "140", "45"); //5 (15)
 // BootcampYesNo
 barCharts("BootcampYesNo","H4", "40", "45"); //2
 // BootcampFinish
@@ -113,13 +113,13 @@ barCharts("BootcampFinish", "H5", "5", "5"); //2
 // BootcampName
 barCharts("BootcampName", "H4d", "195", "60");
 // BootcampMonthsAgo 
-barCharts("BootcampMonthsAgo", "H5", "5", "5");
+barCharts("BootcampMonthsAgo", "H4", "140", "45"); //4 (15)
 // BootcampRecommend 
 barCharts("BootcampRecommend", "H5", "5", "5");
 // BootcampFullJobAfter
 barCharts("BootcampFullJobAfter", "H5", "5", "5");
 // BootcampPostSalary 
-barCharts("BootcampPostSalary","H4d", "70", "60"); //15
+barCharts("BootcampPostSalary","H4", "140", "45"); //5 (15)
 // BootcampLoan 
 barCharts("BootcampLoan","H5", "5", "5"); //2
 // MonthsProgramming 
@@ -127,7 +127,7 @@ barCharts("MonthsProgramming","H4", "110", "45"); //3
 // HoursLearning 
 barCharts("HoursLearning","H4", "95", "45"); //3
 // MoneyForLearning
-barCharts("MoneyForLearning","H4d", "55", "60"); //15
+barCharts("MoneyForLearning","H4", "140", "45"); //5 (15)
 // Resources
 // barCharts("Resources","H5", "5", "5"); //15
 

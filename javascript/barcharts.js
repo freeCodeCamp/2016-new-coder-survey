@@ -91,12 +91,12 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
 
   //List of variables and amount of bars
   var listOfTopics = {
-    Age: 15,
+    Age: 4, //15
     BootcampFinish: 2,
     BootcampLoan: 2,
     BootcampName: 15,
-    BootcampMonthsAgo: 14,
-    BootcampPostSalary: 15,
+    BootcampMonthsAgo: 4, //15
+    BootcampPostSalary: 5, //15
     BootcampRecommend: 2,
     BootcampFullJobAfter: 2,
     BootcampYesNo: 2,
@@ -105,7 +105,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
     CountryLive: 15,
     EmploymentStatus: 10,
     EmploymentField: 15,
-    ExpectedEarning: 15,
+    ExpectedEarning: 5, //15
     FinanciallySupporting: 2,
     Gender: 3,
     HasChildren: 2,
@@ -120,7 +120,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
     IsReceiveDiabilitiesBenefits: 2,
     IsSoftwareDev: 2,
     IsUnderEmployed: 2,
-    Income: 15,
+    Income: 5, //15
     JobApplyWhen: 5,
     JobPref: 5,
     JobRoleInterest: 9,
@@ -128,12 +128,12 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
     JobWherePref: 3,
     LanguageAtHome: 15,
     MaritalStatus: 2, //5 
-    MoneyForLearning: 15,  
+    MoneyForLearning: 5, //15  
     MonthsProgramming: 3,
     Resources: 15,
     SchoolDegree: 10,
     SchoolMajor: 14,
-    StudentDebtOwe: 15,
+    StudentDebtOwe: 5, //15
   }
 
   var bars = {
