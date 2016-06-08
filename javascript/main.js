@@ -53,9 +53,9 @@ barCharts("HasServedInMilitary", "H4", "30", "40");
 // Age
 barCharts("Age" ,"H5", "5", "5"); //15
 // SchoolDegree
-barCharts("SchoolDegree", "H4", "255", "45");
+barCharts("SchoolDegree", "H4d", "255", "60");
 // SchoolMajor
-barCharts("SchoolMajor", "H4", "175", "45");
+barCharts("SchoolMajor", "H4d", "175", "60");
 // MaritalStatus
 barCharts("MaritalStatus", "H5", "0", "0");
 // HasChildren
@@ -71,7 +71,7 @@ barCharts("HasFinancialDependents","H5", "5", "5"); //2
 // HasStudentDebt
 barCharts("HasStudentDebt","H5", "5", "5"); //2
 // StudentDebtOwe
-barCharts("StudentDebtOwe","H4", "70", "45"); //15
+barCharts("StudentDebtOwe","H4d", "70", "60"); //15
 // FinanciallySupporting
 barCharts("FinanciallySupporting","H5", "5", "5"); //2 SOME BUG! WHY NOTHING???
 // HasHomeMortgage
@@ -85,17 +85,17 @@ barCharts("JobRelocateYesNo", "H5", "5", "5"); //2
 // IsUnderEmployed
 barCharts("IsUnderEmployed","H5", "5", "5"); //2
 // EmploymentStatus
-barCharts("EmploymentStatus","H4", "244", "45"); //10
+barCharts("EmploymentStatus","H4d", "244", "60"); //10
 // EmploymentField
-barCharts("EmploymentField","H4", "240", "45"); //15
+barCharts("EmploymentField","H4d", "240", "60"); //15
 // CountryLive
-barCharts("CountryLive", "H4", "165", "45"); //15
+barCharts("CountryLive", "H4d", "165", "60"); //15
 // IsEthnicMinority
 barCharts("IsEthnicMinority","H5", "5", "5"); //2
 // CityPopulation
 barCharts("CityPopulation","H4", "200", "45"); //3
 // LanguageAtHome
-barCharts("LanguageAtHome","H4", "95", "45"); //15
+barCharts("LanguageAtHome","H4d", "95", "60"); //15
 // JobWherePref
 barCharts("JobWherePref","H4", "180", "45"); //3
 // JobPref
@@ -111,7 +111,7 @@ barCharts("BootcampYesNo","H4", "40", "45"); //2
 // BootcampFinish
 barCharts("BootcampFinish", "H5", "5", "5"); //2
 // BootcampName
-barCharts("BootcampName", "H4", "195", "45");
+barCharts("BootcampName", "H4d", "195", "60");
 // BootcampMonthsAgo 
 barCharts("BootcampMonthsAgo", "H5", "5", "5");
 // BootcampRecommend 
@@ -119,7 +119,7 @@ barCharts("BootcampRecommend", "H5", "5", "5");
 // BootcampFullJobAfter
 barCharts("BootcampFullJobAfter", "H5", "5", "5");
 // BootcampPostSalary 
-barCharts("BootcampPostSalary","H4", "70", "45"); //15
+barCharts("BootcampPostSalary","H4d", "70", "60"); //15
 // BootcampLoan 
 barCharts("BootcampLoan","H5", "5", "5"); //2
 // MonthsProgramming 
@@ -127,7 +127,7 @@ barCharts("MonthsProgramming","H4", "110", "45"); //3
 // HoursLearning 
 barCharts("HoursLearning","H4", "95", "45"); //3
 // MoneyForLearning
-barCharts("MoneyForLearning","H4", "55", "45"); //15
+barCharts("MoneyForLearning","H4d", "55", "60"); //15
 // Resources
 // barCharts("Resources","H5", "5", "5"); //15
 
