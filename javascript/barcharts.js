@@ -30,6 +30,30 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         }
       },
 
+      //  H4 - labels & titles outside the bar (for short bars) //
+      H4d: {
+        name: "H4d",
+        //bar value
+        labels: {
+          color: "#006400", //black //white //#006400
+          position: {
+            x: 5,
+            y: 5,
+            anchor: "" //"end" //"middle" //""
+          },
+          format: d3.format(".1%")
+        },
+        //bar name
+        titles: {
+          color: "black", //black //white //#006400
+          position: {
+            x: -5,
+            y: 5,
+            anchor: "end" //"end" //"middle" //""
+          }
+        }
+      },
+
       //  H5 - labels & titles inside the bar (for long bars) //
       H5: {
         name: "H5",
@@ -146,7 +170,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
   
   var yAxisLabel = "This is the best Y label ever"; // CSS .y.axis { display: none }
 
-  var formatPercent = d3.format(".0%");
+  var formatPercent = format.labels.format? format.labels.format : d3.format(".0%");
 
   var y = d3.scale.ordinal()
     .rangeRoundBands([height + 0, 0]);
@@ -248,6 +272,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         })
         .text(function(d, i) {
           return formatPercent(d[xColumn])
+          // return d[xColumn]
         })
         .attr('x', function(d) {
           return ((x(d[xColumn]) + format.labels.position.x) / totalWidth) * 100 + "%";

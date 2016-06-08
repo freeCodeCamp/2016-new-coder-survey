@@ -53,7 +53,7 @@ barCharts("HasServedInMilitary", "H4", "30", "40");
 // Age
 barCharts("Age" ,"H5", "5", "5"); //15
 // SchoolDegree
-barCharts("SchoolDegree", "H4", "252", "45");
+barCharts("SchoolDegree", "H4", "255", "45");
 // SchoolMajor
 barCharts("SchoolMajor", "H4", "175", "45");
 // MaritalStatus
