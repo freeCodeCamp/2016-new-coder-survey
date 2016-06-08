@@ -102,6 +102,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
     BootcampYesNo: 2,
     ChildrenNumber: 3, //14
     CityPopulation: 3,
+    CodeEvent: 14,
     CountryLive: 15,
     EmploymentStatus: 10,
     EmploymentField: 15,

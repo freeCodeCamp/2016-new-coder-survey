@@ -57,11 +57,11 @@ barCharts("SchoolDegree", "H4d", "255", "60");
 // SchoolMajor
 barCharts("SchoolMajor", "H4d", "175", "60");
 // MaritalStatus
-barCharts("MaritalStatus", "H5", "0", "0");
+barCharts("MaritalStatus", "H5", "5", "5");
 // HasChildren
-barCharts("HasChildren", "H5", "0", "0");
+barCharts("HasChildren", "H5", "5", "5");
 // ChildrenNumber
-barCharts("ChildrenNumber", "H5", "0", "0");
+barCharts("ChildrenNumber", "H5", "5", "5");
 // Income
 barCharts("Income","H4", "140", "45"); //5 (15)
 // DebtAmount //BUG FIX! WHERE IS DebtAmount???
@@ -113,9 +113,9 @@ barCharts("BootcampYesNo","H4", "40", "45"); //2
 // BootcampFinish
 barCharts("BootcampFinish", "H5", "5", "5"); //2
 // BootcampName
-barCharts("BootcampName", "H4d", "195", "60");
+barCharts("BootcampName", "H4d", "200", "60");
 // BootcampMonthsAgo 
-barCharts("BootcampMonthsAgo", "H4", "140", "45"); //4 (15)
+barCharts("BootcampMonthsAgo", "H4", "100", "45"); //4 (15)
 // BootcampRecommend 
 barCharts("BootcampRecommend", "H5", "5", "5");
 // BootcampFullJobAfter
@@ -129,10 +129,11 @@ barCharts("MonthsProgramming","H4", "110", "45"); //3
 // HoursLearning 
 barCharts("HoursLearning","H4", "95", "45"); //3
 // MoneyForLearning
-barCharts("MoneyForLearning","H4", "140", "45"); //5 (15)
+barCharts("MoneyForLearning","H4", "125", "45"); //5 (15)
 // Resources
-// barCharts("Resources","H5", "5", "5"); //15
-
+barCharts("Resources","H4", "135", "45"); //15
+// CodeEvent
+barCharts("CodeEvent","H4d", "150", "60"); //15
 
 // All Topics(in same order as in HTML)
 // Gender
