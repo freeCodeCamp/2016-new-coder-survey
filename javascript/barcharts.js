@@ -1,18 +1,18 @@
 // Author: SamAI (@SamAI-Software)
 // http://samai-software.github.io/
 
-var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, topic, format) {
+var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, topic, format, totalBars, xColumn, yColumn) {
 
   ///////////////////////////////
   // -------- FORMATS -------- //
   ///////////////////////////////
   var formats = {
-      //  H4 - labels & titles outside the bar (for short bars) //
+      //  H4 - labels & titles outside the bar (for short bars)
       H4: {
         name: "H4",
         //bar value
         labels: {
-          color: "#006400", //black //white //#006400
+          color: "#006400",
           position: {
             x: 5,
             y: 5,
@@ -21,7 +21,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         },
         //bar name
         titles: {
-          color: "black", //black //white //#006400
+          color: "black",
           position: {
             x: -5,
             y: 5,
@@ -30,12 +30,12 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         }
       },
 
-      //  H4 - labels & titles outside the bar (for short bars) //
+      //  H4d - same as H4, but with decimal number (for very short bars)
       H4d: {
         name: "H4d",
         //bar value
         labels: {
-          color: "#006400", //black //white //#006400
+          color: "#006400",
           position: {
             x: 5,
             y: 5,
@@ -45,7 +45,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         },
         //bar name
         titles: {
-          color: "black", //black //white //#006400
+          color: "black",
           position: {
             x: -5,
             y: 5,
@@ -54,12 +54,12 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         }
       },
 
-      //  H5 - labels & titles inside the bar (for long bars) //
+      //  H5 - labels & titles inside the bar (for long bars)
       H5: {
         name: "H5",
         // bar value
         labels: {
-          color: "white", //black //white //#006400
+          color: "white",
           position: {
             x: -5,
             y: 5,
@@ -68,7 +68,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         },
         //bar name
         titles: {
-          color: "white", //black //white //#006400
+          color: "white",
           position: {
             x: 5,
             y: 5,
@@ -78,68 +78,15 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
       }
     }   
 
-  ////////////////////////////////
-  // -------- SETTINGS -------- //
-  ////////////////////////////////
-  var surveyDataSumm = data;
- 
-  // These are configurable variables //
-
+  ////////////////////////////////////////
+  // ------------ SETTINGS ------------ //
+  ////////////////////////////////////////
+  // -These are configurable variables -//
   // -------- GENERAL SETTINGS -------- //
-  var format = formats[format]; // ask about this line????????
-  // var topic = topic;  // topic is passed value // ask about this line????????
-
-  //List of variables and amount of bars
-  var listOfTopics = {
-    Age: 4, //15
-    BootcampFinish: 2,
-    BootcampLoan: 2,
-    BootcampName: 15,
-    BootcampMonthsAgo: 4, //15
-    BootcampPostSalary: 5, //15
-    BootcampRecommend: 2,
-    BootcampFullJobAfter: 2,
-    BootcampYesNo: 2,
-    ChildrenNumber: 3, //14
-    CityPopulation: 3,
-    CodeEvent: 14,
-    CountryLive: 15,
-    EmploymentStatus: 10,
-    EmploymentField: 15,
-    ExpectedEarning: 5, //15
-    FinanciallySupporting: 2,
-    Gender: 3,
-    HasChildren: 2,
-    HasDebt: 2,
-    HasFinancialDependents: 2,
-    HasHighSpdInternet: 2,
-    HasHomeMortgage: 2,
-    HasServedInMilitary: 2,
-    HasStudentDebt: 2,
-    HomeMortgageOwe: 5, //15
-    HoursLearning: 3,
-    IsEthnicMinority: 2,
-    IsReceiveDiabilitiesBenefits: 2,
-    IsSoftwareDev: 2,
-    IsUnderEmployed: 2,
-    Income: 5, //15
-    JobApplyWhen: 5,
-    JobPref: 5,
-    JobRoleInterest: 9,
-    JobRelocateYesNo: 2,
-    JobWherePref: 3,
-    LanguageAtHome: 15,
-    MaritalStatus: 2, //5 
-    MoneyForLearning: 5, //15  
-    MonthsProgramming: 3,
-    Resources: 15,
-    SchoolDegree: 10,
-    SchoolMajor: 14,
-    StudentDebtOwe: 5, //15
-  }
+  var format = formats[format];
 
   var bars = {
-    total: listOfTopics[topic] + 1, // n + 1 blank bar //(5) = 6 //ask about blank bar????????
+    total: totalBars + 1, // n + 1 blank bar //(5) = 6 //ask about blank bar????????
     height: 25, // can be changed without problems
     padding: 5, // can be changed, but Y axis (left) might drift if displayed, so use it cautiously
     animation: {
@@ -148,14 +95,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
     }
   };
 
-  
-  function countBars() {
-    console.log(topic + " bars.total = " + bars.total + "; yColumn = " + yColumn);
-    // forEach()
-    console.log(typeof yColumn);
-  }
-
-  // -------- SPECIFIC SETTINGS -------- //
+  // -------- SPECIFIC SETTINGS ------- //
   var margin = {
       top: 20,
       right: rightMargin, // rightMargin is passed value
@@ -166,11 +106,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
     // width = "100%", //can't use "100%" because of left titles with const px size
     height = 20 - margin.top - margin.bottom + bars.total * (bars.height + bars.padding); //height generates automatically
 
-  var xColumn = topic + "Perc"; // "Perc" is added because of special format of a current .csv file
-  var yColumn = topic; // topic is passed value
-  countBars();
-  
-  var yAxisLabel = "This is the best Y label ever"; // CSS .y.axis { display: none }
+  var yAxisLabel = ""; // CSS .y.axis { display: none }
 
   var formatPercent = format.labels.format? format.labels.format : d3.format(".0%");
 
@@ -200,7 +136,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    d3.csv(surveyDataSumm, type, function(error, data) {
+    d3.csv(data, type, function(error, data) {
       console.log("d3.csv called");
 
       // Hide Y ticks labels if the value is 0 and Y axis is displayed
@@ -274,7 +210,6 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         })
         .text(function(d, i) {
           return formatPercent(d[xColumn])
-          // return d[xColumn]
         })
         .attr('x', function(d) {
           return ((x(d[xColumn]) + format.labels.position.x) / totalWidth) * 100 + "%";
@@ -317,7 +252,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
     });
 
     function type(d) {
-      // d.Age = +d.Age; //is it necessary to convert or not????????
+      // d.Age = +d.Age;
       return d;
     }
   }
@@ -335,22 +270,79 @@ var barCharts = (function(topic, format, leftMargin, rightMargin) {
 
   //data for bar charts
   var dataBC = './data/2016-New-Coder-Survey-Data-Summary.csv';
+  var xColumn = topic + "Perc"; // "Perc" is added because of special format of a current .csv file
+  var yColumn = topic;
 
-  /////////////////////////////////////////////////////////////////////////////////////
-  // drawBarCharts(data, place, totalWidth, leftMargin, rightMargin, topic, format); //
-  /////////////////////////////////////////////////////////////////////////////////////
+  //List of variables and amount of bars
+  var listOfTopics = {
+    Age: 4,
+    BootcampFinish: 2,
+    BootcampLoan: 2,
+    BootcampName: 15,
+    BootcampMonthsAgo: 4,
+    BootcampPostSalary: 5,
+    BootcampRecommend: 2,
+    BootcampFullJobAfter: 2,
+    BootcampYesNo: 2,
+    ChildrenNumber: 3,
+    CityPopulation: 3,
+    CodeEvent: 14,
+    CountryLive: 15,
+    EmploymentStatus: 10,
+    EmploymentField: 15,
+    ExpectedEarning: 5,
+    FinanciallySupporting: 2,
+    Gender: 3,
+    HasChildren: 2,
+    HasDebt: 2,
+    HasFinancialDependents: 2,
+    HasHighSpdInternet: 2,
+    HasHomeMortgage: 2,
+    HasServedInMilitary: 2,
+    HasStudentDebt: 2,
+    HomeMortgageOwe: 5,
+    HoursLearning: 3,
+    IsEthnicMinority: 2,
+    IsReceiveDiabilitiesBenefits: 2,
+    IsSoftwareDev: 2,
+    IsUnderEmployed: 2,
+    Income: 5,
+    JobApplyWhen: 5,
+    JobPref: 5,
+    JobRoleInterest: 9,
+    JobRelocateYesNo: 2,
+    JobWherePref: 3,
+    LanguageAtHome: 15,
+    MaritalStatus: 2,
+    MoneyForLearning: 5,
+    MonthsProgramming: 3,
+    Resources: 15,
+    SchoolDegree: 10,
+    SchoolMajor: 14,
+    StudentDebtOwe: 5,
+  }
+
+  var totalBars = listOfTopics[topic];
+
+  ///////////////////////////////////////////////////////////
+  // drawBarCharts(data, place, totalWidth,                //
+  //               leftMargin, rightMargin, topic, format, //
+  //               totalBars, xColumn, yColumn);           //
+  ///////////////////////////////////////////////////////////
 
   //place - DOM container                   //e.g. "#JobPref"
   //totalWidth - width of a DOM container   //e.g. "500"
   //leftMargin - adjust left titles in H4   //e.g. "200"
   //rightMargin - adjust right labels in H4 //e.g. "40"
   //topic - column name in .csv file        //e.g. "JobPref"
-  //format - "H4"/"H5" https://files.gitter.im/SamAI-Software/UO6O/BarChartsHorizontal_H5H4.jpg
+  //format - "H4"/"H4d"/"H5"
+  //https://files.gitter.im/SamAI-Software/UO6O/BarChartsHorizontal_H5H4.jpg
 
-  drawBarCharts(dataBC, "#" + topic, $("#" + topic).width(), leftMargin, rightMargin, topic, format);
+  drawBarCharts(dataBC, "#" + topic, $("#" + topic).width(), 
+                leftMargin, rightMargin, topic, format, 
+                totalBars, xColumn, yColumn);
 
 });
-
 
 //examples how to call barCharts()
 //barCharts("JobPref", "H4", "270", "50");

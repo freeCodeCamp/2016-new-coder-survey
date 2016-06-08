@@ -89,7 +89,7 @@ nav {
     content: "";
     display: table; }
   .charts .chart {
-    border: 1px solid blue;
+    /*border: 1px solid blue;*/
     float: left;
     display: block;
     margin-right: 2.35765%;
@@ -240,12 +240,6 @@ section article.tags {
 .barTitle {
   font-size: 16px;
 }
-
-/*Individual bar charts*/
-/*For responsiveness until find a better solution
-Other solutions:
-1.) Vertical layout for bars and titles (titles on top of bars)
-2.) Vertical bar charts with titles rotated 180 deg*/
 
 #SchoolDegree .barTitle,
 #SchoolMajor .barTitle,
