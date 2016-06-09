@@ -49,7 +49,7 @@ barCharts("HasChildren", "H5", "5", "5");
 // ChildrenNumber
 barCharts("ChildrenNumber", "H5", "5", "5");
 // Income
-barCharts("Income","H4", "140", "45"); //5 (15)
+barCharts("Income","H4", "95", "45"); //5 (15)
 // HasDebt
 barCharts("HasDebt","H5", "5", "5"); //2
 // HasFinancialDependents
@@ -57,13 +57,13 @@ barCharts("HasFinancialDependents","H5", "5", "5"); //2
 // HasStudentDebt
 barCharts("HasStudentDebt","H5", "5", "5"); //2
 // StudentDebtOwe
-barCharts("StudentDebtOwe","H4", "140", "45"); //5 (15)
+barCharts("StudentDebtOwe","H4", "90", "45"); //5 (15)
 // FinanciallySupporting
 barCharts("FinanciallySupporting","H5", "5", "5"); //2
 // HasHomeMortgage
 barCharts("HasHomeMortgage","H5", "5", "5"); //2
 // HomeMortgageOwe
-barCharts("HomeMortgageOwe","H4", "145", "45"); //5 (15)
+barCharts("HomeMortgageOwe","H4", "95", "45"); //5 (15)
 // HasHighSpdInternet
 barCharts("HasHighSpdInternet","H4", "35", "45"); //2
 // IsSoftwareDev
@@ -93,7 +93,7 @@ barCharts("JobRoleInterest", "H4", "195", "50");
 // JobApplyWhen
 barCharts("JobApplyWhen","H4", "210", "45"); //5
 // ExpectedEarning
-barCharts("ExpectedEarning","H4", "140", "45"); //5 (15)
+barCharts("ExpectedEarning","H4", "95", "45"); //5 (15)
 // BootcampYesNo
 barCharts("BootcampYesNo","H4", "40", "45"); //2
 // BootcampFinish
@@ -107,7 +107,7 @@ barCharts("BootcampRecommend", "H5", "5", "5");
 // BootcampFullJobAfter
 barCharts("BootcampFullJobAfter", "H5", "5", "5");
 // BootcampPostSalary 
-barCharts("BootcampPostSalary","H4", "140", "45"); //5 (15)
+barCharts("BootcampPostSalary","H4", "95", "45"); //5 (15)
 // BootcampLoan 
 barCharts("BootcampLoan","H5", "5", "5"); //2
 // MonthsProgramming 
@@ -115,7 +115,7 @@ barCharts("MonthsProgramming","H4", "110", "45"); //3
 // HoursLearning 
 barCharts("HoursLearning","H4", "95", "45"); //3
 // MoneyForLearning
-barCharts("MoneyForLearning","H4", "125", "45"); //5 (15)
+barCharts("MoneyForLearning","H4", "70", "45"); //5 (15)
 // Resources
 barCharts("Resources","H4", "135", "45"); //15
 // CodeEvent
