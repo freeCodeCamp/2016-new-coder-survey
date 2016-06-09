@@ -283,7 +283,7 @@ var barCharts = (function(topic, format, leftMargin, rightMargin) {
     BootcampPostSalary: 7,
     BootcampRecommend: 2,
     BootcampFullJobAfter: 2,
-    BootcampYesNo: 2,
+    BootcampYesNo: 2, //AttendedBootcamp
     ChildrenNumber: 3,
     CityPopulation: 3,
     CodeEvent: 14,

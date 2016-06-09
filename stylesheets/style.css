@@ -12,7 +12,9 @@ body {
     color: #417505;
     text-decoration: none; }
   body .footnote {
-    font-style: italic; }
+    margin: 0 0 0 0.15em;
+    font-size: 0.8em;
+    /*font-style: italic; */ }
   body img {
     width: 100%; }
 
