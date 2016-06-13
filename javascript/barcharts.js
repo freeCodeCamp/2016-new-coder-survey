@@ -12,7 +12,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         name: "H4",
         //bar value
         labels: {
-          color: "#006400",
+          color: "black", // #006400 #008400 #7ED321
           position: {
             x: 5,
             y: 5,
@@ -35,7 +35,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         name: "H4d",
         //bar value
         labels: {
-          color: "#006400",
+          color: "black", // #006400 #008400 #7ED321
           position: {
             x: 5,
             y: 5,

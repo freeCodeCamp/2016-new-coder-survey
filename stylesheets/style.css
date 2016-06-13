@@ -204,7 +204,7 @@ section article.tags {
 
 
 /* toDO: barcharts.scss*/
-/* Shows the small ticks on Y axis */
+/* This shows the small ticks on Y axis */
 .axis path,
 .axis line {
   fill: none;
@@ -222,21 +222,21 @@ section article.tags {
 .y.axis path {
   display: none;
 }
-
+/*#006400 #008400 #7ED321*/
 .bar {
   position: absolute;
+  fill: #7ED321;
+  stroke: #7ED321;
+}
+
+.bar:hover {
   fill: #006400;
   stroke: #006400;
 }
 
-.bar:hover {
-  fill: #008400;
-  stroke: #008400;
-}
-
 .barLabel {
   font-size: 16px;
-  font-weight: bold;
+  /*font-weight: bold;*/
 }
 
 .barTitle {
