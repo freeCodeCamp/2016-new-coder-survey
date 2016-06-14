@@ -31,47 +31,47 @@ $("document").ready(function(){
 
 // All Topics(in same order as in HTML)
 // Gender
-barCharts("Gender", "H4", "60", "40");
+barCharts("Gender", "H4", "65", "45");
 // FinanciallySupporting
-barCharts("IsReceiveDiabilitiesBenefits", "H4", "30", "40");
+barCharts("IsReceiveDiabilitiesBenefits", "H4", "35", "45");
 // HasServedInMilitary
-barCharts("HasServedInMilitary", "H4", "30", "40");
+barCharts("HasServedInMilitary", "H4", "35", "45");
 // Age
-barCharts("Age" ,"H5", "5", "5"); //4
+barCharts("Age" ,"H4", "75", "45"); //4
 // SchoolDegree
 barCharts("SchoolDegree", "H4d", "255", "60");
 // SchoolMajor
 barCharts("SchoolMajor", "H4d", "175", "60");
 // MaritalStatus
-barCharts("MaritalStatus", "H5", "5", "5");
+barCharts("MaritalStatus", "H4", "235", "45");
 // HasChildren
-barCharts("HasChildren", "H5", "5", "5");
+barCharts("HasChildren", "H4", "35", "45");
 // ChildrenNumber
-barCharts("ChildrenNumber", "H5", "5", "5");
+barCharts("ChildrenNumber", "H4", "35", "45");
 // Income
 barCharts("Income","H4", "95", "45"); //5
 // HasDebt
-barCharts("HasDebt","H5", "5", "5"); //2
+barCharts("HasDebt","H4", "35", "45"); //2
 // HasFinancialDependents
-barCharts("HasFinancialDependents","H5", "5", "5"); //2
+barCharts("HasFinancialDependents","H4", "35", "45"); //2
 // HasStudentDebt
-barCharts("HasStudentDebt","H5", "5", "5"); //2
+barCharts("HasStudentDebt","H4", "35", "45"); //2
 // StudentDebtOwe
 barCharts("StudentDebtOwe","H4", "90", "45"); //5
 // FinanciallySupporting
-barCharts("FinanciallySupporting","H5", "5", "5"); //2
+barCharts("FinanciallySupporting","H4", "35", "45"); //2
 // HasHomeMortgage
-barCharts("HasHomeMortgage","H5", "5", "5"); //2
+barCharts("HasHomeMortgage","H4", "35", "45"); //2
 // HomeMortgageOwe
 barCharts("HomeMortgageOwe","H4", "95", "45"); //5
 // HasHighSpdInternet
 barCharts("HasHighSpdInternet","H4", "35", "45"); //2
 // IsSoftwareDev
-barCharts("IsSoftwareDev", "H5", "5", "5"); //2
+barCharts("IsSoftwareDev", "H4", "35", "45"); //2
 // JobRelocateYesNo
-barCharts("JobRelocateYesNo", "H5", "5", "5"); //2
+barCharts("JobRelocateYesNo", "H4", "35", "45"); //2
 // IsUnderEmployed
-barCharts("IsUnderEmployed","H5", "5", "5"); //2
+barCharts("IsUnderEmployed","H4", "35", "45"); //2
 // EmploymentStatus
 barCharts("EmploymentStatus","H4d", "244", "60"); //10
 // EmploymentField
@@ -79,7 +79,7 @@ barCharts("EmploymentField","H4d", "240", "60"); //15
 // CountryLive
 barCharts("CountryLive", "H4d", "165", "60"); //15
 // IsEthnicMinority
-barCharts("IsEthnicMinority","H5", "5", "5"); //2
+barCharts("IsEthnicMinority","H4", "35", "45"); //2
 // CityPopulation
 barCharts("CityPopulation","H4", "200", "45"); //3
 // LanguageAtHome
@@ -95,21 +95,21 @@ barCharts("JobApplyWhen","H4", "210", "45"); //5
 // ExpectedEarning
 barCharts("ExpectedEarning","H4", "95", "45"); //5
 // BootcampYesNo (AttendedBootcamp)
-barCharts("BootcampYesNo","H4", "40", "45"); //2 //AttendedBootcamp
+barCharts("BootcampYesNo","H4", "35", "45"); //2 //AttendedBootcamp
 // BootcampFinish
-barCharts("BootcampFinish", "H5", "5", "5"); //2
+barCharts("BootcampFinish", "H4", "35", "45"); //2
 // BootcampName
 barCharts("BootcampName", "H4d", "200", "60");
 // BootcampMonthsAgo 
 barCharts("BootcampMonthsAgo", "H4", "100", "45"); //4
 // BootcampRecommend 
-barCharts("BootcampRecommend", "H5", "5", "5");
+barCharts("BootcampRecommend", "H4", "35", "45");
 // BootcampFullJobAfter
-barCharts("BootcampFullJobAfter", "H5", "5", "5");
+barCharts("BootcampFullJobAfter", "H4", "35", "45");
 // BootcampPostSalary 
 barCharts("BootcampPostSalary","H4", "95", "45"); //5
 // BootcampLoan 
-barCharts("BootcampLoan","H5", "5", "5"); //2
+barCharts("BootcampLoan","H4", "35", "45"); //2
 // MonthsProgramming 
 barCharts("MonthsProgramming","H4", "110", "45"); //3
 // HoursLearning 
