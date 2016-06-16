@@ -369,7 +369,7 @@ as follows in the parentheses:
 ### About how many people live in your city?
 
 - **Question Type**: 
-- **Variable**: `CountryLive`
+- **Variable**: `CityPopulation`
 - **Type**: Categorical
 - **Options**:
     - less than 100,000
@@ -415,7 +415,7 @@ as follows in the parentheses:
 ### What was the main subject your studied in university?
 
 - **Question Type**: 
-- **Variable**: `School Major`
+- **Variable**: `SchoolMajor`
 - **Type**: Categorical
 - **Options**: User input
 - **Note**: This field became open if you choose anything greater than trade,
