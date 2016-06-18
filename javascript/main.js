@@ -39,11 +39,11 @@ barCharts("HasServedInMilitary", "H4", "35", "45");
 // Age
 barCharts("Age" ,"H4", "75", "45"); //4
 // SchoolDegree
-barCharts("SchoolDegree", "H4d", "255", "60");
+barCharts("SchoolDegree", "H4d", "225", "60");
 // SchoolMajor
 barCharts("SchoolMajor", "H4d", "175", "60");
 // MaritalStatus
-barCharts("MaritalStatus", "H4", "235", "45");
+barCharts("MaritalStatus", "H4", "165", "45");
 // HasChildren
 barCharts("HasChildren", "H4", "35", "45");
 // ChildrenNumber
@@ -73,9 +73,9 @@ barCharts("JobRelocateYesNo", "H4", "35", "45"); //2
 // IsUnderEmployed
 barCharts("IsUnderEmployed","H4", "35", "45"); //2
 // EmploymentStatus
-barCharts("EmploymentStatus","H4d", "244", "60"); //10
+barCharts("EmploymentStatus","H4d", "220", "60"); //10
 // EmploymentField
-barCharts("EmploymentField","H4d", "240", "60"); //15
+barCharts("EmploymentField","H4d", "190", "60"); //15
 // CountryLive
 barCharts("CountryLive", "H4d", "165", "60"); //15
 // IsEthnicMinority

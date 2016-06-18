@@ -86,7 +86,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
   var format = formats[format];
 
   var bars = {
-    total: totalBars + 1, // n + 1 blank bar //(5) = 6 //ask about blank bar????????
+    total: totalBars + 1, // n + 1 blank bar //(5) = 6
     height: 25, // can be changed without problems
     padding: 5, // can be changed, but Y axis (left) might drift if displayed, so use it cautiously
     animation: {
