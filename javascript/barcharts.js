@@ -76,7 +76,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
           }
         }
       }
-    }   
+    };   
 
   ////////////////////////////////////////
   // ------------ SETTINGS ------------ //
@@ -127,7 +127,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
     .orient("left");
 
   function render() {
-    console.log("function render() called")
+    console.log("function render() called");
 
     var svg = d3.select(place).append("svg")
       .attr("width", "100%")
@@ -145,7 +145,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         data.forEach(function(item) {
           if (item[yColumn] == d) val = item[xColumn];
         });
-        return val == 0 ? "" : d;
+        return val == 0 ? "" : d; // '=== 0' doesn't work, coz val might be not int
       });
 
       y.domain(data.map(function(d) {
@@ -180,20 +180,19 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         // .attr("x", 800) // for fancy animation
         .transition().duration(bars.animation.duration)
         .delay(function(d, i) {
-          return i * bars.animation.delay
+          return i * bars.animation.delay;
         })
         .attr("class", "bar")
         // .attr("x", 0) // for fancy animation
         .attr("width", function(d) {
           return ((x(d[xColumn])) / totalWidth) * 100 + "%";
-          var test = 0;
         })
         .attr("y", function(d) {
           return (y(d[yColumn]) + bars.padding);
         })
         .attr("height", bars.height)
         .filter(function(d) {
-          return d[xColumn] == 0;
+          return d[xColumn] == 0; // '=== 0' doesn't work, coz xColumn not int
         }).remove();
 
       // Bar labels
@@ -206,10 +205,10 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         .transition()
         .duration(300)
         .delay(function(d, i) {
-          return i * bars.animation.delay + bars.animation.duration - 400
+          return i * bars.animation.delay + bars.animation.duration - 400;
         })
         .text(function(d, i) {
-          return formatPercent(d[xColumn])
+          return formatPercent(d[xColumn]);
         })
         .attr('x', function(d) {
           return ((x(d[xColumn]) + format.labels.position.x) / totalWidth) * 100 + "%";
@@ -220,12 +219,12 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         .style("fill", format.labels.color)
         .style("display", function(d) {
           if (!x(d[xColumn])) {
-            return "none"
+            return "none";
           }
         })
         .style("text-anchor", format.labels.position.anchor)
         .filter(function(d) {
-          return d[xColumn] == 0;
+          return d[xColumn] == 0; // '=== 0' doesn't work, coz xColumn not int
         }).remove();
 
       // Bar titles
@@ -235,7 +234,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         .append('text')
         .attr('class', 'barTitle')
         .text(function(d) {
-          return d[yColumn]
+          return d[yColumn];
         })
         .attr('x', function(d) {
           return format.titles.position.x;
@@ -246,7 +245,7 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
         .style("fill", format.titles.color)
         .style("text-anchor", format.titles.position.anchor)
         .filter(function(d) {
-          return d[xColumn] == 0;
+          return d[xColumn] == 0; // '=== 0' doesn't work, coz xColumn not int
         }).remove();
 
     });
@@ -320,7 +319,7 @@ var barCharts = (function(topic, format, leftMargin, rightMargin) {
     SchoolDegree: 10,
     SchoolMajor: 14,
     StudentDebtOwe: 5,
-  }
+  };
 
   var totalBars = listOfTopics[topic];
 
