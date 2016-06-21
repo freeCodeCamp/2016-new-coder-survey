@@ -12,7 +12,9 @@ body {
     color: #417505;
     text-decoration: none; }
   body .footnote {
-    font-style: italic; }
+    margin: 0 0 0 0.15em;
+    font-size: 0.8em;
+    /*font-style: italic; */ }
   body img {
     width: 100%; }
 
@@ -83,12 +85,13 @@ nav {
       left: 25%; } }
 
 .charts {
-  padding: 0px 50px 5px; }
+  padding: 0px 10px 5px; }
   .charts::after {
     clear: both;
     content: "";
     display: table; }
   .charts .chart {
+    /*border: 1px solid blue;*/
     float: left;
     display: block;
     margin-right: 2.35765%;
@@ -116,12 +119,13 @@ nav {
     padding-bottom: 50px; }
 
 .chart .chart-graphic {
-  border: solid #F6F6F6 3px;
   width: 100%;
-  height: 60px; }
+  height: auto; }
 @media screen and (min-width: 800px) {
   .chart {
-    display: table-cell; } }
+    display: table-cell; } 
+    .chart .chart-graphic {
+      border: solid #F6F6F6 3px; } }
 
 footer {
   padding: 30px 50px;
@@ -197,5 +201,61 @@ section article.tags {
         background: #7ED321;
         color: white;
         border-color: #7ED321; }
+
+
+/* toDO: barcharts.scss*/
+/* This shows the small ticks on Y axis */
+.axis path,
+.axis line {
+  fill: none;
+}
+
+.x.axis {
+  display: none;
+}
+
+.y.axis {
+  display: none;
+  font-size: 16px;
+}
+
+.y.axis path {
+  display: none;
+}
+/*#006400 #008400 #7ED321*/
+.bar {
+  position: absolute;
+  fill: #7ED321;
+  stroke: #7ED321;
+}
+
+.bar:hover {
+  fill: #006400;
+  stroke: #006400;
+}
+
+.barLabel {
+  font-size: 16px;
+  /*font-weight: bold;*/
+}
+
+.barTitle {
+  font-size: 16px;
+}
+
+#SchoolDegree .barTitle,
+#SchoolMajor .barTitle,
+#JobPref .barTitle,
+#JobRoleInterest .barTitle,
+#CountryLive .barTitle,
+#EmploymentStatus .barTitle,
+#EmploymentField .barTitle,
+#CityPopulation .barTitle,
+#JobWherePref .barTitle,
+#JobApplyWhen .barTitle
+ {
+  font-size: 14px;
+}
+
 
 /*# sourceMappingURL=style.css.map */
