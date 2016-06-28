@@ -1,4 +1,4 @@
-# Survey Reveals Diversity in the “Learn to Code” Movement
+# Survey Reveals Diversity in the â€œLearn to Codeâ€ Movement
 
 Posted by Loren Shure, June 27, 2016
 
