@@ -264,8 +264,6 @@ var renderBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin
 
 });
 
-
-
 var allBarCharts = {
   Age: false,
   BootcampFinish: false,
@@ -314,9 +312,18 @@ var allBarCharts = {
   StudentDebtOwe: false,
 
   check: function(ID) {
-    if(!this[ID]){ 
+    if (!this[ID]) { 
       this[ID] = true;
       prepareBarCharts(ID);
+    }
+  },
+
+  resize: function(ID) {
+    if (this[ID]) { 
+      setTimeout(function() {
+        $("#"+ID).html("");
+        prepareBarCharts(ID);
+      }, 1000);
     }
   }
 };
@@ -387,7 +394,7 @@ var prepareBarCharts = (function(topic) {
 
 
   ///////////////////////////////////////////////////////////
-  // renderBarCharts(data, place, totalWidth,                //
+  // renderBarCharts(data, place, totalWidth,              //
   //               leftMargin, rightMargin, topic, format, //
   //               totalBars, xColumn, yColumn);           //
   ///////////////////////////////////////////////////////////

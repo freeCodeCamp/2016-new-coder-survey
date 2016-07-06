@@ -83,5 +83,12 @@ $("document").ready(function(){
 
   });
   // ---------SCROLL-END----- //
+
+  win.resize(function() {
+    allMods.each(function(i, el) {
+      var ID = $(el).attr('id');
+      allBarCharts.resize(ID);
+    });
+  });
   
 });
