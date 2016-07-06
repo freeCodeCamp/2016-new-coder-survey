@@ -1,7 +1,7 @@
 // Author: SamAI (@SamAI-Software)
 // http://samai-software.github.io/
 
-var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, topic, format, totalBars, xColumn, yColumn) {
+var renderBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, topic, format, totalBars, xColumn, yColumn) {
 
   ///////////////////////////////
   // -------- FORMATS -------- //
@@ -264,67 +264,130 @@ var drawBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, 
 
 });
 
-//  barCharts() prepares all variables to be passed into drawBarCharts()
-var barCharts = (function(topic, format, leftMargin, rightMargin) {
 
-  //data for bar charts
-  var dataBC = './data/2016-New-Coder-Survey-Data-Summary.csv';
-  var xColumn = topic + "Perc"; // "Perc" is added because of special format of a current .csv file
-  var yColumn = topic;
 
-  //List of variables and amount of bars
+var allBarCharts = {
+  Age: false,
+  BootcampFinish: false,
+  BootcampFullJobAfter: false,
+  BootcampLoan: false,
+  BootcampMonthsAgo: false,
+  BootcampName: false,
+  BootcampPostSalary: false,
+  BootcampRecommend: false,
+  BootcampYesNo: false, //AttendedBootcamp
+  ChildrenNumber: false,
+  CityPopulation: false,
+  CodeEvent: false,
+  CountryLive: false,
+  EmploymentField: false,
+  EmploymentStatus: false,
+  ExpectedEarning: false,
+  FinanciallySupporting: false,
+  Gender: false,
+  HasChildren: false,
+  HasDebt: false,
+  HasFinancialDependents: false,
+  HasHighSpdInternet: false,
+  HasHomeMortgage: false,
+  HasServedInMilitary: false,
+  HasStudentDebt: false,
+  HomeMortgageOwe: false,
+  HoursLearning: false,
+  Income: false,
+  IsEthnicMinority: false,
+  IsReceiveDiabilitiesBenefits: false,
+  IsSoftwareDev: false,
+  IsUnderEmployed: false,
+  JobApplyWhen: false,
+  JobPref: false,
+  JobRelocateYesNo: false,
+  JobRoleInterest: false,
+  JobWherePref: false,
+  LanguageAtHome: false,
+  MaritalStatus: false,
+  MoneyForLearning: false,
+  MonthsProgramming: false,
+  Resources: false,
+  SchoolDegree: false,
+  SchoolMajor: false,
+  StudentDebtOwe: false,
+
+  check: function(ID) {
+    if(!this[ID]){ 
+      this[ID] = true;
+      prepareBarCharts(ID);
+    }
+  }
+};
+
+//  prepareBarCharts() prepares all variables to be passed into renderBarCharts()
+var prepareBarCharts = (function(topic) {
+
+  // List of variables and settings
+  // topic: [totalBars, format, leftMargin, rightMargin]
   var listOfTopics = {
-    Age: 4,
-    BootcampFinish: 2,
-    BootcampLoan: 2,
-    BootcampName: 15,
-    BootcampMonthsAgo: 4,
-    BootcampPostSalary: 7,
-    BootcampRecommend: 2,
-    BootcampFullJobAfter: 2,
-    BootcampYesNo: 2, //AttendedBootcamp
-    ChildrenNumber: 3,
-    CityPopulation: 3,
-    CodeEvent: 14,
-    CountryLive: 15,
-    EmploymentStatus: 10,
-    EmploymentField: 15,
-    ExpectedEarning: 7,
-    FinanciallySupporting: 2,
-    Gender: 3,
-    HasChildren: 2,
-    HasDebt: 2,
-    HasFinancialDependents: 2,
-    HasHighSpdInternet: 2,
-    HasHomeMortgage: 2,
-    HasServedInMilitary: 2,
-    HasStudentDebt: 2,
-    HomeMortgageOwe: 5,
-    HoursLearning: 3,
-    IsEthnicMinority: 2,
-    IsReceiveDiabilitiesBenefits: 2,
-    IsSoftwareDev: 2,
-    IsUnderEmployed: 2,
-    Income: 7,
-    JobApplyWhen: 5,
-    JobPref: 5,
-    JobRoleInterest: 9,
-    JobRelocateYesNo: 2,
-    JobWherePref: 3,
-    LanguageAtHome: 15,
-    MaritalStatus: 2,
-    MoneyForLearning: 5,
-    MonthsProgramming: 3,
-    Resources: 15,
-    SchoolDegree: 10,
-    SchoolMajor: 14,
-    StudentDebtOwe: 5,
+    Age: [4, "H4", "75", "45"],//4,
+    BootcampFinish: [2, "H4", "35", "45"], //2
+    BootcampFullJobAfter: [2, "H4", "35", "45"],
+    BootcampLoan: [2, "H4", "35", "45"], //2
+    BootcampMonthsAgo: [4, "H4", "100", "45"], //4
+    BootcampName: [15, "H4d", "200", "60"],
+    BootcampPostSalary: [7, "H4", "95", "45"], //5
+    BootcampRecommend: [2,  "H4", "35", "45"],
+    BootcampYesNo: [2, "H4", "35", "45"], //2 //AttendedBootcamp
+    ChildrenNumber: [3, "H4", "35", "45"],
+    CityPopulation: [3, "H4", "200", "45"], //3
+    CodeEvent: [14, "H4d", "150", "60"], //15
+    CountryLive: [15, "H4d", "165", "60"], //15
+    EmploymentField: [15, "H4d", "190", "60"], //15
+    EmploymentStatus: [10, "H4d", "220", "60"], //10
+    ExpectedEarning: [7, "H4", "95", "45"], //5
+    FinanciallySupporting: [2, "H4", "35", "45"], //2
+    Gender: [3, "H4", "65", "45"],
+    HasChildren: [2,  "H4", "35", "45"],
+    HasDebt: [2, "H4", "35", "45"], //2
+    HasFinancialDependents: [2, "H4", "35", "45"], //2
+    HasHighSpdInternet: [2, "H4", "35", "45"], //2
+    HasHomeMortgage: [2, "H4", "35", "45"], //2
+    HasServedInMilitary: [2, "H4", "35", "45"],
+    HasStudentDebt: [2, "H4", "35", "45"], //2
+    HomeMortgageOwe: [5, "H4", "95", "45"], //5
+    HoursLearning: [3, "H4", "95", "45"], //3
+    Income: [7, "H4", "95", "45"], //5
+    IsEthnicMinority: [2, "H4", "35", "45"], //2
+    IsReceiveDiabilitiesBenefits: [2, "H4", "35", "45"],
+    IsSoftwareDev: [2,  "H4", "35", "45"], //2
+    IsUnderEmployed: [2, "H4", "35", "45"], //2
+    JobApplyWhen: [5, "H4", "210", "45"], //5
+    JobPref: [5,  "H4", "170", "45"],
+    JobRelocateYesNo: [2,  "H4", "35", "45"], //2
+    JobRoleInterest: [9,  "H4", "195", "50"],
+    JobWherePref: [3, "H4", "180", "45"], //3
+    LanguageAtHome: [15, "H4d", "95", "60"], //15
+    MaritalStatus: [2, "H4", "165", "45"],
+    MoneyForLearning: [5, "H4", "70", "45"], //5
+    MonthsProgramming: [3, "H4", "110", "45"], //3
+    Resources: [15, "H4", "135", "45"], //15
+    SchoolDegree: [10, "H4d", "225", "60"],
+    SchoolMajor: [14, "H4d", "175", "60"],
+    StudentDebtOwe: [5, "H4", "90", "45"], //5
   };
 
-  var totalBars = listOfTopics[topic];
+  //data for bar charts
+  var dataBC      = './data/2016-New-Coder-Survey-Data-Summary.csv',
+      place       = "#" + topic,
+      totalWidth  = $("#" + topic).width(),
+      xColumn     = topic + "Perc", // + "Perc" because of special format of a current .csv file
+      yColumn     = topic,
+      totalBars   = listOfTopics[topic][0],
+      format      = listOfTopics[topic][1],
+      leftMargin  = listOfTopics[topic][2],
+      rightMargin = listOfTopics[topic][3];
+
 
   ///////////////////////////////////////////////////////////
-  // drawBarCharts(data, place, totalWidth,                //
+  // renderBarCharts(data, place, totalWidth,                //
   //               leftMargin, rightMargin, topic, format, //
   //               totalBars, xColumn, yColumn);           //
   ///////////////////////////////////////////////////////////
@@ -337,13 +400,8 @@ var barCharts = (function(topic, format, leftMargin, rightMargin) {
   //format - "H4"/"H4d"/"H5"
   //https://files.gitter.im/SamAI-Software/UO6O/BarChartsHorizontal_H5H4.jpg
 
-  drawBarCharts(dataBC, "#" + topic, $("#" + topic).width(), 
-                leftMargin, rightMargin, topic, format, 
-                totalBars, xColumn, yColumn);
+  renderBarCharts(dataBC, place, totalWidth, 
+                  leftMargin, rightMargin, topic, format, 
+                  totalBars, xColumn, yColumn);
 
 });
-
-//examples how to call barCharts()
-//barCharts("JobPref", "H4", "270", "50");
-//barCharts("JobRelocateYesNo", "H5", "5", "5");
-//barCharts("IsSoftwareDev", "H5", "5", "5");

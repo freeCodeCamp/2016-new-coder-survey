@@ -120,7 +120,8 @@ nav {
 
 .chart .chart-graphic {
   width: 100%;
-  height: auto; }
+  height: auto;
+  min-height: 110px; }
 @media screen and (min-width: 800px) {
   .chart {
     display: table-cell; } 
