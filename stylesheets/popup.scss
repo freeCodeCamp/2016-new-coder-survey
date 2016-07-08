@@ -1,0 +1,23 @@
+.raw-data {
+  .close {
+    color: $green;
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    font-size: 20px;
+  }
+  background: white;
+  font-size: modular-scale(1);
+  border: 15px solid $gray;
+  padding: 10px 30px;
+  position: fixed;
+  top: 80px;
+  @media screen and (max-width: 699px) {
+    width: 90%;
+    left: 5%;
+  }
+  @media screen and (min-width: 700px) {
+    width: 50%;
+    left: 25%;
+  }
+}

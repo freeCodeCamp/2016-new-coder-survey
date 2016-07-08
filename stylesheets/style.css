@@ -1,0 +1,261 @@
+@charset "UTF-8";
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
+body {
+  margin: 0;
+  font-family: "Roboto", "sans serif"; }
+  body a {
+    color: #417505;
+    text-decoration: none; }
+  body .footnote {
+    margin: 0 0 0 0.15em;
+    font-size: 0.8em;
+    /*font-style: italic; */ }
+  body img {
+    width: 100%; }
+
+header {
+  background: #7ED321;
+  color: white;
+  text-align: center;
+  padding: 50px 20px 0px; }
+  header p.description {
+    color: #417505;
+    font-family: "Georgia", "serif";
+    font-size: 1.77689em; }
+  header h1 {
+    font-size: 3.15733em; }
+  header a {
+    color: white; }
+    header a:hover {
+      text-decoration: underline; }
+
+nav {
+  text-align: center;
+  background: #7ED321;
+  color: white;
+  padding: 20px 0px; }
+  nav ul {
+    padding-left: 0px; }
+  nav ul li {
+    list-style-type: none;
+    display: inline; }
+    nav ul li a {
+      text-decoration: none;
+      color: white; }
+      nav ul li a:hover {
+        text-decoration: underline; }
+    nav ul li::after {
+      content: " •";
+      padding: 0px 10px; }
+    nav ul li:last-child::after {
+      content: "";
+      padding: 0px; }
+
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; }
+
+.raw-data {
+  background: white;
+  font-size: 1.333em;
+  border: 15px solid #F6F6F6;
+  padding: 10px 30px;
+  position: fixed;
+  top: 80px; }
+  .raw-data .close {
+    color: #7ED321;
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    font-size: 20px; }
+  @media screen and (max-width: 699px) {
+    .raw-data {
+      width: 90%;
+      left: 5%; } }
+  @media screen and (min-width: 700px) {
+    .raw-data {
+      width: 50%;
+      left: 25%; } }
+
+.charts {
+  padding: 0px 10px 5px; }
+  .charts::after {
+    clear: both;
+    content: "";
+    display: table; }
+  .charts .chart {
+    /*border: 1px solid blue;*/
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 100%; }
+    .charts .chart:last-child {
+      margin-right: 0; }
+  @media screen and (min-width: 800px) {
+    .charts {
+      padding: 30px 50px 5px; }
+      .charts.medium .chart {
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 48.82117%; }
+        .charts.medium .chart:last-child {
+          margin-right: 0; }
+      .charts.small .chart {
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 31.76157%; }
+        .charts.small .chart:last-child {
+          margin-right: 0; } }
+  .charts:last-child {
+    padding-bottom: 50px; }
+
+.chart .chart-graphic {
+  width: 100%;
+  height: auto; }
+@media screen and (min-width: 800px) {
+  .chart {
+    display: table-cell; } 
+    .chart .chart-graphic {
+      border: solid #F6F6F6 3px; } }
+
+footer {
+  padding: 30px 50px;
+  border: solid #D8D8D8 1px;
+  background: #F6F6F6; }
+  footer::after {
+    clear: both;
+    content: "";
+    display: table; }
+  footer h2 {
+    font-size: 1.17em;
+    color: #417505; }
+  footer div:last-child h2 {
+    text-transform: uppercase; }
+  @media screen and (min-width: 700px) {
+    footer div {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 48.82117%; }
+      footer div:last-child {
+        margin-right: 0; } }
+  footer .question {
+    font-weight: 900;
+    margin-bottom: 0; }
+  footer .answer, footer p {
+    margin-top: 0; }
+  footer h3 {
+    margin-bottom: 0; }
+    footer h3 a {
+      color: black; }
+  footer a:hover {
+    text-decoration: underline; }
+
+section header {
+  background: #F6F6F6;
+  border: #D8D8D8 solid 2px;
+  padding: 30px 50px; }
+section header {
+  color: black;
+  text-align: left; }
+  section header h2 {
+    text-transform: uppercase;
+    padding-right: 10px; }
+  section header h2, section header p {
+    display: inline;
+    vertical-align: middle; }
+section .tag-sections {
+  display: table;
+  width: 100%; }
+section article.tags {
+  width: 100%;
+  background: #F6F6F6;
+  padding: 30px 50px;
+  border: #D8D8D8 solid 2px;
+  border-left: none;
+  border-top: none; }
+  section article.tags h3 {
+    margin-top: 0px; }
+  @media screen and (min-width: 800px) {
+    section article.tags {
+      width: 33.333%;
+      display: table-cell; } }
+  section article.tags .tag {
+    display: inline-block;
+    margin-bottom: 20px; }
+    section article.tags .tag a {
+      border: #D8D8D8 solid 2px;
+      padding: 5px 10px;
+      color: #417505;
+      background: white; }
+      section article.tags .tag a:hover {
+        background: #7ED321;
+        color: white;
+        border-color: #7ED321; }
+
+
+/* toDO: barcharts.scss*/
+/* This shows the small ticks on Y axis */
+.axis path,
+.axis line {
+  fill: none;
+}
+
+.x.axis {
+  display: none;
+}
+
+.y.axis {
+  display: none;
+  font-size: 16px;
+}
+
+.y.axis path {
+  display: none;
+}
+/*#006400 #008400 #7ED321*/
+.bar {
+  position: absolute;
+  fill: #7ED321;
+  stroke: #7ED321;
+}
+
+.bar:hover {
+  fill: #006400;
+  stroke: #006400;
+}
+
+.barLabel {
+  font-size: 16px;
+  /*font-weight: bold;*/
+}
+
+.barTitle {
+  font-size: 16px;
+}
+
+#SchoolDegree .barTitle,
+#SchoolMajor .barTitle,
+#JobPref .barTitle,
+#JobRoleInterest .barTitle,
+#CountryLive .barTitle,
+#EmploymentStatus .barTitle,
+#EmploymentField .barTitle,
+#CityPopulation .barTitle,
+#JobWherePref .barTitle,
+#JobApplyWhen .barTitle
+ {
+  font-size: 14px;
+}
+
+
+/*# sourceMappingURL=style.css.map */
