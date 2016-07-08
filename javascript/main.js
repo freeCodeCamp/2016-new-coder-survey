@@ -62,20 +62,22 @@ $("document").ready(function(){
   var win = $(window);
 
   var allMods = $(".chart-graphic");
-  
+
+  // PRELOADER
+  // preloader(ID) sets all containers to their expected height
+  // so they don't change size on scroll when render bar charts  
   allMods.each(function(i, el) {
-    var el = $(el);
-    if (el.visible(true)) {
-      // console.log("already-visible");
-    } 
+    var ID = $(el).attr('id');
+    allBarCharts.preloader(ID);
   });
 
+  // CHECK
+  // render bar charts when they appear on screen
   win.scroll(function(event) {
 
     allMods.each(function(i, el) {
       var el = $(el);
       if (el.visible(true)) {
-        // el.addClass("come-in"); 
         var ID = $(el).attr('id');
         allBarCharts.check(ID);
       } 
@@ -84,11 +86,12 @@ $("document").ready(function(){
   });
   // ---------SCROLL-END----- //
 
+  // RESIZE
+  // rerender bar charts on window.resize
   win.resize(function() {
     allMods.each(function(i, el) {
       var ID = $(el).attr('id');
       allBarCharts.resize(ID);
     });
   });
-  
 });

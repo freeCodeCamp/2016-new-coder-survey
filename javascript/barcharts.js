@@ -1,7 +1,7 @@
 // Author: SamAI (@SamAI-Software)
 // http://samai-software.github.io/
 
-var renderBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, topic, format, totalBars, xColumn, yColumn) {
+var renderBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, topic, format, totalBars, xColumn, yColumn, special) {
 
   ///////////////////////////////
   // -------- FORMATS -------- //
@@ -126,8 +126,19 @@ var renderBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin
     .scale(y)
     .orient("left");
 
+  // preloader() sets all containers to their expected height
+  // so they don't change size on scroll when render bar charts
+  function preloader(place) {
+    console.log("renderBarCharts.preloader() called");
+    // +10 to fix bug, not sure where it comes from
+    $(place).height(height+10);
+  }
+
   function render() {
-    console.log("function render() called");
+    console.log("renderBarCharts.render() called");
+
+    // height "auto" to rewrite preloader to avoid bugs
+    $(place).height("auto");
 
     var svg = d3.select(place).append("svg")
       .attr("width", "100%")
@@ -256,7 +267,11 @@ var renderBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin
     }
   }
 
-  render();
+  if (special == "preloader") {
+    preloader(place);
+  } else {
+    render(place);
+  }
 
   return {
     //API
@@ -311,6 +326,12 @@ var allBarCharts = {
   SchoolMajor: false,
   StudentDebtOwe: false,
 
+  preloader: function(ID) {
+    if (!this[ID]) { 
+      prepareBarCharts(ID, "preloader")
+    }
+  },
+
   check: function(ID) {
     if (!this[ID]) { 
       this[ID] = true;
@@ -321,6 +342,7 @@ var allBarCharts = {
   resize: function(ID) {
     if (this[ID]) { 
       setTimeout(function() {
+        //clean previous bar charts and render new
         $("#"+ID).html("");
         prepareBarCharts(ID);
       }, 1000);
@@ -329,7 +351,7 @@ var allBarCharts = {
 };
 
 //  prepareBarCharts() prepares all variables to be passed into renderBarCharts()
-var prepareBarCharts = (function(topic) {
+var prepareBarCharts = (function(topic, special) {
 
   // List of variables and settings
   // topic: [totalBars, format, leftMargin, rightMargin]
@@ -381,7 +403,21 @@ var prepareBarCharts = (function(topic) {
     StudentDebtOwe: [5, "H4", "90", "45"], //5
   };
 
-  //data for bar charts
+  ///////////////////////////////////////////////////////////
+  // renderBarCharts(data, place, totalWidth,              //
+  //               leftMargin, rightMargin, topic, format, //
+  //               totalBars, xColumn, yColumn, special);  //
+  ///////////////////////////////////////////////////////////
+
+  //place       - DOM container             //e.g. "#JobPref"
+  //totalWidth  - width of a DOM container  //e.g. "500"
+  //leftMargin  - adjust left titles in H4  //e.g. "200"
+  //rightMargin - adjust right labels in H4 //e.g. "40"
+  //topic       - column name in .csv file  //e.g. "JobPref"
+  //format      - "H4"/"H4d"/"H5"
+  //https://files.gitter.im/SamAI-Software/UO6O/BarChartsHorizontal_H5H4.jpg
+  //special     - define if call is preloader
+
   var dataBC      = './data/2016-New-Coder-Survey-Data-Summary.csv',
       place       = "#" + topic,
       totalWidth  = $("#" + topic).width(),
@@ -390,25 +426,11 @@ var prepareBarCharts = (function(topic) {
       totalBars   = listOfTopics[topic][0],
       format      = listOfTopics[topic][1],
       leftMargin  = listOfTopics[topic][2],
-      rightMargin = listOfTopics[topic][3];
-
-
-  ///////////////////////////////////////////////////////////
-  // renderBarCharts(data, place, totalWidth,              //
-  //               leftMargin, rightMargin, topic, format, //
-  //               totalBars, xColumn, yColumn);           //
-  ///////////////////////////////////////////////////////////
-
-  //place - DOM container                   //e.g. "#JobPref"
-  //totalWidth - width of a DOM container   //e.g. "500"
-  //leftMargin - adjust left titles in H4   //e.g. "200"
-  //rightMargin - adjust right labels in H4 //e.g. "40"
-  //topic - column name in .csv file        //e.g. "JobPref"
-  //format - "H4"/"H4d"/"H5"
-  //https://files.gitter.im/SamAI-Software/UO6O/BarChartsHorizontal_H5H4.jpg
+      rightMargin = listOfTopics[topic][3],
+      special     = special;
 
   renderBarCharts(dataBC, place, totalWidth, 
                   leftMargin, rightMargin, topic, format, 
-                  totalBars, xColumn, yColumn);
+                  totalBars, xColumn, yColumn, special);
 
 });
