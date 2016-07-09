@@ -91,6 +91,9 @@ nav {
     clear: both;
     content: "";
     display: table; }
+  .charts p {
+    min-height: 2em;
+  }
   .charts .chart {
     float: left;
     display: block;
@@ -257,5 +260,18 @@ section article.tags {
  {
   font-size: 14px;
 }
+
+/*div[id] {
+    padding-top: 190px;
+    margin-top: -190px;
+}*/
+
+/*div[id]:before {
+    display: block;
+    content: " ";
+    padding-top: 190px;
+    margin-top: -190px;
+    visibility: hidden;
+}*/
 
 /*# sourceMappingURL=style.css.map */
