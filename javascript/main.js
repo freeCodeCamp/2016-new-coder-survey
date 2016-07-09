@@ -70,6 +70,7 @@ $("document").ready(function(){
   // so they don't change size on scroll when render bar charts  
   allMods.each(function(i, el) {
     var ID = $(el).attr('id');
+    allBarCharts.init(ID);
     allBarCharts.preloader(ID);
   });
 

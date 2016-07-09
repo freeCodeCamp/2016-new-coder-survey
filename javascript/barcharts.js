@@ -280,51 +280,10 @@ var renderBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin
 });
 
 var allBarCharts = {
-  Age: false,
-  BootcampFinish: false,
-  BootcampFullJobAfter: false,
-  BootcampLoan: false,
-  BootcampMonthsAgo: false,
-  BootcampName: false,
-  BootcampPostSalary: false,
-  BootcampRecommend: false,
-  BootcampYesNo: false, //AttendedBootcamp
-  ChildrenNumber: false,
-  CityPopulation: false,
-  CodeEvent: false,
-  CountryLive: false,
-  EmploymentField: false,
-  EmploymentStatus: false,
-  ExpectedEarning: false,
-  FinanciallySupporting: false,
-  Gender: false,
-  HasChildren: false,
-  HasDebt: false,
-  HasFinancialDependents: false,
-  HasHighSpdInternet: false,
-  HasHomeMortgage: false,
-  HasServedInMilitary: false,
-  HasStudentDebt: false,
-  HomeMortgageOwe: false,
-  HoursLearning: false,
-  Income: false,
-  IsEthnicMinority: false,
-  IsReceiveDiabilitiesBenefits: false,
-  IsSoftwareDev: false,
-  IsUnderEmployed: false,
-  JobApplyWhen: false,
-  JobPref: false,
-  JobRelocateYesNo: false,
-  JobRoleInterest: false,
-  JobWherePref: false,
-  LanguageAtHome: false,
-  MaritalStatus: false,
-  MoneyForLearning: false,
-  MonthsProgramming: false,
-  Resources: false,
-  SchoolDegree: false,
-  SchoolMajor: false,
-  StudentDebtOwe: false,
+
+  init: function(ID) {
+    this[ID] = false;
+  },
 
   preloader: function(ID) {
     if (!this[ID]) { 
