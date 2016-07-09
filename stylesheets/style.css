@@ -6,6 +6,7 @@ html {
   box-sizing: inherit; }
 
 body {
+  padding-top: 0;
   margin: 0;
   font-family: "Roboto", "sans serif"; }
   body a {
@@ -38,7 +39,7 @@ nav {
   text-align: center;
   background: #7ED321;
   color: white;
-  padding: 20px 0px; }
+  padding: 1px 0px; }
   nav ul {
     padding-left: 0px; }
   nav ul li {
@@ -91,7 +92,6 @@ nav {
     content: "";
     display: table; }
   .charts .chart {
-    /*border: 1px solid blue;*/
     float: left;
     display: block;
     margin-right: 2.35765%;
@@ -257,6 +257,5 @@ section article.tags {
  {
   font-size: 14px;
 }
-
 
 /*# sourceMappingURL=style.css.map */

@@ -4,9 +4,11 @@ $("document").ready(function(){
   $(window).scroll(function() {
     if ($(window).scrollTop() > stickyNav){
       $("nav").addClass("sticky");
+      $("body").css("padding-top", $("nav").height());
     }
     else {
       $("nav").removeClass("sticky");
+      $("body").css("padding-top", "0");
     }
   });
   $(".moveTo").on("click", function(){
