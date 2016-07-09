@@ -12,10 +12,19 @@ body {
   body a {
     color: #417505;
     text-decoration: none; }
+  body .footnote:last-child:before {
+    display: block;
+    content: " ";
+    margin-left: 2px;
+    width: 12em;
+    border-top: 1px solid black;
+    opacity: 0.4;
+  }
   body .footnote {
     margin: 0 0 0 0.15em;
     font-size: 0.8em;
-    /*font-style: italic; */ }
+    font-style: italic;
+    opacity: 0.8; }
   body img {
     width: 100%; }
 
@@ -39,7 +48,8 @@ nav {
   text-align: center;
   background: #7ED321;
   color: white;
-  padding: 1px 0px; }
+  padding: 1px 0px;
+  z-index: 100; }
   nav ul {
     padding-left: 0px; }
   nav ul li {
@@ -86,7 +96,8 @@ nav {
       left: 25%; } }
 
 .charts {
-  padding: 0px 10px 5px; }
+  padding: 0px 10px 5px;
+  /*border: 2px solid blue;*/ }
   .charts::after {
     clear: both;
     content: "";
@@ -103,7 +114,7 @@ nav {
       margin-right: 0; }
   @media screen and (min-width: 800px) {
     .charts {
-      padding: 30px 50px 5px; }
+      padding: 55px 50px 5px; }
       .charts.medium .chart {
         float: left;
         display: block;
@@ -123,7 +134,7 @@ nav {
   
   @media screen and (min-width: 800px) {
     .large {
-      /*padding-left: 35%;*/
+      /*padding-left: 35.5%;*/
       padding-right: 35.5%;
     }
   }
@@ -136,7 +147,20 @@ nav {
   .chart {
     display: table-cell; } 
     .chart .chart-graphic {
-      border: solid #F6F6F6 3px; } }
+      /*border: solid #F6F6F6 3px;*/ } }
+
+  /*For proper offsetTop when anchor*/
+  .chart .chart-graphic[id] {
+      padding-top: 9.5em;
+      margin-top: -9.5em;
+  }
+  .chart .chart-graphic[id]:before {
+      display: block;
+      content: " ";
+      padding-top: 9.5em;
+      margin-top: -9.5em;
+      visibility: hidden;
+  }
 
 footer {
   padding: 30px 50px;
@@ -267,18 +291,5 @@ section article.tags {
  {
   font-size: 14px;
 }
-
-/*div[id] {
-    padding-top: 190px;
-    margin-top: -190px;
-}*/
-
-/*div[id]:before {
-    display: block;
-    content: " ";
-    padding-top: 190px;
-    margin-top: -190px;
-    visibility: hidden;
-}*/
 
 /*# sourceMappingURL=style.css.map */

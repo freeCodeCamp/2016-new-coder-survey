@@ -130,8 +130,8 @@ var renderBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin
   // so they don't change size on scroll when render bar charts
   function preloader(place) {
     console.log("renderBarCharts.preloader() called");
-    // +10 to fix bug, not sure where it comes from
-    $(place).height(height+10);
+    // +24 to fix bug, not sure where it comes from
+    $(place).height(height+24);
   }
 
   function render() {
@@ -356,7 +356,7 @@ var prepareBarCharts = (function(topic, special) {
   // List of variables and settings
   // topic: [totalBars, format, leftMargin, rightMargin]
   var listOfTopics = {
-    Age: [4, "H4", "75", "45"],//4,
+    Age: [4, "H4", "70", "45"],//4,
     BootcampFinish: [2, "H4", "35", "45"], //2
     BootcampFullJobAfter: [2, "H4", "35", "45"],
     BootcampLoan: [2, "H4", "35", "45"], //2
@@ -373,7 +373,7 @@ var prepareBarCharts = (function(topic, special) {
     EmploymentStatus: [10, "H4d", "220", "60"], //10
     ExpectedEarning: [7, "H4", "95", "45"], //5
     FinanciallySupporting: [2, "H4", "35", "45"], //2
-    Gender: [3, "H4", "65", "45"],
+    Gender: [3, "H4", "70", "45"],
     HasChildren: [2,  "H4", "35", "45"],
     HasDebt: [2, "H4", "35", "45"], //2
     HasFinancialDependents: [2, "H4", "35", "45"], //2
@@ -397,9 +397,9 @@ var prepareBarCharts = (function(topic, special) {
     MaritalStatus: [2, "H4", "165", "45"],
     MoneyForLearning: [5, "H4", "70", "45"], //5
     MonthsProgramming: [3, "H4", "110", "45"], //3
-    Resources: [15, "H4", "135", "45"], //15
+    Resources: [15, "H4", "150", "45"], //15
     SchoolDegree: [10, "H4d", "225", "60"],
-    SchoolMajor: [14, "H4d", "175", "60"],
+    SchoolMajor: [14, "H4d", "225", "60"],
     StudentDebtOwe: [5, "H4", "90", "45"], //5
   };
 

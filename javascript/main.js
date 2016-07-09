@@ -50,8 +50,8 @@ $("document").ready(function(){
             $w            = $(window),
             viewTop       = $w.scrollTop(), 
             viewBottom    = viewTop + $w.height(),
-            _top          = $t.offset().top,
-            _bottom       = _top + $t.height(),
+            _top          = $t.offset().top+150, //+150 coz of css offset for nav
+            _bottom       = _top + $t.height()-100, //-100 coz of css offset for nav
             compareTop    = partial === true ? _bottom : _top,
             compareBottom = partial === true ? _top : _bottom;
 
