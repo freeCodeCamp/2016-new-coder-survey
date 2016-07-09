@@ -92,7 +92,7 @@ nav {
     content: "";
     display: table; }
   .charts p {
-    min-height: 2em;
+    height: 1.4em;
   }
   .charts .chart {
     float: left;
@@ -120,6 +120,13 @@ nav {
           margin-right: 0; } }
   .charts:last-child {
     padding-bottom: 50px; }
+  
+  @media screen and (min-width: 800px) {
+    .large {
+      /*padding-left: 35%;*/
+      padding-right: 35.5%;
+    }
+  }
 
 .chart .chart-graphic {
   width: 100%;
