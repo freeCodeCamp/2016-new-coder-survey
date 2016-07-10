@@ -60,9 +60,10 @@
           <div class="tag-cloud">
             <div class="tag"><a href="#EmploymentStatus">current employment</a></div>
             <div class="tag"><a href="#MoneyForLearning">learning costs</a></div>
+            <div class="tag"><a href="#ExpectedEarning">expected earning</a></div>
             <div class="tag"><a href="#EmploymentField">work environment</a></div>
             <div class="tag"><a href="#JobPref">job preferences</a></div>
-            <div class="tag"><a href="#IsSoftwareDev">tech roles</a></div>
+            <div class="tag"><a href="#JobRoleInterest">tech roles</a></div>
             <div class="tag"><a href="#HasDebt">debt</a></div>
             <div class="tag"><a href="#Income">income</a></div>
             <div class="tag"><a href="#HomeMortgageOwe">home mortgage</a></div>
@@ -71,6 +72,8 @@
         <article class="tags">
           <h3>Learning To Code</h3>
           <div class="tag-cloud">
+            <div class="tag"><a href="#HoursLearning">hours/week</a></div>
+            <div class="tag"><a href="#MonthsProgramming">experience</a></div>
             <div class="tag"><a href="#BootcampYesNo">bootcamps</a></div>
             <div class="tag"><a href="#Resources">learning resources</a></div>
             <div class="tag"><a href="#CodeEvent">events</a></div>
@@ -118,12 +121,14 @@
           <div class="chart-graphic" id="SchoolDegree">
           </div>
           <p class="footnote">13,679 respondents (If currently enrolled, highest degree received.)</p>
+          <p class="facts">58% have earned at least a bachelor’s degree.</p>
         </article>
         <article class="chart">
           <p>What was the main subject you studied in university?</p>
           <div class="chart-graphic" id="SchoolMajor">
           </div>
           <p class="footnote">8,450 respondents</p>
+          <p class="facts">Computer Science was the most popular major, and an additional 15% studied some form of engineering.</p>
         </article>
       </div>
       <div class="charts small">
@@ -216,12 +221,14 @@
           <div class="chart-graphic" id="IsSoftwareDev">
           </div>
           <p class="footnote">15,537 respondents</p>
+          <p class="facts">24% of respondents with 5+ years of programming experience aren't working as software developers.</p>
         </article>
         <article class="chart">
           <p>Are you willing to relocate for a job?</p>
           <div class="chart-graphic" id="JobRelocateYesNo">
           </div>
           <p class="footnote">5,487 respondents</p>
+          <p class="facts">A majority are willing to relocate.</p>
         </article>
         <article class="chart">
           <p>Do you consider yourself under-employed?</p>
@@ -232,16 +239,18 @@
       </div>
       <div class="charts medium">
         <article class="chart">
-          <p>Regarding employment status, are you currently ...</p>
-          <div class="chart-graphic" id="EmploymentStatus">
-          </div>
-          <p class="footnote">12,904 respondents</p>
-        </article>
-        <article class="chart">
           <p>Which field do you work in?</p>
           <div class="chart-graphic"id="EmploymentField">
           </div>
           <p class="footnote">7,608 respondents</p>
+          <p class="facts">A vast majority are already in a technology-related field.</p>
+        </article>
+        <article class="chart">
+          <p>Regarding employment status, are you currently ...</p>
+          <div class="chart-graphic" id="EmploymentStatus">
+          </div>
+          <p class="footnote">12,904 respondents</p>
+          <p class="facts">Two thirds are currently working.</p>
         </article>
       </div>
       <div class="charts large">
@@ -251,20 +260,23 @@
           <div class="chart-graphic" id="CountryLive">
           </div>
           <p class="footnote">13,610 respondents</p>
+          <p class="facts">People from 169 countries responded to the survey.</p>
         </article>
       </div>
       <div class="charts medium">
-        <article class="chart">
-          <p>Are you an ethnic minority in your country?</p>
-          <div class="chart-graphic" id="IsEthnicMinority">
-          </div>
-          <p class="footnote">13,645 respondents</p>
-        </article>
         <article class="chart">
           <p>About how many people live in your city?</p>
           <div class="chart-graphic"id="CityPopulation">
           </div>
           <p class="footnote">13,630 respondents</p>
+          <p class="facts">Their cities span a wide range of urbanization levels.</p>
+        </article>
+        <article class="chart">
+          <p>Are you an ethnic minority in your country?</p>
+          <div class="chart-graphic" id="IsEthnicMinority">
+          </div>
+          <p class="footnote">13,645 respondents</p>
+          <p class="facts">A quarter of respondents are ethnic minorities in their country.</p>
         </article>
       </div>
       <div class="charts large">
@@ -274,21 +286,23 @@
           <div class="chart-graphic" id="LanguageAtHome">
           </div>
           <p class="footnote">13,582 respondents</p>
+          <p class="facts">Nearly half are non-native English speakers. They grew up speaking one of 152 languages.</p>
         </article>
       </div>
       <div class="charts medium">
         <h3>Career & Money</h3>
         <article class="chart">
-          <p>Would you prefer to work...</p>
-          <div class="chart-graphic" id="JobWherePref">
-          </div>
-          <p class="footnote">6,739 respondents</p>
-        </article>
-        <article class="chart">
           <p>Would you prefer to work for a...</p>
           <div class="chart-graphic" id="JobPref">
           </div>
           <p class="footnote">11,189 respondents</p>
+          <p class="facts">40% want to either freelance or start their own business.</p>
+        </article>
+        <article class="chart">
+          <p>Would you prefer to work...</p>
+          <div class="chart-graphic" id="JobWherePref">
+          </div>
+          <p class="footnote">6,739 respondents</p>
         </article>
       </div>
       <div class="charts large">
@@ -297,22 +311,23 @@
           <div class="chart-graphic" id="JobRoleInterest">
           </div>
           <p class="footnote">6,503 respondents</p>
+          <p class="facts">A vast majority are interested in working as web developers, as opposed to other developer roles.</p>
         </article>
       </div>
       <div class="charts medium">
+        <article class="chart">
+          <p>About how much money do you expect to earn per year at your first developer job (in US Dollars)?</p>
+          <div class="chart-graphic" id="ExpectedEarning">
+          </div>
+          <p class="footnote">6,077 respondents</p>
+          <p class="facts">The most expected salary is $60K annually while the average expectation is $53,700.</p>
+        </article>
         <article class="chart">
           <p>When do you plan to start applying for developers jobs?</p>
           <div class="chart-graphic" id="JobApplyWhen">
           </div>
           <p class="footnote">6,747 respondents</p>
-        </article>
-
-        <article class="chart">
-          <p>About how much money do you expect to earn per year at your first
-            developer job (in US Dollars)?</p>
-          <div class="chart-graphic" id="ExpectedEarning">
-          </div>
-          <p class="footnote">6,077 respondents</p>
+          <p class="facts">Most are already applying for developer jobs, or will start applying within the next year.</p>
         </article>
       </div>
       <div class="charts medium">
@@ -322,6 +337,7 @@
           <div class="chart-graphic" id="BootcampYesNo">
           </div>
           <p class="footnote">15,380 respondents</p>
+          <p class="facts">More than 900 respondents have attended at least one coding bootcamp.</p>
         </article>
         <article class="chart">
           <p>Have you finished yet?</p>
@@ -359,6 +375,7 @@
           <div class="chart-graphic" id="BootcampFullJobAfter">
           </div>
           <p class="footnote">635 respondents</p>
+          <p class="facts">More than a half had been able to get a full-time developer job after finished a bootcamp.</p>
         </article>
         <article class="chart">
           <p>How much was your salary (in US Dollars)?</p>
@@ -371,6 +388,7 @@
           <div class="chart-graphic" id="BootcampLoan">
           </div>
           <p class="footnote">934 respondents</p>
+          <p class="facts">A third borrowed money to attend a bootcamp.</p>
         </article>
       </div>
       <div class="charts small">
@@ -380,12 +398,14 @@
           <div class="chart-graphic" id="MonthsProgramming">
           </div>
           <p class="footnote">15,014 respondents</p>
+          <p class="facts">Experienced respondents without software developer's job spend much more time studying programming rather than their less experienced colleagues.</p>
         </article>
         <article class="chart">
           <p>About how many hours do you spend learning each week?</p>
           <div class="chart-graphic" id="HoursLearning">
           </div>
           <p class="footnote">14,942 respondents</p>
+          <p class="facts">Almost half (47%) of coders with 5+ years of experience who already work as software developers still spend at least 10 hours each week learning programming.</p>
         </article>
         <article class="chart">
           <p>Aside from the university, how much have you
@@ -401,6 +421,7 @@
           <div class="chart-graphic" id="Resources">
           </div>
           <p class="footnote">15,269 respondents</p>
+          <p class="facts">On average, new coders use at least three different resources for learning to code.</p>
         </article>
       </div>
       <div class="charts large">
@@ -409,6 +430,7 @@
           <div class="chart-graphic" id="CodeEvent">
           </div>
           <p class="footnote">15,055 respondents</p>
+          <p class="facts">Most of repondents have not yet attended any in-person coding events.</p>
         </article>
       </div>
     </section>

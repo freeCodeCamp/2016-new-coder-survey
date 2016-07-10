@@ -12,7 +12,7 @@ body {
   body a {
     color: #417505;
     text-decoration: none; }
-  body .footnote:last-child:before {
+  body .footnote:before {
     display: block;
     content: " ";
     margin-left: 2px;
@@ -103,18 +103,20 @@ nav {
     content: "";
     display: table; }
   .charts p {
-    height: 1.4em;
-  }
+    height: 1.4em; }
   .charts .chart {
     float: left;
     display: block;
     margin-right: 2.35765%;
+    margin-bottom: 9%;
     width: 100%; }
     .charts .chart:last-child {
       margin-right: 0; }
   @media screen and (min-width: 800px) {
     .charts {
       padding: 55px 50px 5px; }
+      .charts .chart {
+        margin-bottom: 0; }
       .charts.medium .chart {
         float: left;
         display: block;
