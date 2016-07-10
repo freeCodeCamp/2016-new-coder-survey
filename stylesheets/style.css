@@ -216,7 +216,7 @@ section .tag-sections {
 section article.tags {
   width: 100%;
   background: #F6F6F6;
-  padding: 30px 50px;
+  padding: 30px 10px;
   border: #D8D8D8 solid 2px;
   border-left: none;
   border-top: none; }
@@ -225,6 +225,7 @@ section article.tags {
   @media screen and (min-width: 800px) {
     section article.tags {
       width: 33.333%;
+      padding: 30px 50px;
       display: table-cell; } }
   section article.tags .tag {
     display: inline-block;
