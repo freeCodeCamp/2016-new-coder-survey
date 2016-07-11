@@ -12,10 +12,10 @@ var worldJSON = './data/world-geo3-min.json';
 
 // defines the [type, [breakpoints between colors for map fill], description for legend, [country.properties keys for global stats], [descriptors for global stats], [keys for tooltip stats if diff from global], [descriptors for tooltip stats]
 var mapFill = {
-  all: ['num', [20, 100, 500, 1000],'Number of survey respondents per country.', ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'], ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'], ['citizen', 'nonCitizen'], ['Citizen', 'Non-Citizen']],
-  gender: ['percent', [0.15,0.25,0.35,0.45],'Proportion of female, trans*, agender and genderqueer respondents.', ['male', 'female', 'ATQ', 'NR'], ['Male', 'Female', 'Trans*, Genderqueer or Agender', 'No response']],
-  ethnicity: ['percent', [0.20,0.3,0.4,0.6], 'Proportion of respondents who are members of an ethnic minority in their country.', ['ethnicMajority', 'ethnicity'], ['Ethnic Majority', 'Ethnic minority']],
-  age: ['num', [21, 25, 29, 33], 'Average age of respondents per country.', [0, 1, 2, 3, 4, 5], [' under 22', ' aged 22-25', ' aged 26-29', ' aged 30-33', ' over 33', ' no response']]
+  all: ['num', [20, 100, 500, 1000],'Number of coders per country.', ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'], ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'], ['citizen', 'nonCitizen'], ['Citizen', 'Non-Citizen']],
+  gender: ['percent', [0.15,0.25,0.35,0.45],'Proportion of female, trans*, agender and genderqueer coders.', ['male', 'female', 'ATQ', 'NR'], ['Male', 'Female', 'Trans*, Genderqueer or Agender', 'No response']],
+  ethnicity: ['percent', [0.20,0.3,0.4,0.6], 'Proportion of coders who are members of an ethnic minority in their country.', ['ethnicMajority', 'ethnicity'], ['Ethnic Majority', 'Ethnic minority']],
+  age: ['num', [21, 25, 29, 33], 'Average age of coders per country.', [0, 1, 2, 3, 4, 5], [' under 22', ' aged 22-25', ' aged 26-29', ' aged 30-33', ' over 33', ' no response']]
     };
 // Color assignment
 var colors = {
@@ -254,7 +254,7 @@ function renderMap(activeGraph, json, graphData) {
 
               if (typeof(d.properties.ratio) === "undefined" || (activeGraph === 'age' && d.properties.totalAges == 0)) {
                 // then custom message for no data
-                var tooltipData = 'No respondents from '+displayName;
+                var tooltipData = 'No survey responses from '+displayName;
                 d3.select('#em-graph')
                   .style('display','none');
               } else {
