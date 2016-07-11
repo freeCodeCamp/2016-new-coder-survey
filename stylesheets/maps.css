@@ -3,6 +3,16 @@
   flex-direction: column;
   margin: 2% 5% 0  5%;
 }
+@media (min-width: 1000px) {
+  .container {
+    margin: 2% 15% 0 15%;
+  }
+}
+@media (min-width: 1600px) {
+  .container {
+    margin: 2% 25% 0 25%;
+  }
+}
 
 .tab-set {
   display: flex;
