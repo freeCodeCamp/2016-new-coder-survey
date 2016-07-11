@@ -1,0 +1,121 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 2% 5% 0  5%;
+}
+
+.tab-set {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: no-wrap;
+}
+
+.tab {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  border-radius: 5px 5px 0 0;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.tab:hover {
+  background-color: #7ED321;
+  }
+
+.tab#active-tab {
+  background-color: #417505;
+  border-color: #417505;
+  color: white;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+#tooltip {
+  position: fixed;
+  visibility: visible;
+  pointer-events: none;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.3s linear;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  padding: 0 15px 15px;
+  border-radius: 5px;
+  max-width: 400px;
+}
+#tooltip.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear;
+}
+#tooltip .inner-cont {
+  display: flex;
+  flex-direction: column;
+}
+#tooltip .inner-cont div {
+  display: flex;
+  flex-direction: row;
+}
+#tooltip .inner-cont div:nth-last-child(n+2) {
+  margin-bottom: 1em;
+}
+#tooltip .tooltip-graph {
+  margin-right: 10px;
+}
+#tooltip .tooltip-data {
+  width: 12em;
+}
+#tooltip .tooltip-data p, #tooltip .tooltip-data ul {
+  margin: -1em 0 !important;
+}
+#tooltip .tooltip-data ul {
+  list-style: square;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px 10px 0.2em 30px;
+  border-radius: 3px;
+}
+#tooltip .tooltip-data ul span {
+  color: white;
+}
+#tooltip .tooltip-data ul li {
+  margin-bottom: 0.3em;
+}
+
+#map-legend {
+  margin-top: -20px;
+  padding-bottom: 20px;
+  background: #333;
+  font-weight: 500;
+  max-width: 100%;
+}
+#map-legend p {
+  display: block;
+  align-self: flex-start;
+  color: white;
+  padding: 20px 20px 0 20px;
+}
+#map-legend .legend-colors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
+}
+#map-legend .legend-colors div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4em 0.6em;
+  min-width: 4.5em;
+  font-weight: 500;
+  color: black;
+}
+#map-legend .legend-colors div:nth-child(4) {
+  color: #eee;
+}
+#map-legend .legend-colors div:nth-child(5) {
+  color: #eee;
+}
+
