@@ -6,7 +6,7 @@
 
 
 /* CONFIGURATION */
-var mapID = '#GenderMap';
+var mapID = '#Map';
 var mapsData = './data/maps-data.json';
 var worldJSON = './data/world-geo3-min.json';
 
@@ -17,7 +17,7 @@ var mapFill = {
   ethnicity: ['percent', [0.20,0.3,0.4,0.6], 'Proportion of respondents who are members of an ethnic minority in their country.', ['ethnicMajority', 'ethnicity'], ['Ethnic Majority', 'Ethnic minority']],
   age: ['num', [21, 25, 29, 33], 'Average age of respondents per country.', [0, 1, 2, 3, 4, 5], [' aged 0-21', ' aged 22-25', ' aged 26-29', ' aged 30-33', ' aged 34+', ' no response']]
     };
-// Color assignment - remember to also change sass variables // TODO Shift all modifiable colors to JS
+// Color assignment
 var colors = {
   all: {
     spectrum: ['#c9df8a','#77ab59','#36802d','#234d20', '#112610'],
@@ -56,14 +56,13 @@ var colors = {
   path: ['#333','0.2px'],
 };
 
-var activeGraph = 'all';
 var width = 900;
 var height = function(num) {
   if (!num) { num = width; }
   return num/7*4
 };
 
-
+/* FUNCTIONS */
 function pieChart(dataSet, selector, chartColors) {
   // General use function to create a pie chart
   // config variables
@@ -110,42 +109,16 @@ function percentify(num,total) {
 }
 // END FUNCTION percentify
 
-function sizeChange() {
-  var graphWidth = document.getElementById('GenderMap').offsetWidth;
-  d3.select(mapID + ' g').attr('transform', 'scale(' + graphWidth/width + ")");
-  d3.select(mapID + ' svg')
+function sizeChange(activeGraph) {
+  if (!activeGraph) { activeGraph = 'all'; }
+  var graphWidth = document.getElementById('Map').offsetWidth;
+  d3.select('#' + activeGraph + '-map-svg g').attr('transform', 'scale(' + graphWidth/width + ")");
+  d3.select('#' + activeGraph + '-map-svg')
     .attr('height', height(graphWidth));
 }
 // END FUNCTION sizeChange
 
-// TODO Change to if statement, reintegrate to parent function?
-function fillToLegendConv(num) {
-  switch (activeGraph) {
-    case 'all':
-      return num;
-      break;
-    case 'gender':
-      return num * 100 + '%';
-      break;
-    default:
-      return num;
-  }
-}
-// END FUNCTION fillToLegendConv
-
-function getBoundingBoxCenter(selection) {
-    // get the DOM element from a D3 selection
-    // you could also use "this" inside .each()
-    var element = selection.node(),
-        // use the native SVG interface to get the bounding box
-        bbox = element.getBBox();
-    // return the center of the bounding box
-    return [bbox.x + bbox.width/2, bbox.y + bbox.height/2];
-}
-
-function renderMap() {
-  d3.json(mapsData,function(graphData) {
-    d3.json(worldJSON,function(json) {
+function renderMap(activeGraph, json, graphData) {
       // pulls loaded data into worldJSON
       json.features.forEach(function(e,i,arr) {
         for (var key in graphData[e.properties.name]) {
@@ -187,7 +160,7 @@ function renderMap() {
                   .append('svg')
                   .attr('width', '100%')
                   .attr('height', height(width))
-                  .attr('id','gender-map-svg')
+                  .attr('id', activeGraph + '-map-svg')
                   .style('background', colors.water)
                   .append('g')
                   .call(zoom)
@@ -195,7 +168,8 @@ function renderMap() {
       var legend = d3.select(mapID)
                      .append('div')
                      .attr('width', width + 'px')
-                     .attr('id', 'map-legend')
+                     .attr('class', 'map-legend')
+                     .attr('id', activeGraph + '-map-legend')
                      .html('<p class="description">' + mapFill[activeGraph][2] + '</p>')
 
       // Create map legend colors and labels
@@ -328,30 +302,42 @@ function renderMap() {
               d3.select('#em-data').select('ul').remove();
             });
       sizeChange();
-    });
-  });
+
 }
 // END FUNCTION renderMap
 
 
 /* PRIMARY CALLS */
-renderMap('gender');
-
+/* Load JSON data */
+d3.json(mapsData,function(graphData) {
+  d3.json(worldJSON,function(geoData) {
+    renderMap('all', geoData, graphData);
+    renderMap('gender', geoData, graphData);
+    renderMap('ethnicity', geoData, graphData);
+    renderMap('age', geoData, graphData);
+  });
+});
 
 d3.select(window)
   .on("resize", sizeChange);
+
 
 window.onload = function() {
   var tabs = document.getElementsByClassName('tab');
   for (var i = 0; i < tabs.length; i++) {
     var tab = tabs[i];
     tab.onclick = function() {
-      document.getElementById('active-tab').removeAttribute('id');
-      activeGraph = this.className.replace('tab ','');
+      var lastTab = document.getElementById('active-tab');
+      var lastGraph = lastTab.innerHTML == 'Location' ? 'all' : lastTab.innerHTML;
+      lastGraph = lastGraph.toLowerCase();
+      lastTab.removeAttribute('id');
+      var activeGraph = this.className.replace('tab ','');
       this.setAttribute('id','active-tab');
-      d3.select(mapID).select('svg').remove();
-      d3.select(mapID).select('div').remove();
-      renderMap();
+      d3.select('#' + lastGraph + '-map-svg').style('display','none');
+      d3.select('#' + lastGraph + '-map-legend').style('display','none');
+      d3.select('#' + activeGraph + '-map-svg').style('display','block');
+      d3.select('#' + activeGraph+'-map-legend').style('display','block');
+      sizeChange(activeGraph);
     }
   }
 };

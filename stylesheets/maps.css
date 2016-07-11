@@ -3,14 +3,14 @@
   flex-direction: column;
   margin: 2% 5% 0  5%;
 }
-@media (min-width: 1000px) {
+@media (min-width: 900px) {
   .container {
-    margin: 2% 15% 0 15%;
+    margin: 2% 20% 0 20%;
   }
 }
-@media (min-width: 1600px) {
+@media (min-width: 1400px) {
   .container {
-    margin: 2% 25% 0 25%;
+    margin: 2% 30% 0 30%;
   }
 }
 
@@ -24,18 +24,19 @@
   padding: 10px;
   width: 100%;
   text-align: center;
+  border: none;
   border-radius: 5px 5px 0 0;
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.3s;
 }
-.tab:hover {
+.tab#active-tab {
   background-color: #7ED321;
+  color: white;
   }
 
-.tab#active-tab {
-  background-color: #417505;
-  border-color: #417505;
+.tab:hover {
+  background-color: #7ED321;
   color: white;
 }
 
@@ -94,26 +95,20 @@
   margin-bottom: 0.3em;
 }
 
-#map-legend {
-  margin-top: -20px;
-  padding-bottom: 20px;
-  background: #333;
-  font-weight: 500;
+.map-legend {
+  background: transparent;
   max-width: 100%;
 }
-#map-legend p {
+.map-legend p {
   display: block;
   align-self: flex-start;
-  color: white;
-  padding: 20px 20px 0 20px;
 }
-#map-legend .legend-colors {
+.map-legend .legend-colors {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  margin: 10px;
+  justify-content: flex-end;
 }
-#map-legend .legend-colors div {
+.map-legend .legend-colors div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -122,10 +117,19 @@
   font-weight: 500;
   color: black;
 }
-#map-legend .legend-colors div:nth-child(4) {
+.map-legend .legend-colors div:nth-child(4) {
   color: #eee;
 }
-#map-legend .legend-colors div:nth-child(5) {
+.map-legend .legend-colors div:nth-child(5) {
   color: #eee;
 }
 
+/*#Map svg, #Map div {
+  display: none;
+}*/
+#Map #all-map-svg, #Map #all-map-legend {
+  display: block;
+}
+#gender-map-svg, #gender-map-legend, #ethnicity-map-svg, #ethnicity-map-legend, #age-map-svg, #age-map-legend {
+  display: none;
+}
