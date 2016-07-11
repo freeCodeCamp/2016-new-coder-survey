@@ -9,6 +9,7 @@ Survey development was lead by [Quincy Larson](https://twitter.com/ossia) with F
 
 - [About the Data](#about-the-data)
 - [How to Contribute](#how-to-contribute)
+- [Analysis of this data](#analysis-of-this-data)
 - [Analysis of other relevant recent data](#analysis-of-other-relevant-recent-data)
 - [License](#license)
 
@@ -20,8 +21,14 @@ We have cleaned and combined the data for convenience of downstream analyses and
 
 ## How to Contribute
 
-- Fork this repository and checkout the [issues](https://github.com/FreeCodeCamp/2016-new-coder-survey/issues) for questions that you can help us answer with d3.js data visualizations.
+- Fork this repository and checkout the [issues](https://github.com/FreeCodeCamp/2016-new-coder-survey/issues/41) for questions that you can help us answer with d3.js data visualizations.
 - Come up with your own questions and [add them as new issues](https://github.com/FreeCodeCamp/2016-new-coder-survey/issues/new).
+
+## Analysis of this data
+
+- [Kaggle](https://www.kaggle.com/freecodecamp/2016-new-coder-survey-/kernels)
+- [Toshiaki Takeuchi](http://blogs.mathworks.com/loren/2016/06/27/survey-reveals-diversity-in-the-learn-to-code-movement/)
+- [SamAI](https://github.com/FreeCodeCamp/2016-new-coder-survey/issues/40)
 
 ## Analysis of other relevant recent data
 
