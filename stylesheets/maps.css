@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  /*margin: 2% 5% 0  5%;*/
+  margin-top: 10px;
 }
 @media (min-width: 900px) {
   .container {
