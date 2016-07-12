@@ -21,7 +21,7 @@ var mapFill = {
 // Color assignment
 var colors = {
   all: {
-    spectrum: ['#c9df8a','#77ab59','#36802d','#234d20', '#112610'],
+    spectrum: ['#C4EDC7', '#6FCF75', '#39993F', '#185E1C', '#102A12'],//['#c9df8a','#77ab59','#36802d','#234d20', '#112610'],
     Africa: '#17becf',
     Asia: '#ff7f0e',
     Europe: '#bcbd22',
@@ -32,19 +32,19 @@ var colors = {
     nonCitizen: '#d62728'
   },
   gender: {
-    spectrum: ['#D9A6DB', '#D266CD', '#BC23B5', '#93008D', '#550051'],//['#A777A8','#8B2A8F','#500A76','#3A0358','#1D002C'],
+    spectrum: ['#E8C0DF', '#C167AE', '#8D357A', '#571649', '#270F21'],//['#D9A6DB', '#D266CD', '#BC23B5', '#93008D', '#550051'],//['#A777A8','#8B2A8F','#500A76','#3A0358','#1D002C'],
     female: '#FF1493',
     ATQ: '#FFFF00',
     male: '#000050',
     NR: '#fff'
   },
   ethnicity: {
-    spectrum: ['#FFAEAE', '#FF4A4A', '#EE0000', '#AA0000', '#640000'],//['#DE6862', '#FE0D00', '#C40900', '#840500', '#220200'],
+    spectrum: ['#F9CFD7', '#EF8096', '#B5435A', '#6F1C2C', '#321319'],//['#FFAEAE', '#FF4A4A', '#EE0000', '#AA0000', '#640000'],//['#DE6862', '#FE0D00', '#C40900', '#840500', '#220200'],
     'ethnicity': '#640500',
     'ethnicMajority': '#DE6862'
   },
   age: {
-    spectrum: ['#FFB86B','#FF9420','#E67800','#7F4200', '#170C00'],
+    spectrum: ['#BECFE1', '#6589B1', '#36587F', '#18324E', '#0F1823'],//['#FFB86B','#FF9420','#E67800','#7F4200', '#170C00'],
     0: '#1f77b4',
     1: '#2ca02c',
     2: '#d62728',
