@@ -5,21 +5,19 @@
 }
 @media (min-width: 900px) {
   .container {
-    margin: 2% 20% 0 20%;
+    margin: 0 20%;
   }
 }
 @media (min-width: 1400px) {
   .container {
-    margin: 2% 30% 0 30%;
+    margin: 0 30%;
   }
 }
-
 .tab-set {
   display: flex;
   justify-content: space-around;
   flex-wrap: no-wrap;
 }
-
 .tab {
   padding: 10px;
   width: 100%;
@@ -33,18 +31,15 @@
 .tab#active-tab {
   background-color: #7ED321;
   color: white;
-  }
-
+}
 .tab:hover {
   background-color: #7ED321;
   color: white;
 }
-
 .overlay {
   fill: none;
   pointer-events: all;
 }
-
 #tooltip {
   position: fixed;
   visibility: visible;
@@ -94,16 +89,11 @@
 #tooltip .tooltip-data ul li {
   margin-bottom: 0.3em;
 }
-
 .map-legend {
   background: transparent;
   max-width: 100%;
   margin-top: -2em;
 }
-/*.map-legend p {
-  display: block;
-  align-self: flex-start;
-}*/
 .map-legend p, .map-legend .legend-colors {
   display: flex;
   flex-wrap: wrap;
@@ -156,10 +146,6 @@
 .map-legend .legend-colors div:nth-child(5) {
   color: #eee;
 }
-
-/*#Map svg, #Map div {
-  display: none;
-}*/
 #Map #all-map-svg, #Map #all-map-legend {
   display: block;
 }

@@ -10,27 +10,13 @@ var mapID = '#Map';
 var mapsData = './data/maps-data.json';
 var worldJSON = './data/world-geo3-min.json';
 var minFillSize = 20;
-/*var breakpoints = {
-  gender: {
-    0: [0.15, 0.25, 0.35, 0.45],
-    20: [0.1, 0.15, 0.2, 0.25]
-  },
-  ethnicity: {
-    0: [0.20, 0.3, 0.4, 0.6],
-    20: [0.1, 0.15, 0.2, 0.25]
-  },
-  age: {
-    0: [21, 25, 29, 33],
-    20: [24, 27, 30, 33]
-  }
-};*/
 
 // defines the [type, [breakpoints between colors for map fill], description for legend, [country.properties keys for global stats], [descriptors for global stats], [keys for tooltip stats if diff from global], [descriptors for tooltip stats]
 var mapFill = {
   all: ['num', [20, 100, 500, 1000],'Number of coders per country.', ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'], ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'], ['citizen', 'nonCitizen'], ['Citizen', 'Non-Citizen']],
-  gender: ['percent', [0.1, 0.15, 0.2, 0.25]/*breakpoints[gender][minFillSize]*/, 'Proportion of female, trans*, agender and genderqueer coders.', ['male', 'female', 'ATQ', 'NR'], ['Male', 'Female', 'Trans*, Genderqueer or Agender', 'No response']],
-  ethnicity: ['percent', [0.1, 0.15, 0.2, 0.25]/*breakpoints[ethnicity][minFillSize]*/, 'Proportion of coders who are members of an ethnic minority in their country.', ['ethnicMajority', 'ethnicity'], ['Ethnic Majority', 'Ethnic minority']],
-  age: ['num', [24, 26, 28, 30]/*breakpoints[age][minFillSize]*/, 'Average age of coders per country.', [0, 1, 2, 3, 4, 5], [' under 22', ' aged 22-25', ' aged 26-29', ' aged 30-33', ' over 33', ' no response']]
+  gender: ['percent', [0.1, 0.15, 0.2, 0.25], 'Proportion of female, trans*, agender and genderqueer coders.', ['male', 'female', 'ATQ', 'NR'], ['Male', 'Female', 'Trans*, Genderqueer or Agender', 'No response']],
+  ethnicity: ['percent', [0.1, 0.15, 0.2, 0.25], 'Proportion of coders who are members of an ethnic minority in their country.', ['ethnicMajority', 'ethnicity'], ['Ethnic Majority', 'Ethnic minority']],
+  age: ['num', [24, 26, 28, 30], 'Average age of coders per country.', [0, 1, 2, 3, 4, 5], [' under 22', ' aged 22-25', ' aged 26-29', ' aged 30-33', ' over 33', ' no response']]
     };
 // Color assignment
 var colors = {
@@ -67,7 +53,7 @@ var colors = {
     5: '#fff'
   },
   NR: '#fff',
-  water: '#fff',//'#add8e6',
+  water: '#fff',
   path: ['#333','0.2px'],
 };
 
@@ -141,17 +127,6 @@ function renderMap(activeGraph, json, graphData) {
           e.properties[key] = graphData[e.properties.name][key];
         }
       });
-      var globalStats = {}
-      for (var map in mapFill) {
-        for (var j = 0; j < mapFill[map][3].length; j++) {
-          globalStats[mapFill[map][3][j]] = 0;
-        }
-      }
-      if (globalStats['North America'] == 0) {
-        json.features.forEach(function(e,i,arr) {
-          if (graphData[e.properties.name]) { globalStats[e.continent] += graphData[e.properties.name].total; }
-        });
-      }
       function zoomed() {
         svg.attr('transform','translate(' + d3.event.translate + ')scale(' + d3.event.scale + ')');
       }
@@ -258,7 +233,6 @@ function renderMap(activeGraph, json, graphData) {
                   }
                })
             // Everything for tooltips
-
             .on('mouseover',function(d) {
               var scrollTop     = $(window).scrollTop(),
                 elementOffset = $(mapID).offset().top,
@@ -339,9 +313,7 @@ d3.json(mapsData,function(graphData) {
   });
 });
 
-d3.select(window)
-  .on("resize", sizeChange);
-
+d3.select(window).on("resize", sizeChange);
 
 window.onload = function() {
   var tabs = document.getElementsByClassName('tab');
