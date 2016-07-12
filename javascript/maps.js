@@ -16,7 +16,7 @@ var mapFill = {
   all: ['num', [20, 100, 500, 1000],'Number of coders per country.', ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'], ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'], ['citizen', 'nonCitizen'], ['Citizen', 'Non-Citizen']],
   gender: ['percent', [0.1, 0.15, 0.2, 0.25], 'Proportion of female, trans*, agender and genderqueer coders.', ['male', 'female', 'ATQ', 'NR'], ['Male', 'Female', 'Trans*, Genderqueer or Agender', 'No response']],
   ethnicity: ['percent', [0.1, 0.15, 0.2, 0.35], 'Proportion of coders who are members of an ethnic minority in their country.', ['ethnicMajority', 'ethnicity'], ['Ethnic Majority', 'Ethnic minority']],
-  age: ['num', [24, 26, 28, 30], 'Average age of coders per country.', [0, 1, 2, 3, 4, 5], [' - 0-25', ' - 25-26', ' - 27-28', ' - 29-30', ' - 31+', ' no response']]
+  age: ['num', [24, 26, 28, 30], 'Average age of coders per country.', [0, 1, 2, 3, 4, 5], [' - 0-25', ' - 25-26', ' - 27-28', ' - 29-30', ' - 31+', ' no response'], [0, 1, 2, 3, 4, 5], [' - 0-21', ' - 22-25', ' - 26-29', ' - 30-33', ' - 34+', ' no response']]
     };
 // Color assignment
 var colors = {
@@ -299,8 +299,12 @@ function renderMap(activeGraph, json, graphData) {
                   .text(displayName + ' (' + totalRespondents + ')');
               d3.select('#gender-data')
                 .html(tooltipData);
+
+              if (winWidth < 900) {
+                mousePos[0] = 20;
+              }
               d3.select('#tooltip').style('left', mousePos[0]+'px')
-                .style('top', distance + mousePos[1] +'px');
+                  .style('top', distance + mousePos[1] +'px');
               // Show tooltip
               d3.select('#tooltip').classed('hidden', false);
             })
