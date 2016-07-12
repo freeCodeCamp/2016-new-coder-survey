@@ -16,7 +16,7 @@
 .tab-set {
   display: flex;
   justify-content: space-around;
-  flex-wrap: no-wrap;
+  flex-wrap: nowrap;
 }
 .tab {
   padding: 10px;

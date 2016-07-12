@@ -15,7 +15,7 @@ var minFillSize = 20;
 var mapFill = {
   all: ['num', [20, 100, 500, 1000],'Number of coders per country.', ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'], ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'], ['citizen', 'nonCitizen'], ['Citizen', 'Non-Citizen']],
   gender: ['percent', [0.1, 0.15, 0.2, 0.25], 'Proportion of female, trans*, agender and genderqueer coders.', ['male', 'female', 'ATQ', 'NR'], ['Male', 'Female', 'Trans*, Genderqueer or Agender', 'No response']],
-  ethnicity: ['percent', [0.1, 0.15, 0.2, 0.25], 'Proportion of coders who are members of an ethnic minority in their country.', ['ethnicMajority', 'ethnicity'], ['Ethnic Majority', 'Ethnic minority']],
+  ethnicity: ['percent', [0.1, 0.15, 0.2, 0.35], 'Proportion of coders who are members of an ethnic minority in their country.', ['ethnicMajority', 'ethnicity'], ['Ethnic Majority', 'Ethnic minority']],
   age: ['num', [24, 26, 28, 30], 'Average age of coders per country.', [0, 1, 2, 3, 4, 5], [' under 22', ' aged 22-25', ' aged 26-29', ' aged 30-33', ' over 33', ' no response']]
     };
 // Color assignment
@@ -32,14 +32,14 @@ var colors = {
     nonCitizen: '#d62728'
   },
   gender: {
-    spectrum: ['#9777A8','#6B2A8F','#500A76','#3A0358','#1D002C'],
+    spectrum: ['#D9A6DB', '#D266CD', '#BC23B5', '#93008D', '#550051'],//['#A777A8','#8B2A8F','#500A76','#3A0358','#1D002C'],
     female: '#FF1493',
     ATQ: '#FFFF00',
     male: '#000050',
     NR: '#fff'
   },
   ethnicity: {
-    spectrum: ['#DE6862', '#FE0D00', '#B40900', '#640500', '#220200'],
+    spectrum: ['#FFAEAE', '#FF4A4A', '#EE0000', '#AA0000', '#640000'],//['#DE6862', '#FE0D00', '#C40900', '#840500', '#220200'],
     'ethnicity': '#640500',
     'ethnicMajority': '#DE6862'
   },
