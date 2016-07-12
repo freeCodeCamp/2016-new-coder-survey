@@ -16,7 +16,7 @@ var mapFill = {
   all: ['num', [20, 100, 500, 1000],'Number of coders per country.', ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'], ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'], ['citizen', 'nonCitizen'], ['Citizen', 'Non-Citizen']],
   gender: ['percent', [0.1, 0.15, 0.2, 0.25], 'Proportion of female, trans*, agender and genderqueer coders.', ['male', 'female', 'ATQ', 'NR'], ['Male', 'Female', 'Trans*, Genderqueer or Agender', 'No response']],
   ethnicity: ['percent', [0.1, 0.15, 0.2, 0.35], 'Proportion of coders who are members of an ethnic minority in their country.', ['ethnicMajority', 'ethnicity'], ['Ethnic Majority', 'Ethnic minority']],
-  age: ['num', [24, 26, 28, 30], 'Average age of coders per country.', [0, 1, 2, 3, 4, 5], [' under 22', ' aged 22-25', ' aged 26-29', ' aged 30-33', ' over 33', ' no response']]
+  age: ['num', [24, 26, 28, 30], 'Average age of coders per country.', [0, 1, 2, 3, 4, 5], [' - 0-25', ' - 25-26', ' - 27-28', ' - 29-30', ' - 31+', ' no response']]
     };
 // Color assignment
 var colors = {
@@ -147,7 +147,18 @@ function renderMap(activeGraph, json, graphData) {
                    .scaleExtent([1,12])
                    .on('zoom', zoomed);
 
-      var svg = d3.select(mapID)
+
+      var winWidth = window.innerWidth;
+      if ( winWidth < 900 ) {
+        var svg = d3.select(mapID)
+                  .append('svg')
+                  .attr('width', '100%')
+                  .attr('height', height(width))
+                  .attr('id', activeGraph + '-map-svg')
+                  .style('background', colors.water)
+                  .append('g');
+      } else {
+        var svg = d3.select(mapID)
                   .append('svg')
                   .attr('width', '100%')
                   .attr('height', height(width))
@@ -156,6 +167,8 @@ function renderMap(activeGraph, json, graphData) {
                   .append('g')
                   .call(zoom)
                   .append('g');
+      }
+
       var legend = d3.select(mapID)
                      .append('div')
                      .attr('width', width + 'px')
@@ -178,9 +191,10 @@ function renderMap(activeGraph, json, graphData) {
               .text(legendText[i]);
       }
       // Map description
+      var minCountrySizeText = (activeGraph === 'all') ? '' : '<br>For countries with at least 20 responses.';
       legend.append('p')
             .attr('class','description')
-            .text(mapFill[activeGraph][2]);
+            .html(mapFill[activeGraph][2] + minCountrySizeText);
 
       svg.append('rect')
          .attr({
@@ -240,7 +254,7 @@ function renderMap(activeGraph, json, graphData) {
               var graph = d3.select(mapID).node();
               var mousePos = d3.mouse(graph);
               mousePos[0] += window.innerWidth/10;
-              mousePos[0] = mousePos[0] < (window.innerWidth/1.5) ? mousePos[0] : mousePos[0] - window.innerWidth/10 * 2;
+              mousePos[0] = mousePos[0] < (window.innerWidth/2) ? mousePos[0] : mousePos[0] - 200;//window.innerWidth/4;
 
               var displayName = d.properties.displayName ? d.properties.displayName : d.properties.name.replace(/([A-Z])/g, ' $1').trim();
               totalRespondents = d.properties.ATQ + d.properties.female + d.properties.male + d.properties.NR;
