@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  margin: 2% 5% 0  5%;
+  /*margin: 2% 5% 0  5%;*/
 }
 @media (min-width: 900px) {
   .container {
@@ -98,12 +98,13 @@
 .map-legend {
   background: transparent;
   max-width: 100%;
+  margin-top: -2em;
 }
-.map-legend p {
+/*.map-legend p {
   display: block;
   align-self: flex-start;
-}
-.map-legend .legend-colors {
+}*/
+.map-legend p, .map-legend .legend-colors {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -116,6 +117,38 @@
   min-width: 4.5em;
   font-weight: 500;
   color: black;
+}
+@media (max-width: 600px) {
+  .map-legend {
+    margin-top: -1.9em;
+  }
+  .map-legend .legend-colors div {
+    font-size: 0.9em;
+  }
+}
+@media (max-width: 400px) {
+  .map-legend {
+    margin-top: -1.8em;
+  }
+  .map-legend .legend-colors div {
+    font-size: 0.8em;
+  }
+}
+@media (max-width: 330px) {
+  .map-legend {
+    margin-top: -1.6em;
+  }
+  .map-legend .legend-colors div {
+    font-size: 0.6em;
+  }
+}
+@media (max-width: 260px) {
+  .map-legend {
+    margin-top: -1.5em;
+  }
+  .map-legend .legend-colors div {
+    font-size: 0.5em;
+  }
 }
 .map-legend .legend-colors div:nth-child(4) {
   color: #eee;

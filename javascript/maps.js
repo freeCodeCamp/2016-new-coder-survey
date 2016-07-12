@@ -9,13 +9,28 @@
 var mapID = '#Map';
 var mapsData = './data/maps-data.json';
 var worldJSON = './data/world-geo3-min.json';
+var minFillSize = 20;
+/*var breakpoints = {
+  gender: {
+    0: [0.15, 0.25, 0.35, 0.45],
+    20: [0.1, 0.15, 0.2, 0.25]
+  },
+  ethnicity: {
+    0: [0.20, 0.3, 0.4, 0.6],
+    20: [0.1, 0.15, 0.2, 0.25]
+  },
+  age: {
+    0: [21, 25, 29, 33],
+    20: [24, 27, 30, 33]
+  }
+};*/
 
 // defines the [type, [breakpoints between colors for map fill], description for legend, [country.properties keys for global stats], [descriptors for global stats], [keys for tooltip stats if diff from global], [descriptors for tooltip stats]
 var mapFill = {
   all: ['num', [20, 100, 500, 1000],'Number of coders per country.', ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'], ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'], ['citizen', 'nonCitizen'], ['Citizen', 'Non-Citizen']],
-  gender: ['percent', [0.15,0.25,0.35,0.45],'Proportion of female, trans*, agender and genderqueer coders.', ['male', 'female', 'ATQ', 'NR'], ['Male', 'Female', 'Trans*, Genderqueer or Agender', 'No response']],
-  ethnicity: ['percent', [0.20,0.3,0.4,0.6], 'Proportion of coders who are members of an ethnic minority in their country.', ['ethnicMajority', 'ethnicity'], ['Ethnic Majority', 'Ethnic minority']],
-  age: ['num', [21, 25, 29, 33], 'Average age of coders per country.', [0, 1, 2, 3, 4, 5], [' under 22', ' aged 22-25', ' aged 26-29', ' aged 30-33', ' over 33', ' no response']]
+  gender: ['percent', [0.1, 0.15, 0.2, 0.25]/*breakpoints[gender][minFillSize]*/, 'Proportion of female, trans*, agender and genderqueer coders.', ['male', 'female', 'ATQ', 'NR'], ['Male', 'Female', 'Trans*, Genderqueer or Agender', 'No response']],
+  ethnicity: ['percent', [0.1, 0.15, 0.2, 0.25]/*breakpoints[ethnicity][minFillSize]*/, 'Proportion of coders who are members of an ethnic minority in their country.', ['ethnicMajority', 'ethnicity'], ['Ethnic Majority', 'Ethnic minority']],
+  age: ['num', [24, 26, 28, 30]/*breakpoints[age][minFillSize]*/, 'Average age of coders per country.', [0, 1, 2, 3, 4, 5], [' under 22', ' aged 22-25', ' aged 26-29', ' aged 30-33', ' over 33', ' no response']]
     };
 // Color assignment
 var colors = {
@@ -52,7 +67,7 @@ var colors = {
     5: '#fff'
   },
   NR: '#fff',
-  water: '#add8e6',
+  water: '#fff',//'#add8e6',
   path: ['#333','0.2px'],
 };
 
@@ -72,7 +87,8 @@ function pieChart(dataSet, selector, chartColors) {
   var color = d3.scale.category10();
 
   // drawing the chart
-  var pie = d3.layout.pie();
+  var pie = d3.layout.pie()
+              .sort(null);
   var arc = d3.svg.arc()
                   .innerRadius(innerRadius)
                   .outerRadius(outerRadius);
@@ -169,14 +185,14 @@ function renderMap(activeGraph, json, graphData) {
                      .append('div')
                      .attr('width', width + 'px')
                      .attr('class', 'map-legend')
-                     .attr('id', activeGraph + '-map-legend')
-                     .html('<p class="description">' + mapFill[activeGraph][2] + '</p>')
+                     .attr('id', activeGraph + '-map-legend');
+
 
       // Create map legend colors and labels
       var legendColors = legend.append('div')
                      .attr('class','legend-colors');
       if (mapFill[activeGraph][0] === 'percent') {
-        var legendText = ['0-' + mapFill[activeGraph][1][0] *100 + '%', mapFill[activeGraph][1][0] *100 +1 + '-' + mapFill[activeGraph][1][1] *100 + '%', mapFill[activeGraph][1][1] *100 +1 + '-' + mapFill[activeGraph][1][2] *100 + '%', mapFill[activeGraph][1][2] *100 +1 + '-' + mapFill[activeGraph][1][3] *100 + '%', mapFill[activeGraph][1][3] *100 +1 + '-100%'];
+        var legendText = ['0-' + mapFill[activeGraph][1][0] *100 + '%', mapFill[activeGraph][1][0] *100 +1 + '-' + mapFill[activeGraph][1][1] *100 + '%', mapFill[activeGraph][1][1] *100 +1 + '-' + mapFill[activeGraph][1][2] *100 + '%', mapFill[activeGraph][1][2] *100 +1 + '-' + mapFill[activeGraph][1][3] *100 + '%', mapFill[activeGraph][1][3] *100 +1 + '+%'];
       } else if (mapFill[activeGraph][0] === 'num') {
         var legendText = ['0-' + mapFill[activeGraph][1][0], mapFill[activeGraph][1][0]+1 + '-' + mapFill[activeGraph][1][1], mapFill[activeGraph][1][1]+1 + '-' + mapFill[activeGraph][1][2], mapFill[activeGraph][1][2]+1 + '-' + mapFill[activeGraph][1][3], mapFill[activeGraph][1][3]+1 + '+'];
       }
@@ -186,6 +202,10 @@ function renderMap(activeGraph, json, graphData) {
               .style('background', colors[activeGraph].spectrum[i])
               .text(legendText[i]);
       }
+      // Map description
+      legend.append('p')
+            .attr('class','description')
+            .text(mapFill[activeGraph][2]);
 
       svg.append('rect')
          .attr({
@@ -213,30 +233,30 @@ function renderMap(activeGraph, json, graphData) {
                       var fillTest = totalRespondents;
                       break;
                     case 'gender':
-                      var fillTest = (d.properties.female + d.properties.ATQ)/totalRespondents;
+                      var fillTest = (totalRespondents < minFillSize) ? 'na' : (d.properties.female + d.properties.ATQ)/totalRespondents;
                       break;
                     case 'ethnicity':
-                      var fillTest = d.properties.ethnicity / totalRespondents;
+                      var fillTest = (totalRespondents < minFillSize) ? 'na' : d.properties.ethnicity / totalRespondents;
                       break;
                     case 'age':
-                      var fillTest = parseInt(d.properties.avgAge);
+                      var fillTest = (totalRespondents < minFillSize) ? 'na' : parseInt(d.properties.avgAge);
                       break;
                   }
 
                   if (fillTest <= mapFill[activeGraph][1][0]) {
-                       return colors[activeGraph].spectrum[0];
-                    } else if (fillTest <= mapFill[activeGraph][1][1]) {
-                       return colors[activeGraph].spectrum[1];
-                    } else if (fillTest <= mapFill[activeGraph][1][2]) {
-                       return colors[activeGraph].spectrum[2];
-                    } else if (fillTest <= mapFill[activeGraph][1][3]) {
-                       return colors[activeGraph].spectrum[3];
-                    } else if (fillTest > mapFill[activeGraph][1][3]) {
-                       return colors[activeGraph].spectrum[4];
-                    } else {
-                        return colors['NR'];
-                    }
-            })
+                    return colors[activeGraph].spectrum[0];
+                  } else if (fillTest <= mapFill[activeGraph][1][1]) {
+                    return colors[activeGraph].spectrum[1];
+                  } else if (fillTest <= mapFill[activeGraph][1][2]) {
+                    return colors[activeGraph].spectrum[2];
+                  } else if (fillTest <= mapFill[activeGraph][1][3]) {
+                    return colors[activeGraph].spectrum[3];
+                  } else if (fillTest > mapFill[activeGraph][1][3]) {
+                    return colors[activeGraph].spectrum[4];
+                  } else {
+                    return colors['NR'];
+                  }
+               })
             // Everything for tooltips
 
             .on('mouseover',function(d) {
@@ -301,7 +321,8 @@ function renderMap(activeGraph, json, graphData) {
               d3.select('#em-graph').select('div').remove();
               d3.select('#em-data').select('ul').remove();
             });
-      sizeChange();
+            // END TOOLTIPS
+      sizeChange(); // Dynamically resizes map after rendering
 
 }
 // END FUNCTION renderMap
