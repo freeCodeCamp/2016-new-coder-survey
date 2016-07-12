@@ -191,10 +191,12 @@ function renderMap(activeGraph, json, graphData) {
               .text(legendText[i]);
       }
       // Map description
-      var minCountrySizeText = (activeGraph === 'all') ? '' : '<br>For countries with at least 20 responses.';
       legend.append('p')
             .attr('class','description')
-            .html(mapFill[activeGraph][2] + minCountrySizeText);
+            .text(mapFill[activeGraph][2]);
+      legend.append('p')
+            .attr('class', 'footnote')
+            .text('For countries with at least 20 responses.')
 
       svg.append('rect')
          .attr({

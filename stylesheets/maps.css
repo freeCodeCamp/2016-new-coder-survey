@@ -99,6 +99,9 @@
   flex-wrap: wrap;
   justify-content: flex-end;
 }
+.map-legend p.footnote {
+  display: block;
+}
 .map-legend .legend-colors div {
   display: flex;
   justify-content: center;
