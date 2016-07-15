@@ -1,25 +1,48 @@
 .charts {
   @include clearfix;
-  padding: 0px 50px 5px;
-
-  .chart { @include span-columns(12); }
-
+  padding: 0px 10px 5px;
+  p { height: 1.4em; }
+  .chart {
+    @include span-columns(12);
+    margin-bottom: 9%;
+  }
+  
   @media screen and (min-width: 800px) {
-    padding: 30px 50px 5px;
+    padding: 55px 50px 5px;
+    .chart { margin-bottom: 0; }
     &.medium .chart { @include span-columns(6); }
     &.small .chart { @include span-columns(4); }
   }
   &:last-child { padding-bottom: 50px; }
 }
 
+@media screen and (min-width: 800px) {
+  .large {
+    padding-right: 35.5%;
+  }
+}
+
 .chart {
   .chart-graphic {
-    border: solid $gray 3px;
     width: 100%;
-    height: 60px;
+    height: auto;
+    min-height: 110px;
   }
 
   @media screen and (min-width: 800px) {
     display: table-cell;
   }
 }
+
+  /*For proper offsetTop when anchor*/
+  .chart .chart-graphic[id] {
+      padding-top: 9.5em;
+      margin-top: -9.5em;
+  }
+  .chart .chart-graphic[id]:before {
+      display: block;
+      content: " ";
+      padding-top: 9.5em;
+      margin-top: -9.5em;
+      visibility: hidden;
+  }
