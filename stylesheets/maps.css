@@ -1,0 +1,157 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+@media (min-width: 900px) {
+  .container {
+    margin: 0 20%;
+  }
+}
+@media (min-width: 1400px) {
+  .container {
+    margin: 0 30%;
+  }
+}
+.tab-set {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}
+.tab {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  border: none;
+  border-radius: 5px 5px 0 0;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.tab#active-tab {
+  background-color: #7ED321;
+  color: white;
+}
+.tab:hover {
+  background-color: #7ED321;
+  color: white;
+}
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+#tooltip {
+  position: fixed;
+  visibility: visible;
+  pointer-events: none;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.3s linear;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  padding: 0 15px 15px;
+  border-radius: 5px;
+  max-width: 400px;
+}
+#tooltip.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear;
+}
+#tooltip .inner-cont {
+  display: flex;
+  flex-direction: column;
+}
+#tooltip .inner-cont div {
+  display: flex;
+  flex-direction: row;
+}
+#tooltip .inner-cont div:nth-last-child(n+2) {
+  margin-bottom: 1em;
+}
+#tooltip .tooltip-graph {
+  margin-right: 10px;
+}
+#tooltip .tooltip-data {
+  width: 12em;
+}
+#tooltip .tooltip-data p, #tooltip .tooltip-data ul {
+  margin: -1em 0 !important;
+}
+#tooltip .tooltip-data ul {
+  list-style: square;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px 10px 0.2em 30px;
+  border-radius: 3px;
+}
+#tooltip .tooltip-data ul span {
+  color: white;
+}
+#tooltip .tooltip-data ul li {
+  margin-bottom: 0.3em;
+}
+.map-legend {
+  background: transparent;
+  max-width: 100%;
+  margin-top: -2em;
+}
+.map-legend p, .map-legend .legend-colors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.map-legend p.footnote {
+  display: block;
+}
+.map-legend .legend-colors div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4em 0.6em;
+  min-width: 4.5em;
+  font-weight: 500;
+  color: black;
+}
+@media (max-width: 600px) {
+  .map-legend {
+    margin-top: -1.9em;
+  }
+  .map-legend .legend-colors div {
+    font-size: 0.9em;
+  }
+}
+@media (max-width: 400px) {
+  .map-legend {
+    margin-top: -1.8em;
+  }
+  .map-legend .legend-colors div {
+    font-size: 0.8em;
+  }
+}
+@media (max-width: 330px) {
+  .map-legend {
+    margin-top: -1.6em;
+  }
+  .map-legend .legend-colors div {
+    font-size: 0.6em;
+  }
+}
+@media (max-width: 260px) {
+  .map-legend {
+    margin-top: -1.5em;
+  }
+  .map-legend .legend-colors div {
+    font-size: 0.5em;
+  }
+}
+.map-legend .legend-colors div:nth-child(4) {
+  color: #eee;
+}
+.map-legend .legend-colors div:nth-child(5) {
+  color: #eee;
+}
+#Map #all-map-svg, #Map #all-map-legend {
+  display: block;
+}
+#gender-map-svg, #gender-map-legend, #ethnicity-map-svg, #ethnicity-map-legend, #age-map-svg, #age-map-legend {
+  display: none;
+}
