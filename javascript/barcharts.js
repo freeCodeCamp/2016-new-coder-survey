@@ -1,7 +1,7 @@
 // Author: SamAI (@SamAI-Software)
 // http://samai-software.github.io/
 
-var renderBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, topic, format, totalBars, xColumn, yColumn) {
+var renderBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin, topic, format, totalBars, xColumn, yColumn, special) {
 
   ///////////////////////////////
   // -------- FORMATS -------- //
@@ -126,8 +126,19 @@ var renderBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin
     .scale(y)
     .orient("left");
 
+  // preloader() sets all containers to their expected height
+  // so they don't change size on scroll when render bar charts
+  function preloader(place) {
+    console.log("renderBarCharts.preloader() called");
+    // +24 to fix bug, not sure where it comes from
+    $(place).height(height+24);
+  }
+
   function render() {
-    console.log("function render() called");
+    console.log("renderBarCharts.render() called");
+
+    // height "auto" to rewrite preloader to avoid bugs
+    $(place).height("auto");
 
     var svg = d3.select(place).append("svg")
       .attr("width", "100%")
@@ -256,7 +267,11 @@ var renderBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin
     }
   }
 
-  render();
+  if (special == "preloader") {
+    preloader(place);
+  } else {
+    render(place);
+  }
 
   return {
     //API
@@ -265,51 +280,16 @@ var renderBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin
 });
 
 var allBarCharts = {
-  Age: false,
-  BootcampFinish: false,
-  BootcampFullJobAfter: false,
-  BootcampLoan: false,
-  BootcampMonthsAgo: false,
-  BootcampName: false,
-  BootcampPostSalary: false,
-  BootcampRecommend: false,
-  BootcampYesNo: false, //AttendedBootcamp
-  ChildrenNumber: false,
-  CityPopulation: false,
-  CodeEvent: false,
-  CountryLive: false,
-  EmploymentField: false,
-  EmploymentStatus: false,
-  ExpectedEarning: false,
-  FinanciallySupporting: false,
-  Gender: false,
-  HasChildren: false,
-  HasDebt: false,
-  HasFinancialDependents: false,
-  HasHighSpdInternet: false,
-  HasHomeMortgage: false,
-  HasServedInMilitary: false,
-  HasStudentDebt: false,
-  HomeMortgageOwe: false,
-  HoursLearning: false,
-  Income: false,
-  IsEthnicMinority: false,
-  IsReceiveDiabilitiesBenefits: false,
-  IsSoftwareDev: false,
-  IsUnderEmployed: false,
-  JobApplyWhen: false,
-  JobPref: false,
-  JobRelocateYesNo: false,
-  JobRoleInterest: false,
-  JobWherePref: false,
-  LanguageAtHome: false,
-  MaritalStatus: false,
-  MoneyForLearning: false,
-  MonthsProgramming: false,
-  Resources: false,
-  SchoolDegree: false,
-  SchoolMajor: false,
-  StudentDebtOwe: false,
+
+  init: function(ID) {
+    this[ID] = false;
+  },
+
+  preloader: function(ID) {
+    if (!this[ID]) { 
+      prepareBarCharts(ID, "preloader")
+    }
+  },
 
   check: function(ID) {
     if (!this[ID]) { 
@@ -321,6 +301,7 @@ var allBarCharts = {
   resize: function(ID) {
     if (this[ID]) { 
       setTimeout(function() {
+        //clean previous bar charts and render new
         $("#"+ID).html("");
         prepareBarCharts(ID);
       }, 1000);
@@ -329,12 +310,12 @@ var allBarCharts = {
 };
 
 //  prepareBarCharts() prepares all variables to be passed into renderBarCharts()
-var prepareBarCharts = (function(topic) {
+var prepareBarCharts = (function(topic, special) {
 
   // List of variables and settings
   // topic: [totalBars, format, leftMargin, rightMargin]
   var listOfTopics = {
-    Age: [4, "H4", "75", "45"],//4,
+    Age: [4, "H4", "70", "45"],//4,
     BootcampFinish: [2, "H4", "35", "45"], //2
     BootcampFullJobAfter: [2, "H4", "35", "45"],
     BootcampLoan: [2, "H4", "35", "45"], //2
@@ -351,7 +332,7 @@ var prepareBarCharts = (function(topic) {
     EmploymentStatus: [10, "H4d", "220", "60"], //10
     ExpectedEarning: [7, "H4", "95", "45"], //5
     FinanciallySupporting: [2, "H4", "35", "45"], //2
-    Gender: [3, "H4", "65", "45"],
+    Gender: [3, "H4", "70", "45"],
     HasChildren: [2,  "H4", "35", "45"],
     HasDebt: [2, "H4", "35", "45"], //2
     HasFinancialDependents: [2, "H4", "35", "45"], //2
@@ -375,13 +356,27 @@ var prepareBarCharts = (function(topic) {
     MaritalStatus: [2, "H4", "165", "45"],
     MoneyForLearning: [5, "H4", "70", "45"], //5
     MonthsProgramming: [3, "H4", "110", "45"], //3
-    Resources: [15, "H4", "135", "45"], //15
+    Resources: [15, "H4", "150", "45"], //15
     SchoolDegree: [10, "H4d", "225", "60"],
-    SchoolMajor: [14, "H4d", "175", "60"],
+    SchoolMajor: [14, "H4d", "225", "60"],
     StudentDebtOwe: [5, "H4", "90", "45"], //5
   };
 
-  //data for bar charts
+  ///////////////////////////////////////////////////////////
+  // renderBarCharts(data, place, totalWidth,              //
+  //               leftMargin, rightMargin, topic, format, //
+  //               totalBars, xColumn, yColumn, special);  //
+  ///////////////////////////////////////////////////////////
+
+  //place       - DOM container             //e.g. "#JobPref"
+  //totalWidth  - width of a DOM container  //e.g. "500"
+  //leftMargin  - adjust left titles in H4  //e.g. "200"
+  //rightMargin - adjust right labels in H4 //e.g. "40"
+  //topic       - column name in .csv file  //e.g. "JobPref"
+  //format      - "H4"/"H4d"/"H5"
+  //https://files.gitter.im/SamAI-Software/UO6O/BarChartsHorizontal_H5H4.jpg
+  //special     - define if call is preloader
+
   var dataBC      = './data/2016-New-Coder-Survey-Data-Summary.csv',
       place       = "#" + topic,
       totalWidth  = $("#" + topic).width(),
@@ -390,25 +385,11 @@ var prepareBarCharts = (function(topic) {
       totalBars   = listOfTopics[topic][0],
       format      = listOfTopics[topic][1],
       leftMargin  = listOfTopics[topic][2],
-      rightMargin = listOfTopics[topic][3];
-
-
-  ///////////////////////////////////////////////////////////
-  // renderBarCharts(data, place, totalWidth,              //
-  //               leftMargin, rightMargin, topic, format, //
-  //               totalBars, xColumn, yColumn);           //
-  ///////////////////////////////////////////////////////////
-
-  //place - DOM container                   //e.g. "#JobPref"
-  //totalWidth - width of a DOM container   //e.g. "500"
-  //leftMargin - adjust left titles in H4   //e.g. "200"
-  //rightMargin - adjust right labels in H4 //e.g. "40"
-  //topic - column name in .csv file        //e.g. "JobPref"
-  //format - "H4"/"H4d"/"H5"
-  //https://files.gitter.im/SamAI-Software/UO6O/BarChartsHorizontal_H5H4.jpg
+      rightMargin = listOfTopics[topic][3],
+      special     = special;
 
   renderBarCharts(dataBC, place, totalWidth, 
                   leftMargin, rightMargin, topic, format, 
-                  totalBars, xColumn, yColumn);
+                  totalBars, xColumn, yColumn, special);
 
 });

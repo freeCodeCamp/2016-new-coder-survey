@@ -6,15 +6,25 @@ html {
   box-sizing: inherit; }
 
 body {
+  padding-top: 0;
   margin: 0;
   font-family: "Roboto", "sans serif"; }
   body a {
     color: #417505;
     text-decoration: none; }
+  body .footnote:before {
+    display: block;
+    content: " ";
+    margin-left: 2px;
+    width: 12em;
+    border-top: 1px solid black;
+    opacity: 0.4;
+  }
   body .footnote {
     margin: 0 0 0 0.15em;
     font-size: 0.8em;
-    /*font-style: italic; */ }
+    font-style: italic;
+    opacity: 0.8; }
   body img {
     width: 100%; }
 
@@ -38,7 +48,8 @@ nav {
   text-align: center;
   background: #7ED321;
   color: white;
-  padding: 20px 0px; }
+  padding: 1px 0px;
+  z-index: 100; }
   nav ul {
     padding-left: 0px; }
   nav ul li {
@@ -85,22 +96,27 @@ nav {
       left: 25%; } }
 
 .charts {
-  padding: 0px 10px 5px; }
+  padding: 0px 10px 5px;
+  /*border: 2px solid blue;*/ }
   .charts::after {
     clear: both;
     content: "";
     display: table; }
+  .charts p {
+    height: 1.4em; }
   .charts .chart {
-    /*border: 1px solid blue;*/
     float: left;
     display: block;
     margin-right: 2.35765%;
+    margin-bottom: 9%;
     width: 100%; }
     .charts .chart:last-child {
       margin-right: 0; }
   @media screen and (min-width: 800px) {
     .charts {
-      padding: 30px 50px 5px; }
+      padding: 55px 50px 5px; }
+      .charts .chart {
+        margin-bottom: 0; }
       .charts.medium .chart {
         float: left;
         display: block;
@@ -117,6 +133,13 @@ nav {
           margin-right: 0; } }
   .charts:last-child {
     padding-bottom: 50px; }
+  
+  @media screen and (min-width: 800px) {
+    .large {
+      /*padding-left: 35.5%;*/
+      padding-right: 35.5%;
+    }
+  }
 
 .chart .chart-graphic {
   width: 100%;
@@ -126,7 +149,20 @@ nav {
   .chart {
     display: table-cell; } 
     .chart .chart-graphic {
-      border: solid #F6F6F6 3px; } }
+      /*border: solid #F6F6F6 3px;*/ } }
+
+  /*For proper offsetTop when anchor*/
+  .chart .chart-graphic[id] {
+      padding-top: 9.5em;
+      margin-top: -9.5em;
+  }
+  .chart .chart-graphic[id]:before {
+      display: block;
+      content: " ";
+      padding-top: 9.5em;
+      margin-top: -9.5em;
+      visibility: hidden;
+  }
 
 footer {
   padding: 30px 50px;
@@ -180,7 +216,7 @@ section .tag-sections {
 section article.tags {
   width: 100%;
   background: #F6F6F6;
-  padding: 30px 50px;
+  padding: 30px 10px;
   border: #D8D8D8 solid 2px;
   border-left: none;
   border-top: none; }
@@ -189,6 +225,7 @@ section article.tags {
   @media screen and (min-width: 800px) {
     section article.tags {
       width: 33.333%;
+      padding: 30px 50px;
       display: table-cell; } }
   section article.tags .tag {
     display: inline-block;
@@ -257,6 +294,5 @@ section article.tags {
  {
   font-size: 14px;
 }
-
 
 /*# sourceMappingURL=style.css.map */
