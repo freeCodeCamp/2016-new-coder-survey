@@ -1,27 +1,43 @@
 $green:#7ED321;
 $dark-green: #417505;
+$very-dark-green: #006400;
 $gray: #F6F6F6;
 $dark-gray: #D8D8D8;
 @mixin article($bg-color:$gray) {
   width: 100%;
   background: $bg-color;
-  padding: 30px 50px;
+  padding: 30px 10px;
   h3 { margin-top: 0px; }
 
   @media screen and (min-width: 800px) {
     width: 33.333%;
+    padding: 30px 50px;
     display: table-cell;
   }
 }
 
 body {
+  padding-top: 0;
   margin: 0;
   font-family: "Roboto", "sans serif";
   a {
     color: $dark-green;
     text-decoration: none;
   }
-  .footnote { font-style: italic; }
+  .footnote:before {
+    display: block;
+    content: " ";
+    margin-left: 2px;
+    width: 12em;
+    border-top: 1px solid black;
+    opacity: 0.4;
+  }
+  .footnote { 
+    margin: 0 0 0 0.15em;
+    font-size: 0.8em;
+    font-style: italic;
+    opacity: 0.8;
+  }
   img { width: 100%; }
 }
 
@@ -77,3 +93,6 @@ section {
     }
   }
 }
+
+@import "bar-charts";
+@import "maps";
