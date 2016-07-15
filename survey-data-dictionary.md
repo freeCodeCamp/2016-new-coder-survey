@@ -327,7 +327,8 @@ as follows in the parentheses:
 
 ### How old are you?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `Age`
 - **Type**: Numeric
 - **Options**: User input
 - **Note**: You'll need to parse this to make sure the data is indeed in
@@ -337,6 +338,7 @@ as follows in the parentheses:
 ### What's your gender?
 
 - **Question Type**: 
+- **Variable**: `Gender`
 - **Type**: Categorical/Boolean
 - **Options**:
     - female
@@ -349,6 +351,7 @@ as follows in the parentheses:
 ### Which country are you a citizen of?
 
 - **Question Type**: 
+- **Variable**: `CountryCitizen`
 - **Type**: Categorical
 - **Options**: Countries of the world
 - **Note**: This field allowed free-text entry but gave options to choose from.
@@ -357,6 +360,7 @@ as follows in the parentheses:
 ### Which country do you currently live in?
 
 - **Question Type**: 
+- **Variable**: `CountryLive`
 - **Type**: Categorical
 - **Options**: Countries of the world
 - **Note**: This field allowed free-text entry but gave options to choose from.
@@ -365,6 +369,7 @@ as follows in the parentheses:
 ### About how many people live in your city?
 
 - **Question Type**: 
+- **Variable**: `CityPopulation`
 - **Type**: Categorical
 - **Options**:
     - less than 100,000
@@ -375,6 +380,7 @@ as follows in the parentheses:
 ### Are you an ethnic minority in your country?
 
 - **Question Type**: 
+- **Variable**: `IsEthnicMinority`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 
@@ -382,6 +388,7 @@ as follows in the parentheses:
 ### Which language do you speak at home with your family?
 
 - **Question Type**: 
+- **Variable**: `LanguageAtHome`
 - **Type**: Categorical
 - **Options**: Languages of the world
 - **Note**: This field allowed free-text entry but gave options to choose from.
@@ -390,6 +397,7 @@ as follows in the parentheses:
 ### What's the highest degree of level of school you have completed?
 
 - **Question Type**: 
+- **Variable**: `SchoolDegree`
 - **Type**: Categorical
 - **Options**:
     - no high school (secondary school)
@@ -407,6 +415,7 @@ as follows in the parentheses:
 ### What was the main subject your studied in university?
 
 - **Question Type**: 
+- **Variable**: `SchoolMajor`
 - **Type**: Categorical
 - **Options**: User input
 - **Note**: This field became open if you choose anything greater than trade,
@@ -415,6 +424,7 @@ as follows in the parentheses:
 ### Do you financially support any dependents?
 
 - **Question Type**: 
+- **Variable**: `FinanciallySupporting`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 
@@ -422,6 +432,7 @@ as follows in the parentheses:
 ### Do you have any debt?
 
 - **Question Type**: 
+- **Variable**: `HasDebt`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 
@@ -429,6 +440,7 @@ as follows in the parentheses:
 ###  Do you have a home mortgage?
 
 - **Question Type**: 
+- **Variable**: `HasHomeMortgage`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 - **Note**: This option was given if you answered "Yes" to having debt.
@@ -437,6 +449,7 @@ as follows in the parentheses:
 ### About how much do you owe on your home mortgage in US Dollars?
 
 - **Question Type**: 
+- **Variable**: `HomeMortgage`
 - **Type**: Numeric
 - **Options**: User input
 - **Note**: This option was given if you answered "Yes" to having a home
@@ -447,6 +460,7 @@ as follows in the parentheses:
 ### Do you have student loan debt?
 
 - **Question Type**: 
+- **Variable**: `HasStudentDebt`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 - **Note**: This option was given if you answered "Yes" to having any debt.
@@ -457,6 +471,7 @@ as follows in the parentheses:
 ### Regarding employment status, are you currently...
 
 - **Question Type**: 
+- **Variable**: `EmploymentStatus`
 - **Type**: Categorical
 - **Options**:
     - Employed for wages
@@ -477,6 +492,7 @@ as follows in the parentheses:
 ### Which field do you work in?
 
 - **Question Type**: 
+- **Variable**: `EmploymentField`
 - **Type**: Categorical
 - **Options**:
     - software development and IT
@@ -501,6 +517,7 @@ as follows in the parentheses:
 ### About how much money did you make last year in (US dollars)?
 
 - **Question Type**: 
+- **Variable**: `Income`
 - **Type**: Numeric
 - **Options**: User input
 - **Note**: This field allowed user input so you'll need to parse this column
@@ -510,6 +527,7 @@ as follows in the parentheses:
 ### About how many minutes total do you spend commuting to and from work each day?
 
 - **Question Type**: 
+- **Variable**: `CommuteTime`
 - **Type**: Numeric
 - **Options**: User input
 - **Note**: This field allowed user input so you'll need to parse this column
@@ -519,6 +537,7 @@ as follows in the parentheses:
 ### Do you consider yourself under-employed?
 
 - **Question Type**: 
+- **Variable**: `IsUnderEmployed`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 - **Note**: The explanation for this question was, "Under-employed means
@@ -528,6 +547,7 @@ as follows in the parentheses:
 ### Have you served in your country's military before?
 
 - **Question Type**: 
+- **Variable**: `HasServedInMilitary`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 
@@ -535,6 +555,7 @@ as follows in the parentheses:
 ### Do you receive disability benefits from your government?
 
 - **Question Type**: 
+- **Variable**: `IsReceiveDiabilitiesBenefits`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 
@@ -542,6 +563,7 @@ as follows in the parentheses:
 ### Do you have high speed internet at your home?
 
 - **Question Type**: 
+- **Variable**: `HasHighSpdInternet`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 
@@ -549,6 +571,7 @@ as follows in the parentheses:
 ### Start Date and Submit Date
 
 - **Type**: Date
+- **Variables** `Part1EndTime	Part1StartTime	Part2EndTime	Part2StartTime`
 - **Options**: Computer generated
 - **Note**: These are two separate columns indicating the start and finish
   times for the survey.
