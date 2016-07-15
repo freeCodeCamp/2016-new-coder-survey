@@ -4,9 +4,11 @@ $("document").ready(function(){
   $(window).scroll(function() {
     if ($(window).scrollTop() > stickyNav){
       $("nav").addClass("sticky");
+      $("body").css("padding-top", $("nav").height());
     }
     else {
       $("nav").removeClass("sticky");
+      $("body").css("padding-top", "0");
     }
   });
   $(".moveTo").on("click", function(){
@@ -48,8 +50,8 @@ $("document").ready(function(){
             $w            = $(window),
             viewTop       = $w.scrollTop(), 
             viewBottom    = viewTop + $w.height(),
-            _top          = $t.offset().top,
-            _bottom       = _top + $t.height(),
+            _top          = $t.offset().top+150, //+150 coz of css offset for nav
+            _bottom       = _top + $t.height()-100, //-100 coz of css offset for nav
             compareTop    = partial === true ? _bottom : _top,
             compareBottom = partial === true ? _top : _bottom;
 
@@ -62,20 +64,23 @@ $("document").ready(function(){
   var win = $(window);
 
   var allMods = $(".chart-graphic");
-  
+
+  // PRELOADER
+  // preloader(ID) sets all containers to their expected height
+  // so they don't change size on scroll when render bar charts  
   allMods.each(function(i, el) {
-    var el = $(el);
-    if (el.visible(true)) {
-      // console.log("already-visible");
-    } 
+    var ID = $(el).attr('id');
+    allBarCharts.init(ID);
+    allBarCharts.preloader(ID);
   });
 
+  // CHECK
+  // render bar charts when they appear on screen
   win.scroll(function(event) {
 
     allMods.each(function(i, el) {
       var el = $(el);
       if (el.visible(true)) {
-        // el.addClass("come-in"); 
         var ID = $(el).attr('id');
         allBarCharts.check(ID);
       } 
@@ -84,11 +89,12 @@ $("document").ready(function(){
   });
   // ---------SCROLL-END----- //
 
+  // RESIZE
+  // rerender bar charts on window.resize
   win.resize(function() {
     allMods.each(function(i, el) {
       var ID = $(el).attr('id');
       allBarCharts.resize(ID);
     });
   });
-  
 });
