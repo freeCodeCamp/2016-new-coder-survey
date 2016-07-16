@@ -326,7 +326,7 @@ var prepareBarCharts = (function(topic, special) {
     BootcampYesNo: [2, "H4", "35", "45"], //2 //AttendedBootcamp
     ChildrenNumber: [3, "H4", "35", "45"],
     CityPopulation: [3, "H4", "200", "45"], //3
-    CodeEvent: [14, "H4d", "150", "60"], //15
+    CodeEvent: [14, "H4d", "175", "60"], //15
     CountryLive: [15, "H4d", "165", "60"], //15
     EmploymentField: [15, "H4d", "190", "60"], //15
     EmploymentStatus: [10, "H4d", "220", "60"], //10
@@ -356,7 +356,8 @@ var prepareBarCharts = (function(topic, special) {
     MaritalStatus: [2, "H4", "165", "45"],
     MoneyForLearning: [5, "H4", "70", "45"], //5
     MonthsProgramming: [3, "H4", "110", "45"], //3
-    Resources: [15, "H4", "150", "45"], //15
+    Podcast: [14, "H4d", "175", "60"], //14
+    Resources: [15, "H4", "175", "45"], //15
     SchoolDegree: [10, "H4d", "225", "60"],
     SchoolMajor: [14, "H4d", "225", "60"],
     StudentDebtOwe: [5, "H4", "90", "45"], //5
