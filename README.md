@@ -39,7 +39,7 @@ We have cleaned and combined the data for convenience of downstream analyses and
 
 ##Acknowledgement
 
-We want to thanks all people who participated in this project. Particular thanks to the members of the Free Code Camp Gitter DataScience chatroom and more specially to the team formed by @erictleung, @SamAI-Software, @krisgesling and @evaristoc. @erictleung championed the preparation of the dataset, @SamAI-Software worked on the coordination and final presentation of the charts, @krisgesling prepared the map and helped with the final touches of the presentation, and @evaristoc coordinated the DataScience room and supported the activities of the members of team. Similar thanks to all those members of the room who also contributed before and after the fieldwork of this survey by providing observations, finding and hightlighting discrepancies, suggesting ideas for charts, etc. Thanks to all of you.
+We want to thanks all people who participated in this project. Particular thanks to the members of the Free Code Camp Gitter DataScience chatroom and more specially to the team formed by @erictleung, @SamAI-Software, @krisgesling and @evaristoc. @erictleung championed the preparation of the dataset, @SamAI-Software worked on the coordination and final presentation of the charts, @krisgesling prepared the map and helped with the final touches of the presentation, and @evaristoc coordinated the DataScience room and supported the activities of the members of team. Extended thanks to all the members of the room who also contributed before and after the fieldwork of this survey by providing observations, finding and hightlighting discrepancies, suggesting ideas for charts, etc. Thanks to all of you.
 
 ## License
 
