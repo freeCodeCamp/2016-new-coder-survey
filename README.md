@@ -29,11 +29,17 @@ We have cleaned and combined the data for convenience of downstream analyses and
 - [Kaggle](https://www.kaggle.com/freecodecamp/2016-new-coder-survey-/kernels)
 - [Toshiaki Takeuchi](http://blogs.mathworks.com/loren/2016/06/27/survey-reveals-diversity-in-the-learn-to-code-movement/)
 - [SamAI](https://github.com/FreeCodeCamp/2016-new-coder-survey/issues/40)
+- [evaristoc](http://evaristoc.github.io/viz_exer/chartandpie/)
 
 ## Analysis of other relevant recent data
 
 - [Stack Overflow's 2016 Developer Survey](https://medium.freecodecamp.com/2-out-of-3-developers-are-self-taught-and-other-insights-from-stack-overflow-s-2016-survey-of-50-8cf0ee5d4c21#.yhlo2k5oz)
 - [O'Reilly's 2016 Developer Salary Survey](https://medium.freecodecamp.com/5-000-developers-talk-about-their-salaries-d13ddbb17fb8#.umwcssab4)
+
+
+##Acknowledgement
+
+We want to thanks all people who participated in this project. Particular thanks to the members of the Free Code Camp Gitter DataScience chatroom and more specially to the team formed by @erictleung, @SamAI-Software, @krisgesling and @evaristoc. @erictleung championed the preparation of the dataset, @SamAI-Software worked on the coordination and final presentation of the charts, @krisgesling prepared the map and helped with the final touches of the presentation, and @evaristoc coordinated the DataScience room and supported the activities of the members of team. Similar thanks to all those members of the room who also contributed before and after the fieldwork of this survey by providing observations, finding and hightlighting discrepancies, suggesting ideas for charts, etc. Thanks to all of you.
 
 ## License
 
