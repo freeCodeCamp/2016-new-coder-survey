@@ -114,11 +114,20 @@ function percentify(num,total) {
 function sizeChange(activeGraph) {
   if (!activeGraph) { activeGraph = 'all'; }
   var graphWidth = document.getElementById('Map').offsetWidth;
-  d3.select('#' + activeGraph + '-map-svg g').attr('transform', 'scale(' + graphWidth/width + ")");
+  d3.select('#' + activeGraph + '-map-svg g')
+    .attr('transform', 'scale(' + graphWidth/width + ")");
   d3.select('#' + activeGraph + '-map-svg')
     .attr('height', height(graphWidth));
 }
 // END FUNCTION sizeChange
+
+//preloaderMap sets the height of the map so DOM if fixed
+//for proper anchor when share links like https://.../#Podcast
+function preloaderMap() {
+  var width = document.getElementById('Map').offsetWidth;
+  var heightNew = height(width)+104; //+104 for legend
+  $('#Map').height(heightNew);
+}
 
 function renderMap(activeGraph, json, graphData) {
       // pulls loaded data into worldJSON
@@ -320,7 +329,6 @@ function renderMap(activeGraph, json, graphData) {
 
 }
 // END FUNCTION renderMap
-
 
 /* PRIMARY CALLS */
 /* Load JSON data */
