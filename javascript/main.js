@@ -73,11 +73,13 @@ $("document").ready(function(){
     allBarCharts.init(ID);
     allBarCharts.preloader(ID);
   });
+  //preloaderMap sets the height of the map so DOM if fixed
+  //for proper anchor when share links like https://.../#Podcast
+  preloaderMap();
 
   // CHECK
   // render bar charts when they appear on screen
   win.scroll(function(event) {
-
     allMods.each(function(i, el) {
       var el = $(el);
       if (el.visible(true)) {
@@ -85,13 +87,13 @@ $("document").ready(function(){
         allBarCharts.check(ID);
       } 
     });
-
   });
   // ---------SCROLL-END----- //
 
   // RESIZE
   // rerender bar charts on window.resize
   win.resize(function() {
+    preloaderMap();
     allMods.each(function(i, el) {
       var ID = $(el).attr('id');
       allBarCharts.resize(ID);
