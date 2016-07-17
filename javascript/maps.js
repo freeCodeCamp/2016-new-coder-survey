@@ -15,7 +15,7 @@ var minFillSize = 20;
 var mapFill = {
   all: ['num', [20, 100, 500, 1000],'Number of new coders per country.', ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'], ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'], ['citizen', 'nonCitizen'], ['Citizen', 'Non-Citizen']],
   gender: ['percent', [0.1, 0.15, 0.2, 0.25], 'Proportion of female, trans*, agender and genderqueer new coders.', ['male', 'female', 'ATQ', 'NR'], ['Male', 'Female', 'Trans*, Genderqueer or Agender', 'No response']],
-  ethnicity: ['percent', [0.1, 0.15, 0.2, 0.35], 'Proportion of new coders who are ethnic minority in their country.', ['ethnicMajority', 'ethnicity'], ['Ethnic Majority', 'Ethnic minority']],
+  ethnicity: ['percent', [0.1, 0.15, 0.2, 0.35], 'Proportion of new coders who are from an ethnic minority in their country.', ['ethnicMajority', 'ethnicity'], ['Ethnic Majority', 'Ethnic minority']],
   age: ['num', [24, 26, 28, 30], 'Average age of new coders per country.', [0, 1, 2, 3, 4, 5], [' - 0-25', ' - 25-26', ' - 27-28', ' - 29-30', ' - 31+', ' no response'], [0, 1, 2, 3, 4, 5], [' - 0-21', ' - 22-25', ' - 26-29', ' - 30-33', ' - 34+', ' no response']]
     };
 // Color assignment

@@ -129,13 +129,13 @@ var renderBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin
   // preloader() sets all containers to their expected height
   // so they don't change size on scroll when render bar charts
   function preloader(place) {
-    console.log("renderBarCharts.preloader() called");
+    // console.log("renderBarCharts.preloader() called");
     // +24 to fix bug, not sure where it comes from
     $(place).height(height+24);
   }
 
   function render() {
-    console.log("renderBarCharts.render() called");
+    // console.log("renderBarCharts.render() called");
 
     // height "auto" to rewrite preloader to avoid bugs
     $(place).height("auto");
@@ -148,7 +148,7 @@ var renderBarCharts = (function(data, place, totalWidth, leftMargin, rightMargin
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     d3.csv(data, type, function(error, data) {
-      console.log("d3.csv called");
+      // console.log("d3.csv called");
 
       // Hide Y ticks labels if the value is 0 and Y axis is displayed
       yAxis.tickFormat(function(d) {
