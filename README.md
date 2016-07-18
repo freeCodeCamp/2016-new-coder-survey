@@ -40,7 +40,7 @@ We have cleaned and combined the data for convenience of downstream analyses and
 
 ## Acknowledgement
 
-We want to thanks all people who participated in this project. Particular thanks to the members of the Free Code Camp Gitter [DataScience chatroom](https://gitter.im/FreeCodeCamp/DataScience) and more specially to the team formed by [@erictleung](https://github.com/erictleung), [@SamAI-Software](https://github.com/SamAI-Software), [@krisgesling](https://github.com/krisgesling) and [@evaristoc](https://github.com/evaristoc).
+We want to thanks all the people who participated in this project. Particular thanks to the members of the Free Code Camp Gitter [DataScience chatroom](https://gitter.im/FreeCodeCamp/DataScience) and more specially to the team formed by [@erictleung](https://github.com/erictleung), [@SamAI-Software](https://github.com/SamAI-Software), [@krisgesling](https://github.com/krisgesling) and [@evaristoc](https://github.com/evaristoc).
 
 [@erictleung](https://github.com/erictleung) championed the preparation of the clean dataset, [@SamAI-Software](https://github.com/SamAI-Software) worked on the coordination, analysis and final presentation of the charts, [@krisgesling](https://github.com/krisgesling) prepared the map and helped with the final touches of the presentation, and [@evaristoc](https://github.com/evaristoc) coordinated the DataScience room and supported the activities of the members of team.
 
