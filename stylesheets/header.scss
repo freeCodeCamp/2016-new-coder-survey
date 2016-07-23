@@ -1,8 +1,8 @@
 header {
-  background: $green;
+  background: $very-dark-green;
   color: white;
   p.description {
-    color: $dark-green;
+    color: $green;
     font-family: "Georgia", "serif";
     font-size: modular-scale(2);
   }
@@ -16,7 +16,7 @@ header {
 }
 nav {
   text-align: center;
-  background: $green;
+  background: $very-dark-green;
   color: white;
   padding: 1px 0px;
   z-index: 100;

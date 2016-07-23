@@ -29,11 +29,11 @@
   transition: background-color 0.3s;
 }
 .tab#active-tab {
-  background-color: #7ED321;
+  background-color: $very-dark-green;
   color: white;
 }
 .tab:hover {
-  background-color: #7ED321;
+  background-color: $very-dark-green;
   color: white;
 }
 .overlay {

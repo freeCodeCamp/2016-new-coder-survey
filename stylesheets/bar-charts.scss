@@ -20,13 +20,13 @@
 /*#006400 #008400 #7ED321*/
 .bar {
   position: absolute;
-  fill: $green;
-  stroke: $green;
+  fill: $very-dark-green;
+  stroke: $very-dark-green;
 }
 
 .bar:hover {
-  fill: $very-dark-green;
-  stroke: $very-dark-green;
+  fill: $green;
+  stroke: $green;
 }
 
 .barLabel {
