@@ -1,8 +1,8 @@
-$green:#7ED321;
-$dark-green: #417505;
-$very-dark-green: #006400;
-$gray: #F6F6F6;
-$dark-gray: #D8D8D8;
+$green:#7ED321; //#7ED321
+$dark-green: #417505; //#417505
+$very-dark-green: #006400; //#006400
+$gray: #F6F6F6; //#F6F6F6
+$dark-gray: #D8D8D8; //#D8D8D8
 @mixin article($bg-color:$gray) {
   width: 100%;
   background: $bg-color;
@@ -21,7 +21,7 @@ body {
   margin: 0;
   font-family: "Roboto", "sans serif";
   a {
-    color: $dark-green;
+    color: $green;
     text-decoration: none;
   }
   .footnote:before {
@@ -85,9 +85,9 @@ section {
         color: $dark-green;
         background: white;
         &:hover {
-          background: $green;
+          background: $very-dark-green;
           color: white;
-          border-color: $green;
+          border-color: $very-dark-green;
         }
       }
     }

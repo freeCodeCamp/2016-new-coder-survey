@@ -121,7 +121,7 @@ as follows in the parentheses:
 ### Would you prefer to work...
 
 - **Question Type**:
-- **Variable** - `JobWherePref`
+- **Variable**: `JobWherePref`
 - **Type**: Categorical
 - **Options**:
     - from home
@@ -571,7 +571,7 @@ as follows in the parentheses:
 ### Start Date and Submit Date
 
 - **Type**: Date
-- **Variables** `Part1EndTime	Part1StartTime	Part2EndTime	Part2StartTime`
+- **Variables**: `Part1EndTime	Part1StartTime	Part2EndTime	Part2StartTime`
 - **Options**: Computer generated
 - **Note**: These are two separate columns indicating the start and finish
   times for the survey.
