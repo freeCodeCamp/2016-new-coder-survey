@@ -9,7 +9,7 @@ body {
   margin: 0;
   font-family: "Roboto", "sans serif"; }
   body a {
-    color: #417505;
+    color: #7ED321;
     text-decoration: none; }
   body .footnote:before {
     display: block;
@@ -27,12 +27,12 @@ body {
     width: 100%; }
 
 header {
-  background: #7ED321;
+  background: #006400;
   color: white;
   text-align: center;
   padding: 50px 20px 0px; }
   header p.description {
-    color: #417505;
+    color: #7ED321;
     font-family: "Georgia", "serif";
     font-size: 1.77689em; }
   header h1 {
@@ -44,7 +44,7 @@ header {
 
 nav {
   text-align: center;
-  background: #7ED321;
+  background: #006400;
   color: white;
   padding: 1px 0px;
   z-index: 100; }
@@ -79,7 +79,7 @@ nav {
   position: fixed;
   top: 80px; }
   .raw-data .close {
-    color: #7ED321;
+    color: #006400;
     position: absolute;
     top: 10px;
     right: 30px;
@@ -164,7 +164,7 @@ footer {
     display: table; }
   footer h2 {
     font-size: 1.17em;
-    color: #417505; }
+    color: #006400; }
   footer div:last-child h2 {
     text-transform: uppercase; }
   @media screen and (min-width: 700px) {
@@ -226,9 +226,9 @@ section article.tags {
       color: #417505;
       background: white; }
       section article.tags .tag a:hover {
-        background: #7ED321;
+        background: #006400;
         color: white;
-        border-color: #7ED321; }
+        border-color: #006400; }
 
 /* toDO: barcharts.scss*/
 /* This shows the small ticks on Y axis */
@@ -249,12 +249,12 @@ section article.tags {
 /*#006400 #008400 #7ED321*/
 .bar {
   position: absolute;
-  fill: #7ED321;
-  stroke: #7ED321; }
-
-.bar:hover {
   fill: #006400;
   stroke: #006400; }
+
+.bar:hover {
+  fill: #7ED321;
+  stroke: #7ED321; }
 
 .barLabel {
   font-size: 16px
@@ -318,11 +318,11 @@ section article.tags {
           transition: background-color 0.3s; }
 
 .tab#active-tab {
-  background-color: #7ED321;
+  background-color: #006400;
   color: white; }
 
 .tab:hover {
-  background-color: #7ED321;
+  background-color: #006400;
   color: white; }
 
 .overlay {

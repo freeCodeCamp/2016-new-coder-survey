@@ -43,7 +43,7 @@ as follows in the parentheses:
 ## Example Question Description
 
 > ### Question 1
-> 
+>
 > - **Question Type**: Single Answer
 > - **Variable**: `quest1`
 > - **Type**: Boolean
@@ -120,8 +120,8 @@ as follows in the parentheses:
 
 ### Would you prefer to work...
 
-- **Question Type**: 
-- **Variable** - `JobWherePref`
+- **Question Type**:
+- **Variable**: `JobWherePref`
 - **Type**: Categorical
 - **Options**:
     - from home
@@ -131,7 +131,7 @@ as follows in the parentheses:
 
 ## Are you willing to relocate for a job?
 
-- **Question Type**: 
+- **Question Type**:
 - **Variable**: `JobRelocate`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
@@ -139,7 +139,7 @@ as follows in the parentheses:
 
 ### Which types of in-person coding events have you attended?
 
-- **Question Type**: 
+- **Question Type**:
 - **Type**: Categorical/Boolean
 - **Options**:
     - coffee-and-codes (`CodeEventCoffee`)
@@ -161,7 +161,7 @@ as follows in the parentheses:
 
 ### Which learning resources have you found helpful?
 
-- **Question Type**: 
+- **Question Type**:
 - **Type**: Categorical/Boolean
 - **Options**:
     - EdX (`ResourceEdX`)
@@ -185,7 +185,7 @@ as follows in the parentheses:
 
 ### Which coding-related podcasts have you found helpful?
 
-- **Question Type**: 
+- **Question Type**:
 - **Type**: Categorical/Boolean
 - **Options**:
     - Code Newbie (`PodcastCodeNewbie`)
@@ -203,7 +203,7 @@ as follows in the parentheses:
 
 ### About how many hours do you spend learning each week?
 
-- **Question Type**: 
+- **Question Type**:
 - **Variable**: `HoursLearning`
 - **Type**: `Numeric`
 - **Options**: User input
@@ -211,7 +211,7 @@ as follows in the parentheses:
 
 ### About how many months have you been programming for?
 
-- **Question Type**: 
+- **Question Type**:
 - **Variable**: `MonthsProgramming`
 - **Type**: Numeric
 - **Options**: User input
@@ -219,7 +219,7 @@ as follows in the parentheses:
 
 ### Have you attended a full-time coding bootcamp?
 
-- **Question Type**: 
+- **Question Type**:
 - **Variable**: `BootcampYesNo`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
@@ -227,7 +227,7 @@ as follows in the parentheses:
 
 ### Which one?
 
-- **Question Type**: 
+- **Question Type**:
 - **Variable**: `BootcampName`
 - **Type**: Categorical
 - **Options**: User input
@@ -238,7 +238,7 @@ as follows in the parentheses:
 
 ### Have you finished yet?
 
-- **Question Type**: 
+- **Question Type**:
 - **Variable**: `BootcampFinish`
 - **Type**: Boolean
 - **Option**: Yes (1), No (0)
@@ -248,7 +248,7 @@ as follows in the parentheses:
 
 ### How many months ago?
 
-- **Question Type**: 
+- **Question Type**:
 - **Variable**: `BootcampMonthsAgo`
 - **Type**: Numeric
 - **Options**: User input
@@ -258,7 +258,7 @@ as follows in the parentheses:
 
 ### Were you able to get a full time developer job afterward?
 
-- **Question Type**: 
+- **Question Type**:
 - **Variable**: `BootcampFullJobAfter`
 - **Type**: Boolean
 - **Option**: Yes (1), No (0)
@@ -268,7 +268,7 @@ as follows in the parentheses:
 
 ### How much was your salary?
 
-- **Question Type**: 
+- **Question Type**:
 - **Variable**: `BootcampPostSalary`
 - **Type**: Numeric
 - **Option**: User input
@@ -278,7 +278,7 @@ as follows in the parentheses:
 
 ### Did you take a loan to pay for the bootcamp?
 
-- **Question Type**: 
+- **Question Type**:
 - **Variable**: `BootcampLoan`
 - **Type**: Boolean
 - **Option**: Yes (1), No (0)
@@ -288,7 +288,7 @@ as follows in the parentheses:
 
 ### Based on your experience, would you recommend this bootcamp to your friends?
 
-- **Question Type**: 
+- **Question Type**:
 - **Variable**: `BootcampRecommend`
 - **Type**: Boolean
 - **Option**: Yes (1), No (0)
@@ -298,7 +298,7 @@ as follows in the parentheses:
 
 ### Aside from university tuition, about how much money have you spent on learning to code so far (in US dollars)?
 
-- **Question Type**: 
+- **Question Type**:
 - **Variable**: `MoneyForLearning`
 - **Type**: Numeric
 - **Options**: User input
@@ -327,7 +327,8 @@ as follows in the parentheses:
 
 ### How old are you?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `Age`
 - **Type**: Numeric
 - **Options**: User input
 - **Note**: You'll need to parse this to make sure the data is indeed in
@@ -336,7 +337,8 @@ as follows in the parentheses:
 
 ### What's your gender?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `Gender`
 - **Type**: Categorical/Boolean
 - **Options**:
     - female
@@ -348,7 +350,8 @@ as follows in the parentheses:
 
 ### Which country are you a citizen of?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `CountryCitizen`
 - **Type**: Categorical
 - **Options**: Countries of the world
 - **Note**: This field allowed free-text entry but gave options to choose from.
@@ -356,7 +359,8 @@ as follows in the parentheses:
 
 ### Which country do you currently live in?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `CountryLive`
 - **Type**: Categorical
 - **Options**: Countries of the world
 - **Note**: This field allowed free-text entry but gave options to choose from.
@@ -364,7 +368,8 @@ as follows in the parentheses:
 
 ### About how many people live in your city?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `CityPopulation`
 - **Type**: Categorical
 - **Options**:
     - less than 100,000
@@ -374,14 +379,16 @@ as follows in the parentheses:
 
 ### Are you an ethnic minority in your country?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `IsEthnicMinority`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 
 
 ### Which language do you speak at home with your family?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `LanguageAtHome`
 - **Type**: Categorical
 - **Options**: Languages of the world
 - **Note**: This field allowed free-text entry but gave options to choose from.
@@ -389,7 +396,8 @@ as follows in the parentheses:
 
 ### What's the highest degree of level of school you have completed?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `SchoolDegree`
 - **Type**: Categorical
 - **Options**:
     - no high school (secondary school)
@@ -406,7 +414,8 @@ as follows in the parentheses:
 
 ### What was the main subject your studied in university?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `SchoolMajor`
 - **Type**: Categorical
 - **Options**: User input
 - **Note**: This field became open if you choose anything greater than trade,
@@ -414,21 +423,24 @@ as follows in the parentheses:
 
 ### Do you financially support any dependents?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `FinanciallySupporting`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 
 
 ### Do you have any debt?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `HasDebt`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 
 
 ###  Do you have a home mortgage?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `HasHomeMortgage`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 - **Note**: This option was given if you answered "Yes" to having debt.
@@ -436,7 +448,8 @@ as follows in the parentheses:
 
 ### About how much do you owe on your home mortgage in US Dollars?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `HomeMortgage`
 - **Type**: Numeric
 - **Options**: User input
 - **Note**: This option was given if you answered "Yes" to having a home
@@ -446,7 +459,8 @@ as follows in the parentheses:
 
 ### Do you have student loan debt?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `HasStudentDebt`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 - **Note**: This option was given if you answered "Yes" to having any debt.
@@ -456,7 +470,8 @@ as follows in the parentheses:
 
 ### Regarding employment status, are you currently...
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `EmploymentStatus`
 - **Type**: Categorical
 - **Options**:
     - Employed for wages
@@ -476,7 +491,8 @@ as follows in the parentheses:
 
 ### Which field do you work in?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `EmploymentField`
 - **Type**: Categorical
 - **Options**:
     - software development and IT
@@ -500,7 +516,8 @@ as follows in the parentheses:
 
 ### About how much money did you make last year in (US dollars)?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `Income`
 - **Type**: Numeric
 - **Options**: User input
 - **Note**: This field allowed user input so you'll need to parse this column
@@ -509,7 +526,8 @@ as follows in the parentheses:
 
 ### About how many minutes total do you spend commuting to and from work each day?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `CommuteTime`
 - **Type**: Numeric
 - **Options**: User input
 - **Note**: This field allowed user input so you'll need to parse this column
@@ -518,7 +536,8 @@ as follows in the parentheses:
 
 ### Do you consider yourself under-employed?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `IsUnderEmployed`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 - **Note**: The explanation for this question was, "Under-employed means
@@ -527,21 +546,24 @@ as follows in the parentheses:
 
 ### Have you served in your country's military before?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `HasServedInMilitary`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 
 
 ### Do you receive disability benefits from your government?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `IsReceiveDiabilitiesBenefits`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 
 
 ### Do you have high speed internet at your home?
 
-- **Question Type**: 
+- **Question Type**:
+- **Variable**: `HasHighSpdInternet`
 - **Type**: Boolean
 - **Options**: Yes (1), No (0)
 
@@ -549,6 +571,7 @@ as follows in the parentheses:
 ### Start Date and Submit Date
 
 - **Type**: Date
+- **Variables**: `Part1EndTime	Part1StartTime	Part2EndTime	Part2StartTime`
 - **Options**: Computer generated
 - **Note**: These are two separate columns indicating the start and finish
   times for the survey.

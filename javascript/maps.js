@@ -10,6 +10,7 @@ var mapID = '#Map';
 var mapsData = './data/maps-data.json';
 var worldJSON = './data/world-geo3-min.json';
 var minFillSize = 20;
+var colorsDefault = ['#C4EDC7', '#6FCF75', '#39993F', '#185E1C', '#102A12']; //['#C4EDC7', '#6FCF75', '#39993F', '#185E1C', '#102A12']
 
 // defines the [type, [breakpoints between colors for map fill], description for legend, [country.properties keys for global stats], [descriptors for global stats], [keys for tooltip stats if diff from global], [descriptors for tooltip stats]
 var mapFill = {
@@ -21,7 +22,7 @@ var mapFill = {
 // Color assignment
 var colors = {
   all: {
-    spectrum: ['#C4EDC7', '#6FCF75', '#39993F', '#185E1C', '#102A12'],//['#c9df8a','#77ab59','#36802d','#234d20', '#112610'],
+    spectrum: colorsDefault,//['#c9df8a','#77ab59','#36802d','#234d20', '#112610'],
     Africa: '#17becf',
     Asia: '#ff7f0e',
     Europe: '#bcbd22',
@@ -32,24 +33,27 @@ var colors = {
     nonCitizen: '#d62728'
   },
   gender: {
-    spectrum: ['#E8C0DF', '#C167AE', '#8D357A', '#571649', '#270F21'],//['#D9A6DB', '#D266CD', '#BC23B5', '#93008D', '#550051'],//['#A777A8','#8B2A8F','#500A76','#3A0358','#1D002C'],
-    female: '#FF1493',
-    ATQ: '#FFFF00',
-    male: '#000050',
+    // spectrum: ['#E8C0DF', '#C167AE', '#8D357A', '#571649', '#270F21'],//['#D9A6DB', '#D266CD', '#BC23B5', '#93008D', '#550051'],//['#A777A8','#8B2A8F','#500A76','#3A0358','#1D002C'],
+    spectrum: colorsDefault,
+    female: colorsDefault[4], //'#FF1493',
+    ATQ: colorsDefault[3], //'#FFFF00',
+    male: colorsDefault[1], //'#000050',
     NR: '#fff'
   },
   ethnicity: {
-    spectrum: ['#F9CFD7', '#EF8096', '#B5435A', '#6F1C2C', '#321319'],//['#FFAEAE', '#FF4A4A', '#EE0000', '#AA0000', '#640000'],//['#DE6862', '#FE0D00', '#C40900', '#840500', '#220200'],
-    'ethnicity': '#640500',
-    'ethnicMajority': '#DE6862'
+    // spectrum: ['#F9CFD7', '#EF8096', '#B5435A', '#6F1C2C', '#321319'],//['#FFAEAE', '#FF4A4A', '#EE0000', '#AA0000', '#640000'],//['#DE6862', '#FE0D00', '#C40900', '#840500', '#220200'],
+    spectrum: colorsDefault,
+    'ethnicity': colorsDefault[4], //'#640500',
+    'ethnicMajority': colorsDefault[1],//'#DE6862'
   },
   age: {
-    spectrum: ['#BECFE1', '#6589B1', '#36587F', '#18324E', '#0F1823'],//['#FFB86B','#FF9420','#E67800','#7F4200', '#170C00'],
-    0: '#1f77b4',
-    1: '#2ca02c',
-    2: '#d62728',
-    3: '#9467bd',
-    4: '#bcbd22',
+    // spectrum: ['#BECFE1', '#6589B1', '#36587F', '#18324E', '#0F1823'],//['#FFB86B','#FF9420','#E67800','#7F4200', '#170C00'],
+    spectrum: colorsDefault,
+    0: colorsDefault[0], //'#1f77b4',
+    1: colorsDefault[1], //'#2ca02c',
+    2: colorsDefault[2], //'#d62728',
+    3: colorsDefault[3], //'#9467bd',
+    4: colorsDefault[4], //'#bcbd22',
     5: '#fff'
   },
   NR: '#fff',
