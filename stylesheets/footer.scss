@@ -20,6 +20,11 @@ footer {
   }
 
   .answer, p { margin-top: 0; }
+  p {
+    a {
+      font-weight: 600;
+    }
+  }
   h3 {
     a { color: black; }
     margin-bottom: 0;
