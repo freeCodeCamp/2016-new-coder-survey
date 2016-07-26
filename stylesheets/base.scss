@@ -21,7 +21,7 @@ body {
   margin: 0;
   font-family: "Roboto", "sans serif";
   a {
-    color: $green;
+    color: black;
     text-decoration: none;
   }
   .footnote:before {
@@ -82,7 +82,7 @@ section {
       a {
         border: $dark-gray solid 2px;
         padding: 5px 10px;
-        color: $dark-green;
+        color: $very-dark-green;
         background: white;
         &:hover {
           background: $very-dark-green;

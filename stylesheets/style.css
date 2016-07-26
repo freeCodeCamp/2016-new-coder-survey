@@ -9,7 +9,7 @@ body {
   margin: 0;
   font-family: "Roboto", "sans serif"; }
   body a {
-    color: #7ED321;
+    color: black;
     text-decoration: none; }
   body .footnote:before {
     display: block;
@@ -32,7 +32,7 @@ header {
   text-align: center;
   padding: 50px 20px 0px; }
   header p.description {
-    color: #7ED321;
+    color: white;
     font-family: "Georgia", "serif";
     font-size: 1.77689em; }
   header h1 {
@@ -78,6 +78,8 @@ nav {
   padding: 10px 30px;
   position: fixed;
   top: 80px; }
+  .raw-data a {
+    font-weight: 600; }
   .raw-data .close {
     color: #006400;
     position: absolute;
@@ -180,6 +182,8 @@ footer {
     margin-bottom: 0; }
   footer .answer, footer p {
     margin-top: 0; }
+  footer p a {
+    font-weight: 600; }
   footer h3 {
     margin-bottom: 0; }
     footer h3 a {
@@ -223,7 +227,7 @@ section article.tags {
     section article.tags .tag a {
       border: #D8D8D8 solid 2px;
       padding: 5px 10px;
-      color: #417505;
+      color: #006400;
       background: white; }
       section article.tags .tag a:hover {
         background: #006400;
