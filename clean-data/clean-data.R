@@ -7,7 +7,7 @@
 #                   the `main()` function at the end of this script.
 # Author:           Eric Leung (@erictleung)
 # Help from:        @evaristoc and @SamAI-Software
-# Last Updated:     2016 May 17th
+# Last Updated:     2016 August 4th
 
 # Load in necessary packages
 require(dplyr)
@@ -29,7 +29,7 @@ require(dplyr)
 # Usage:
 fix_truncate_job_apply <- function(answer) {
     truncateAns <- c()
-    for (i in 1: length(answer)) {
+    for (i in 1:length(answer)) {
         tempAns <- answer[i] %>%
             unlist %>%
             ifelse(. == "I", "I'm already applying", .) %>%
@@ -83,7 +83,7 @@ simple_title_case <- function(x) {
 #   [1] "55000"
 average_range_earning <- function(x) {
     avgRange <- c()
-    for (i in 1: length(x)) {
+    for (i in 1:length(x)) {
         tempRange <- x[i] %>% strsplit("-") %>%
             unlist %>%
             as.numeric %>%
@@ -131,7 +131,7 @@ years_to_months <- function(x) {
     monthsDat <- c()
     for (i in 1:length(x)) {
         tempMonths <- x[i] %>% gsub("[A-Za-z ]", "", .) %>%
-            (function (x) as.numeric(x) * 12) %>%
+            (function(x) as.numeric(x) * 12) %>%
             as.character()
         monthsDat <- c(monthsDat, tempMonths)
     }
@@ -1035,6 +1035,19 @@ clean_mortgage_amt <- function(cleanPart) {
     # Make values to integer so that it'll remove odd answers like 00000
     cleanPart <- cleanPart %>%
         mutate(HomeMortgageOwe = as.integer(HomeMortgageOwe))
+
+    # Make minumum mortgage amount $1000
+    cleanPart <- cleanPart %>%
+        mutate(HomeMortgageOwe = ifelse(HomeMortgageOwe < 1000,
+                                        yes = NA,
+                                        no = HomeMortgageOwe))
+
+    # Make maximum mortgage amount $1000000
+    cleanPart <- cleanPart %>%
+        mutate(HomeMortgageOwe = ifelse(HomeMortgageOwe > 1000000,
+                                        yes = NA,
+                                        no = HomeMortgageOwe))
+
     cleanPart
 }
 
@@ -1162,6 +1175,10 @@ clean_commute <- function(cleanPart) {
 
     # Convert to integer
     cleanPart <- cleanPart %>% mutate(CommuteTime = as.integer(CommuteTime))
+
+    # Cut off commute times greater than 300 minutes (5 hours) to NA
+    cleanPart <- cleanPart %>%
+        mutate(CommuteTime = ifelse(CommuteTime > 300, NA, CommuteTime))
 
     cat("Finished cleaning responses for commute time.\n")
     cleanPart
@@ -1307,7 +1324,8 @@ clean_resources <- function(cleanPart) {
 # Title:
 #   Clean Student Debt Amount
 # Description:
-#   Remove commas.
+#   Remove commas, set minimum to $1000, set maximum to $500000, and make
+#   individuals' answers who have zero debt consistent with `HasStudentDebt`
 # Usage:
 #   cleanPart <- clean_student_debt(cleanPart)
 clean_student_debt <- function(cleanPart) {
@@ -1321,7 +1339,52 @@ clean_student_debt <- function(cleanPart) {
         mutate(StudentDebtOwe = sub(",", "", StudentDebtOwe))
     cleanPart <- cleanPart %>% filter(!commaIdx) %>% bind_rows(commaData)
 
+    # Change to integer
+    cleanPart <- cleanPart %>%
+        mutate(StudentDebtOwe = as.integer(StudentDebtOwe))
+
+    # Make mimimum student debt to $1000
+    cleanPart <- cleanPart %>%
+        mutate(StudentDebtOwe = ifelse(StudentDebtOwe < 1000,
+                                       yes = NA,
+                                       no = StudentDebtOwe))
+
+    # Make maximum student debt to $500000
+    cleanPart <- cleanPart %>%
+        mutate(StudentDebtOwe = ifelse(StudentDebtOwe > 500000,
+                                       yes = NA,
+                                       no = StudentDebtOwe))
+
+    # Change back to character
+    cleanPart <- cleanPart %>%
+        mutate(StudentDebtOwe = as.character(StudentDebtOwe))
+
     cat("Finished cleaning responses for student debt owed.\n")
+    cleanPart
+}
+
+
+# Title:
+#   Clean Children
+# Description:
+#   Make sure there's consistency in answering you have no children. In other
+#   words, if you answered "No" for not having children, you should not have a
+#   response to how many children you have (i.e. NA).
+# Usage:
+#   cleanPart <- clean_children(cleanPart)
+clean_children <- function(cleanPart) {
+    cat("Cleaning responses for number of children...\n")
+
+    naChildren <- cleanPart %>%
+        filter(is.na(ChildrenNumber))
+    children <- cleanPart %>%
+        filter(!is.na(ChildrenNumber)) %>%
+        mutate(HasChildren = ifelse(ChildrenNumber == 0, 0, HasChildren)) %>%
+        mutate(ChildrenNumber =
+                   ifelse(ChildrenNumber == 0, NA, ChildrenNumber))
+    cleanPart <- bind_rows(naChildren, children)
+
+    cat("Finished cleaning responses for number of children.\n")
     cleanPart
 }
 
@@ -1500,6 +1563,7 @@ clean_part <- function(part) {
     cleanPart <- clean_commute(cleanPart)  # Clean commute time
     cleanPart <- clean_resources(cleanPart)  # Clean other resources
     cleanPart <- clean_student_debt(cleanPart)  # Clean student debt amount
+    cleanPart <- clean_children(cleanPart)  # Clean children responses
 
     # Remove inconsistent responses between job roles
     jobRole <- cleanPart %>%
@@ -1586,7 +1650,7 @@ rename_part_2 <- function(part2) {
     ) %>% rename(
         HasServedInMilitary = Have.you.served.in.your.country.s.military.before.
     ) %>% rename(
-        IsReceiveDiabilitiesBenefits = Do.you.receive.disability.benefits.from.your.government.
+        IsReceiveDisabilitiesBenefits = Do.you.receive.disability.benefits.from.your.government.
     ) %>% rename(
         HasHighSpdInternet = Do.you.have.high.speed.internet.at.your.home.
     ) %>% rename(
@@ -1754,6 +1818,9 @@ time_diff_check <- function(allData) {
     # Join two pieces back together
     newData <- bind_rows(newDataData, newDataNA)
 
+    # Ungroup data from grouping (group_by()) done above
+    newData <- newData %>% ungroup()
+
     cat("Finished checking inconsistencies within survey after joining.\n")
     newData
 }
@@ -1778,6 +1845,7 @@ polish_data <- function(cleanData) {
         rename(BootcampLoanYesNo = BootcampLoan) %>%
         mutate(BootcampMonthsAgo = as.integer(BootcampMonthsAgo)) %>%
         mutate(BootcampPostSalary = as.integer(BootcampPostSalary)) %>%
+        mutate(BootcampRecommend = as.integer(BootcampRecommend)) %>%
         mutate(BootcampYesNo = as.integer(BootcampYesNo)) %>%
         rename(AttendedBootcamp = BootcampYesNo) %>%
         mutate(ExpectedEarning = as.integer(ExpectedEarning)) %>%
@@ -1785,7 +1853,12 @@ polish_data <- function(cleanData) {
         mutate(Income = as.integer(Income)) %>%
         mutate(IsSoftwareDev = as.integer(IsSoftwareDev)) %>%
         rename(JobRelocateYesNo = JobRelocate) %>%
+        mutate(JobRelocateYesNo = as.integer(JobRelocateYesNo)) %>%
         mutate(MoneyForLearning = as.integer(MoneyForLearning)) %>%
+        mutate(StudentDebtOwe = as.integer(StudentDebtOwe))
+
+    # Polish Code Events
+    cleanData <- cleanData %>%
         mutate(CodeEventCoffee = as.integer(CodeEventCoffee)) %>%
         mutate(CodeEventConferences = as.integer(CodeEventConferences)) %>%
         mutate(CodeEventGirlDev = as.integer(CodeEventGirlDev)) %>%
@@ -1800,23 +1873,10 @@ polish_data <- function(cleanData) {
         mutate(CodeEventRailsGirls = as.integer(CodeEventRailsGirls)) %>%
         mutate(CodeEventDjangoGirls = as.integer(CodeEventDjangoGirls)) %>%
         mutate(CodeEventGameJam = as.integer(CodeEventGameJam)) %>%
-        mutate(CodeEventWorkshop = as.integer(CodeEventWorkshop)) %>%
-        mutate(PodcastChangeLog = as.integer(PodcastChangeLog)) %>%
-        mutate(PodcastCodeNewbie = as.integer(PodcastCodeNewbie)) %>%
-        mutate(PodcastJSJabber = as.integer(PodcastJSJabber)) %>%
-        mutate(PodcastNone = as.integer(PodcastNone)) %>%
-        mutate(PodcastSEDaily = as.integer(PodcastSEDaily)) %>%
-        mutate(PodcastRubyRogues = as.integer(PodcastRubyRogues)) %>%
-        mutate(PodcastShopTalk = as.integer(PodcastShopTalk)) %>%
-        mutate(PodcastDeveloperTea = as.integer(PodcastDeveloperTea)) %>%
-        mutate(PodcastProgrammingThrowDown =
-                   as.integer(PodcastProgrammingThrowDown)) %>%
-        mutate(PodcastDotNetRocks = as.integer(PodcastDotNetRocks)) %>%
-        mutate(PodcastTalkPython = as.integer(PodcastTalkPython)) %>%
-        mutate(PodcastJsAir = as.integer(PodcastJsAir)) %>%
-        mutate(PodcastHanselminutes = as.integer(PodcastHanselminutes)) %>%
-        mutate(PodcastWebAhead = as.integer(PodcastWebAhead)) %>%
-        mutate(PodcastCodingBlocks = as.integer(PodcastCodingBlocks)) %>%
+        mutate(CodeEventWorkshop = as.integer(CodeEventWorkshop))
+
+    # Polish Resources
+    cleanData <- cleanData %>%
         mutate(ResourceCodeWars = as.integer(ResourceCodeWars)) %>%
         mutate(ResourceCodeacademy = as.integer(ResourceCodeacademy)) %>%
         rename(ResourceCodecademy = ResourceCodeacademy) %>%
@@ -1828,7 +1888,40 @@ polish_data <- function(cleanData) {
         mutate(ResourceOdinProj = as.integer(ResourceOdinProj)) %>%
         mutate(ResourcePluralSight = as.integer(ResourcePluralSight)) %>%
         mutate(ResourceUdacity = as.integer(ResourceUdacity)) %>%
-        mutate(ResourceUdemy = as.integer(ResourceUdemy))
+        mutate(ResourceUdemy = as.integer(ResourceUdemy)) %>%
+        mutate(ResourceTreehouse = as.integer(ResourceTreehouse)) %>%
+        mutate(ResourceLynda = as.integer(ResourceLynda)) %>%
+        mutate(ResourceStackOverflow = as.integer(ResourceStackOverflow)) %>%
+        mutate(ResourceBooks = as.integer(ResourceBooks)) %>%
+        mutate(ResourceW3Schools = as.integer(ResourceW3Schools)) %>%
+        mutate(ResourceSkillCrush = as.integer(ResourceSkillCrush)) %>%
+        mutate(ResourceYouTube = as.integer(ResourceYouTube)) %>%
+        mutate(ResourceGoogle = as.integer(ResourceGoogle)) %>%
+        mutate(ResourceHackerRank = as.integer(ResourceHackerRank)) %>%
+        mutate(ResourceReddit = as.integer(ResourceReddit)) %>%
+        mutate(ResourceMDN = as.integer(ResourceMDN)) %>%
+        mutate(ResourceSoloLearn = as.integer(ResourceSoloLearn)) %>%
+        mutate(ResourceBlogs = as.integer(ResourceBlogs)) %>%
+        mutate(ResourceEggHead = as.integer(ResourceEggHead))
+
+    # Polish Podcasts
+    cleanData <- cleanData %>%
+        mutate(PodcastChangeLog = as.integer(PodcastChangeLog)) %>%
+        mutate(PodcastCodeNewbie = as.integer(PodcastCodeNewbie)) %>%
+        mutate(PodcastJSJabber = as.integer(PodcastJSJabber)) %>%
+        mutate(PodcastNone = as.integer(PodcastNone)) %>%
+        mutate(PodcastSEDaily = as.integer(PodcastSEDaily)) %>%
+        mutate(PodcastRubyRogues = as.integer(PodcastRubyRogues)) %>%
+        mutate(PodcastShopTalk = as.integer(PodcastShopTalk)) %>%
+        mutate(PodcastDeveloperTea = as.integer(PodcastDeveloperTea)) %>%
+        mutate(PodcastProgrammingThrowDown =
+               as.integer(PodcastProgrammingThrowDown)) %>%
+        mutate(PodcastDotNetRocks = as.integer(PodcastDotNetRocks)) %>%
+        mutate(PodcastTalkPython = as.integer(PodcastTalkPython)) %>%
+        mutate(PodcastJsAir = as.integer(PodcastJsAir)) %>%
+        mutate(PodcastHanselminutes = as.integer(PodcastHanselminutes)) %>%
+        mutate(PodcastWebAhead = as.integer(PodcastWebAhead)) %>%
+        mutate(PodcastCodingBlocks = as.integer(PodcastCodingBlocks))
 
     # Order columns alphabetically
     cleanData <- cleanData %>% select(noquote(order(colnames(cleanData))))
