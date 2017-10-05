@@ -5,7 +5,7 @@ Do you use any free "learn to code" website to teach yourself programming? Clay 
 
 
 <h1> Contents </h1>
-* [What factors affect employment after bootcamp completion?](https://www.kaggle.com/chessybo/bootcamp-success-vs-age)
+- [What factors affect employment after bootcamp completion?](https://www.kaggle.com/chessybo/bootcamp-success-vs-age)
 
 
 
